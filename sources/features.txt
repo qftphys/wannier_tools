@@ -1,53 +1,128 @@
 Features of WannierTools
 ========================
 
--  Bulk band calculation
--  Bulk Fermi surface calculation
--  Energy gap calculations at k space
--  Slab  band calculation
--  Nanowire/nanoribbon  band calculation
--  Surface state calculation (ARPES)
--  Surface state calculation (QPI)
--  Fermi arc calculation
--  Spin texture calculation
--  Berry curvature calculation
--  Wannier charge center/Wilson loop calculation
+-  :ref:`bulkbandcalculation`
+-  :ref:`bulkfscalculation`
+-  :ref:`energygapcalculation`
+-  :ref:`slabbandcalculation`
+-  :ref:`ribbonbandcalculation`
+-  :ref:`sscalculation`
+-  :ref:`ssqpicalculation`
+-  :ref:`fermiarccalculation`
+-  :ref:`spintexturecalculation`
+-  :ref:`berrycurvcalculation`
+-  :ref:`wanniercentercalculation`
+
+.. _bulkbandcalculation:
 
 Bulk band calculation
 ---------------------
-You should specify the number of k lines and the special lines  KPATH_BULK CARDS.  The outputs for this function are bulkek.dat and bulkek.gnu. You can run "gnuplot bulkek.gnu", or "xmgrace bulkek.dat" to get bandstucture plot.  
+Calculate bulk energy band for a series k lines. This is the basic calculation after the
+construction of Wannier functions. You have to compare your Wannier interpolated bands 
+with the DFT bands. Those two bands should match well around the Fermi level.
+
+.. _bulkekin:
+
+Input
+^^^^^
+Typical flags for bulk band calculation in the input.dat. ::
+
+  &CONTROL
+  BulkBand_calc = T
+  /
+  &PARAMETERS
+  Nk1 = 101   ! Number of k points for each k line
+  /
+
+  KPATH_BULK     ! k point path
+  4              ! number of k lines only for bulk band
+  G 0.00000 0.00000 0.0000 Z 0.00000 0.00000 0.5000
+  Z 0.00000 0.00000 0.5000 F 0.50000 0.50000 0.0000
+  F 0.50000 0.50000 0.0000 G 0.00000 0.00000 0.0000
+  G 0.00000 0.00000 0.0000 L 0.50000 0.00000 0.0000  
+
+.. _bulkekout:
+Output
+^^^^^^
+
+The outputs for bulk band calculation are **bulkek.dat** and **bulkek.gnu**. You can get the band plot by running ::
+
+  gnuplot bulkek.gnu
+or ::
+
+ xmgrace bulkek.dat
+to get bandstucture plot.  
+
+The data structure for **bulkek.dat** ::
+
+    0.000000000       -2.673821992  119   80   80  119   80   80  205  138  138   70   40   40   70   40   40    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0
+    0.016453872       -2.681536808  118   78   78  118   78   78  203  134  134   82   41   41   82   41   41    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0
+
+1. The 1st column represents k points for the given kpath (KPATH_BULK)
+2. The 2nd column is the energy level 
+3. From the 3rd to the n'th column are the projected weight of the wave
+   function at each k point and each band onto
+   each wannier orbitals. Those weights are normalized 
+   to 255 for the color plot convinence.
+
+The subrotine for this feature is :f:func:`ek_bulk`
+
+.. _bulkfscalculation:
 
 BulkFS calculation
 ------------------
 Bulk Fermi surface calculation. you should specify the number of k points for each three reciprocal vectors Nk1, Nk2, Nk3 in NAMELISTS PARAMETERS.  The outputs for this function are FS3D.bxsf. You can run “xcrysden —bxsf FS3D.bxsf” to get the plot. By the way, Bulk band and BulkFS calculations are already implemented in Wannier90 code.
 
+.. _energygapcalculation:
+
 Energy gap calculations
 -----------------------
 We support two modes for energy gap calculations. A. We can plot the energy gap as a function of k in a k plane, which can be done by setting BulkGap_plane_calc=T. The k plane can be set in KPLANE_BULK. The number of k points for two vectors is Nk1, Nk2, set in NAMELISTS PARAMETERS.  You can get gap plot GapPlane.png with “gnuplot GapPlane.gnu”. B. We also can get energy gap in a 3D k cube defined by three vectors with a start point, which are set in CARD KCUBE_BULK. The number of k points for three vectors is Nk1, Nk2, Nk3, set in NAMELISTS PARAMETERS. This helps us to find Weyl points in the 3D BZ. For 3D GapCube calculation, the output is the k points at which the energy gap is small than Gap_threshold. You can list all the k points satisfied such criterion by “gnuplot GapCube.gnu”. 
+
+.. _slabbandcalculation:
 
 Slab  band calculation
 ----------------------
 Before using iterative green’s function to get the surface state spectrum for semi-infinite system. We also can just construct a finite thickness slab system and calculate the band structure for it. Set SlabBand_calc=T in NAMELISTS CONTROL, and set Nk1 in NAMELISTS PARAMETERS, set k path in KPATH_SLAB CARD. And get plot slabek.png with “gnuplot  slabek.gnu”. 
 
+.. _ribbonbandcalculation:
+
 Nanowire/nanoribbon  band calculation
 -------------------------------------
 Band calculation for wire system. Set WireBand_calc=T  in NAMELISTS CONTROL, and set Nk1 in NAMELISTS PARAMETERS. Get plot ribbonek.png with “gnuplot ribbonek.gnu"
 
-Surface state calculation
+.. _sscalculation:
+
+Surface state ARPES calculation
 -------------------------
 Surface state spectrum at each k point and each energy level. Set SlabSS_calc=T, and  set Nk1 in NAMELISTS PARAMETERS, set k path in KPATH_SLAB CARD. Get the plots with  "gnuplot surfdos_l.gnu”, "gnuplot surfdos_r.gnu”. 
+
+.. _ssqpicalculation:
+
+Surface state QPI calculation
+-------------------------
+Surface state spectrum at each k point and each energy level. Set SlabSS_calc=T, and  set Nk1 in NAMELISTS PARAMETERS, set k path in KPATH_SLAB CARD. Get the plots with  "gnuplot surfdos_l.gnu”, "gnuplot surfdos_r.gnu”. 
+
+
+.. _fermiarccalculation:
 
 Fermi arc calculation
 ---------------------
 Surface state spectrum at fixed energy level E_arc set in NAMELISTS PARAMETERS . Set SlabArc_calc=T, and  set Nk1, Nk2, in NAMELISTS PARAMETERS, set k plane in KPLANE_SLAB CARD. Get the plots with  "gnuplot arc_l.gnu”, "gnuplot arc_r.gnu”.
 
+.. _spintexturecalculation:
+
 Spin texture calculation
 ------------------------
 Spin texture calculation at fixed energy level E_arc set in NAMELISTS PARAMETERS . Set SlabArc_calc=T, and  set Nk1, Nk2, in NAMELISTS PARAMETERS, set k plane in KPLANE_SLAB CARD. Get the plots with  "gnuplot spintext_l.gnu”, "gnuplot spintext_r.gnu”.
 
+.. _berrycurvcalculation:
+
 Berry curvature calculation
 ---------------------------
 Calculate Berry curvature at a fixed k plane in 3D BZ. Set BerryCurvature_calc=T, and  set Nk1, Nk2, in NAMELISTS PARAMETERS, set k plane in KPLANE_BULK CARD. Get the plot with  "gnuplot Berrycurvature.gnu”.
+
+.. _wanniercentercalculation:
 
 Wannier charge center/Wilson loop calculation
 ---------------------------------------------

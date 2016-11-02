@@ -58,56 +58,107 @@
   <div class="section" id="features-of-wanniertools">
 <h1>Features of WannierTools<a class="headerlink" href="#features-of-wanniertools" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
-<li>Bulk band calculation</li>
-<li>Bulk Fermi surface calculation</li>
-<li>Energy gap calculations at k space</li>
-<li>Slab  band calculation</li>
-<li>Nanowire/nanoribbon  band calculation</li>
-<li>Surface state calculation (ARPES)</li>
-<li>Surface state calculation (QPI)</li>
-<li>Fermi arc calculation</li>
-<li>Spin texture calculation</li>
-<li>Berry curvature calculation</li>
-<li>Wannier charge center/Wilson loop calculation</li>
+<li><a class="reference internal" href="#bulkbandcalculation"><span class="std std-ref">Bulk band calculation</span></a></li>
+<li><a class="reference internal" href="#bulkfscalculation"><span class="std std-ref">BulkFS calculation</span></a></li>
+<li><a class="reference internal" href="#energygapcalculation"><span class="std std-ref">Energy gap calculations</span></a></li>
+<li><a class="reference internal" href="#slabbandcalculation"><span class="std std-ref">Slab  band calculation</span></a></li>
+<li><a class="reference internal" href="#ribbonbandcalculation"><span class="std std-ref">Nanowire/nanoribbon  band calculation</span></a></li>
+<li><a class="reference internal" href="#sscalculation"><span class="std std-ref">Surface state ARPES calculation</span></a></li>
+<li><a class="reference internal" href="#ssqpicalculation"><span class="std std-ref">Surface state QPI calculation</span></a></li>
+<li><a class="reference internal" href="#fermiarccalculation"><span class="std std-ref">Fermi arc calculation</span></a></li>
+<li><a class="reference internal" href="#spintexturecalculation"><span class="std std-ref">Spin texture calculation</span></a></li>
+<li><a class="reference internal" href="#berrycurvcalculation"><span class="std std-ref">Berry curvature calculation</span></a></li>
+<li><a class="reference internal" href="#wanniercentercalculation"><span class="std std-ref">Wannier charge center/Wilson loop calculation</span></a></li>
 </ul>
 <div class="section" id="bulk-band-calculation">
-<h2>Bulk band calculation<a class="headerlink" href="#bulk-band-calculation" title="Permalink to this headline">¶</a></h2>
-<p>You should specify the number of k lines and the special lines  KPATH_BULK CARDS.  The outputs for this function are bulkek.dat and bulkek.gnu. You can run &#8220;gnuplot bulkek.gnu&#8221;, or &#8220;xmgrace bulkek.dat&#8221; to get bandstucture plot.</p>
+<span id="bulkbandcalculation"></span><h2>Bulk band calculation<a class="headerlink" href="#bulk-band-calculation" title="Permalink to this headline">¶</a></h2>
+<p>Calculate bulk energy band for a series k lines. This is the basic calculation after the
+construction of Wannier functions. You have to compare your Wannier interpolated bands
+with the DFT bands. Those two bands should match well around the Fermi level.</p>
+<div class="section" id="input">
+<span id="bulkekin"></span><h3>Input<a class="headerlink" href="#input" title="Permalink to this headline">¶</a></h3>
+<p>Typical flags for bulk band calculation in the input.dat.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>&amp;CONTROL
+BulkBand_calc = T
+/
+&amp;PARAMETERS
+Nk1 = 101   ! Number of k points for each k line
+/
+
+KPATH_BULK     ! k point path
+4              ! number of k lines only for bulk band
+G 0.00000 0.00000 0.0000 Z 0.00000 0.00000 0.5000
+Z 0.00000 0.00000 0.5000 F 0.50000 0.50000 0.0000
+F 0.50000 0.50000 0.0000 G 0.00000 0.00000 0.0000
+G 0.00000 0.00000 0.0000 L 0.50000 0.00000 0.0000
+</pre></div>
+</div>
+</div>
+<div class="section" id="output">
+<h3>Output<a class="headerlink" href="#output" title="Permalink to this headline">¶</a></h3>
+<p>The outputs for bulk band calculation are <strong>bulkek.dat</strong> and <strong>bulkek.gnu</strong>. You can get the band plot by running</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">gnuplot</span> <span class="n">bulkek</span><span class="o">.</span><span class="n">gnu</span>
+</pre></div>
+</div>
+<p>or</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">xmgrace</span> <span class="n">bulkek</span><span class="o">.</span><span class="n">dat</span>
+</pre></div>
+</div>
+<p>to get bandstucture plot.</p>
+<p>The data structure for <strong>bulkek.dat</strong></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mf">0.000000000</span>       <span class="o">-</span><span class="mf">2.673821992</span>  <span class="mi">119</span>   <span class="mi">80</span>   <span class="mi">80</span>  <span class="mi">119</span>   <span class="mi">80</span>   <span class="mi">80</span>  <span class="mi">205</span>  <span class="mi">138</span>  <span class="mi">138</span>   <span class="mi">70</span>   <span class="mi">40</span>   <span class="mi">40</span>   <span class="mi">70</span>   <span class="mi">40</span>   <span class="mi">40</span>    <span class="mi">0</span>    <span class="mi">0</span>    <span class="mi">0</span>    <span class="mi">0</span>    <span class="mi">0</span>    <span class="mi">0</span>    <span class="mi">0</span>    <span class="mi">0</span>    <span class="mi">0</span>    <span class="mi">0</span>    <span class="mi">0</span>    <span class="mi">0</span>    <span class="mi">0</span>    <span class="mi">0</span>    <span class="mi">0</span>
+<span class="mf">0.016453872</span>       <span class="o">-</span><span class="mf">2.681536808</span>  <span class="mi">118</span>   <span class="mi">78</span>   <span class="mi">78</span>  <span class="mi">118</span>   <span class="mi">78</span>   <span class="mi">78</span>  <span class="mi">203</span>  <span class="mi">134</span>  <span class="mi">134</span>   <span class="mi">82</span>   <span class="mi">41</span>   <span class="mi">41</span>   <span class="mi">82</span>   <span class="mi">41</span>   <span class="mi">41</span>    <span class="mi">0</span>    <span class="mi">0</span>    <span class="mi">0</span>    <span class="mi">0</span>    <span class="mi">0</span>    <span class="mi">0</span>    <span class="mi">0</span>    <span class="mi">0</span>    <span class="mi">0</span>    <span class="mi">0</span>    <span class="mi">0</span>    <span class="mi">0</span>    <span class="mi">0</span>    <span class="mi">0</span>    <span class="mi">0</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li>The 1st column represents k points for the given kpath (KPATH_BULK)</li>
+<li>The 2nd column is the energy level</li>
+<li>From the 3rd to the n&#8217;th column are the projected weight of the wave
+function at each k point and each band onto
+each wannier orbitals. Those weights are normalized
+to 255 for the color plot convinence.</li>
+</ol>
+<p>The subrotine for this feature is <a class="reference internal" href="subroutine.html#f/_/ek_bulk" title="f/_/ek_bulk"><code class="xref f f-func docutils literal"><span class="pre">ek_bulk()</span></code></a></p>
+</div>
 </div>
 <div class="section" id="bulkfs-calculation">
-<h2>BulkFS calculation<a class="headerlink" href="#bulkfs-calculation" title="Permalink to this headline">¶</a></h2>
+<span id="bulkfscalculation"></span><h2>BulkFS calculation<a class="headerlink" href="#bulkfs-calculation" title="Permalink to this headline">¶</a></h2>
 <p>Bulk Fermi surface calculation. you should specify the number of k points for each three reciprocal vectors Nk1, Nk2, Nk3 in NAMELISTS PARAMETERS.  The outputs for this function are FS3D.bxsf. You can run “xcrysden —bxsf FS3D.bxsf” to get the plot. By the way, Bulk band and BulkFS calculations are already implemented in Wannier90 code.</p>
 </div>
 <div class="section" id="energy-gap-calculations">
-<h2>Energy gap calculations<a class="headerlink" href="#energy-gap-calculations" title="Permalink to this headline">¶</a></h2>
+<span id="energygapcalculation"></span><h2>Energy gap calculations<a class="headerlink" href="#energy-gap-calculations" title="Permalink to this headline">¶</a></h2>
 <p>We support two modes for energy gap calculations. A. We can plot the energy gap as a function of k in a k plane, which can be done by setting BulkGap_plane_calc=T. The k plane can be set in KPLANE_BULK. The number of k points for two vectors is Nk1, Nk2, set in NAMELISTS PARAMETERS.  You can get gap plot GapPlane.png with “gnuplot GapPlane.gnu”. B. We also can get energy gap in a 3D k cube defined by three vectors with a start point, which are set in CARD KCUBE_BULK. The number of k points for three vectors is Nk1, Nk2, Nk3, set in NAMELISTS PARAMETERS. This helps us to find Weyl points in the 3D BZ. For 3D GapCube calculation, the output is the k points at which the energy gap is small than Gap_threshold. You can list all the k points satisfied such criterion by “gnuplot GapCube.gnu”.</p>
 </div>
 <div class="section" id="slab-band-calculation">
-<h2>Slab  band calculation<a class="headerlink" href="#slab-band-calculation" title="Permalink to this headline">¶</a></h2>
+<span id="slabbandcalculation"></span><h2>Slab  band calculation<a class="headerlink" href="#slab-band-calculation" title="Permalink to this headline">¶</a></h2>
 <p>Before using iterative green’s function to get the surface state spectrum for semi-infinite system. We also can just construct a finite thickness slab system and calculate the band structure for it. Set SlabBand_calc=T in NAMELISTS CONTROL, and set Nk1 in NAMELISTS PARAMETERS, set k path in KPATH_SLAB CARD. And get plot slabek.png with “gnuplot  slabek.gnu”.</p>
 </div>
 <div class="section" id="nanowire-nanoribbon-band-calculation">
-<h2>Nanowire/nanoribbon  band calculation<a class="headerlink" href="#nanowire-nanoribbon-band-calculation" title="Permalink to this headline">¶</a></h2>
+<span id="ribbonbandcalculation"></span><h2>Nanowire/nanoribbon  band calculation<a class="headerlink" href="#nanowire-nanoribbon-band-calculation" title="Permalink to this headline">¶</a></h2>
 <p>Band calculation for wire system. Set WireBand_calc=T  in NAMELISTS CONTROL, and set Nk1 in NAMELISTS PARAMETERS. Get plot ribbonek.png with “gnuplot ribbonek.gnu&#8221;</p>
 </div>
-<div class="section" id="surface-state-calculation">
-<h2>Surface state calculation<a class="headerlink" href="#surface-state-calculation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="surface-state-arpes-calculation">
+<span id="sscalculation"></span><h2>Surface state ARPES calculation<a class="headerlink" href="#surface-state-arpes-calculation" title="Permalink to this headline">¶</a></h2>
+<p>Surface state spectrum at each k point and each energy level. Set SlabSS_calc=T, and  set Nk1 in NAMELISTS PARAMETERS, set k path in KPATH_SLAB CARD. Get the plots with  &#8220;gnuplot surfdos_l.gnu”, &#8220;gnuplot surfdos_r.gnu”.</p>
+</div>
+<div class="section" id="surface-state-qpi-calculation">
+<span id="ssqpicalculation"></span><h2>Surface state QPI calculation<a class="headerlink" href="#surface-state-qpi-calculation" title="Permalink to this headline">¶</a></h2>
 <p>Surface state spectrum at each k point and each energy level. Set SlabSS_calc=T, and  set Nk1 in NAMELISTS PARAMETERS, set k path in KPATH_SLAB CARD. Get the plots with  &#8220;gnuplot surfdos_l.gnu”, &#8220;gnuplot surfdos_r.gnu”.</p>
 </div>
 <div class="section" id="fermi-arc-calculation">
-<h2>Fermi arc calculation<a class="headerlink" href="#fermi-arc-calculation" title="Permalink to this headline">¶</a></h2>
+<span id="fermiarccalculation"></span><h2>Fermi arc calculation<a class="headerlink" href="#fermi-arc-calculation" title="Permalink to this headline">¶</a></h2>
 <p>Surface state spectrum at fixed energy level E_arc set in NAMELISTS PARAMETERS . Set SlabArc_calc=T, and  set Nk1, Nk2, in NAMELISTS PARAMETERS, set k plane in KPLANE_SLAB CARD. Get the plots with  &#8220;gnuplot arc_l.gnu”, &#8220;gnuplot arc_r.gnu”.</p>
 </div>
 <div class="section" id="spin-texture-calculation">
-<h2>Spin texture calculation<a class="headerlink" href="#spin-texture-calculation" title="Permalink to this headline">¶</a></h2>
+<span id="spintexturecalculation"></span><h2>Spin texture calculation<a class="headerlink" href="#spin-texture-calculation" title="Permalink to this headline">¶</a></h2>
 <p>Spin texture calculation at fixed energy level E_arc set in NAMELISTS PARAMETERS . Set SlabArc_calc=T, and  set Nk1, Nk2, in NAMELISTS PARAMETERS, set k plane in KPLANE_SLAB CARD. Get the plots with  &#8220;gnuplot spintext_l.gnu”, &#8220;gnuplot spintext_r.gnu”.</p>
 </div>
 <div class="section" id="berry-curvature-calculation">
-<h2>Berry curvature calculation<a class="headerlink" href="#berry-curvature-calculation" title="Permalink to this headline">¶</a></h2>
+<span id="berrycurvcalculation"></span><h2>Berry curvature calculation<a class="headerlink" href="#berry-curvature-calculation" title="Permalink to this headline">¶</a></h2>
 <p>Calculate Berry curvature at a fixed k plane in 3D BZ. Set BerryCurvature_calc=T, and  set Nk1, Nk2, in NAMELISTS PARAMETERS, set k plane in KPLANE_BULK CARD. Get the plot with  &#8220;gnuplot Berrycurvature.gnu”.</p>
 </div>
 <div class="section" id="wannier-charge-center-wilson-loop-calculation">
-<h2>Wannier charge center/Wilson loop calculation<a class="headerlink" href="#wannier-charge-center-wilson-loop-calculation" title="Permalink to this headline">¶</a></h2>
+<span id="wanniercentercalculation"></span><h2>Wannier charge center/Wilson loop calculation<a class="headerlink" href="#wannier-charge-center-wilson-loop-calculation" title="Permalink to this headline">¶</a></h2>
 <p>Wannier charge center, which is sometimes called Wilson loop can be calculated by set WannierCenter_calc=T and set KPLANE_BULK CARD,  set number of k points for two vectors is Nk1, Nk2 in NAMELISTS PARAMETERS.  Notice: You should notice that the first vector in KPLANE_BULK CARD is the integration direction, this vector should be equal to one primitive reciprocal lattice vector.  If you want to calculate the Z2 number, Please set the second vector to be half of the reciprocal lattice vector. You can get the Wannier charge center  along the second k line. See more details In the paper written by Alexey. Soluyanov (2011).</p>
 </div>
 </div>
@@ -121,12 +172,17 @@
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Features of WannierTools</a><ul>
-<li><a class="reference internal" href="#bulk-band-calculation">Bulk band calculation</a></li>
+<li><a class="reference internal" href="#bulk-band-calculation">Bulk band calculation</a><ul>
+<li><a class="reference internal" href="#input">Input</a></li>
+<li><a class="reference internal" href="#output">Output</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#bulkfs-calculation">BulkFS calculation</a></li>
 <li><a class="reference internal" href="#energy-gap-calculations">Energy gap calculations</a></li>
 <li><a class="reference internal" href="#slab-band-calculation">Slab  band calculation</a></li>
 <li><a class="reference internal" href="#nanowire-nanoribbon-band-calculation">Nanowire/nanoribbon  band calculation</a></li>
-<li><a class="reference internal" href="#surface-state-calculation">Surface state calculation</a></li>
+<li><a class="reference internal" href="#surface-state-arpes-calculation">Surface state ARPES calculation</a></li>
+<li><a class="reference internal" href="#surface-state-qpi-calculation">Surface state QPI calculation</a></li>
 <li><a class="reference internal" href="#fermi-arc-calculation">Fermi arc calculation</a></li>
 <li><a class="reference internal" href="#spin-texture-calculation">Spin texture calculation</a></li>
 <li><a class="reference internal" href="#berry-curvature-calculation">Berry curvature calculation</a></li>
