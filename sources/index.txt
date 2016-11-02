@@ -5,6 +5,7 @@
 
 Welcome to WannierTools's documentation!
 ========================================
+WannierTools: an open-source software package for topological novel materials
 
 Installation and Usage
 ======================
