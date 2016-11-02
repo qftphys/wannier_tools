@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Features of WannierTools &#8212; WannierTools 2.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="top" title="WannierTools 2.1 documentation" href="index.html" />
+    <link rel="next" title="Input" href="input.html" />
+    <link rel="prev" title="Installation (Linux or Mac)" href="installation.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="features-of-wanniertools">
+<h1>Features of WannierTools<a class="headerlink" href="#features-of-wanniertools" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li>Bulk band calculation</li>
+<li>Bulk Fermi surface calculation</li>
+<li>Energy gap calculations at k space</li>
+<li>Slab  band calculation</li>
+<li>Nanowire/nanoribbon  band calculation</li>
+<li>Surface state calculation (ARPES)</li>
+<li>Surface state calculation (QPI)</li>
+<li>Fermi arc calculation</li>
+<li>Spin texture calculation</li>
+<li>Berry curvature calculation</li>
+<li>Wannier charge center/Wilson loop calculation</li>
+</ul>
+<div class="section" id="bulk-band-calculation">
+<h2>Bulk band calculation<a class="headerlink" href="#bulk-band-calculation" title="Permalink to this headline">¶</a></h2>
+<p>You should specify the number of k lines and the special lines  KPATH_BULK CARDS.  The outputs for this function are bulkek.dat and bulkek.gnu. You can run &#8220;gnuplot bulkek.gnu&#8221;, or &#8220;xmgrace bulkek.dat&#8221; to get bandstucture plot.</p>
+</div>
+<div class="section" id="bulkfs-calculation">
+<h2>BulkFS calculation<a class="headerlink" href="#bulkfs-calculation" title="Permalink to this headline">¶</a></h2>
+<p>Bulk Fermi surface calculation. you should specify the number of k points for each three reciprocal vectors Nk1, Nk2, Nk3 in NAMELISTS PARAMETERS.  The outputs for this function are FS3D.bxsf. You can run “xcrysden —bxsf FS3D.bxsf” to get the plot. By the way, Bulk band and BulkFS calculations are already implemented in Wannier90 code.</p>
+</div>
+<div class="section" id="energy-gap-calculations">
+<h2>Energy gap calculations<a class="headerlink" href="#energy-gap-calculations" title="Permalink to this headline">¶</a></h2>
+<p>We support two modes for energy gap calculations. A. We can plot the energy gap as a function of k in a k plane, which can be done by setting BulkGap_plane_calc=T. The k plane can be set in KPLANE_BULK. The number of k points for two vectors is Nk1, Nk2, set in NAMELISTS PARAMETERS.  You can get gap plot GapPlane.png with “gnuplot GapPlane.gnu”. B. We also can get energy gap in a 3D k cube defined by three vectors with a start point, which are set in CARD KCUBE_BULK. The number of k points for three vectors is Nk1, Nk2, Nk3, set in NAMELISTS PARAMETERS. This helps us to find Weyl points in the 3D BZ. For 3D GapCube calculation, the output is the k points at which the energy gap is small than Gap_threshold. You can list all the k points satisfied such criterion by “gnuplot GapCube.gnu”.</p>
+</div>
+<div class="section" id="slab-band-calculation">
+<h2>Slab  band calculation<a class="headerlink" href="#slab-band-calculation" title="Permalink to this headline">¶</a></h2>
+<p>Before using iterative green’s function to get the surface state spectrum for semi-infinite system. We also can just construct a finite thickness slab system and calculate the band structure for it. Set SlabBand_calc=T in NAMELISTS CONTROL, and set Nk1 in NAMELISTS PARAMETERS, set k path in KPATH_SLAB CARD. And get plot slabek.png with “gnuplot  slabek.gnu”.</p>
+</div>
+<div class="section" id="nanowire-nanoribbon-band-calculation">
+<h2>Nanowire/nanoribbon  band calculation<a class="headerlink" href="#nanowire-nanoribbon-band-calculation" title="Permalink to this headline">¶</a></h2>
+<p>Band calculation for wire system. Set WireBand_calc=T  in NAMELISTS CONTROL, and set Nk1 in NAMELISTS PARAMETERS. Get plot ribbonek.png with “gnuplot ribbonek.gnu&#8221;</p>
+</div>
+<div class="section" id="surface-state-calculation">
+<h2>Surface state calculation<a class="headerlink" href="#surface-state-calculation" title="Permalink to this headline">¶</a></h2>
+<p>Surface state spectrum at each k point and each energy level. Set SlabSS_calc=T, and  set Nk1 in NAMELISTS PARAMETERS, set k path in KPATH_SLAB CARD. Get the plots with  &#8220;gnuplot surfdos_l.gnu”, &#8220;gnuplot surfdos_r.gnu”.</p>
+</div>
+<div class="section" id="fermi-arc-calculation">
+<h2>Fermi arc calculation<a class="headerlink" href="#fermi-arc-calculation" title="Permalink to this headline">¶</a></h2>
+<p>Surface state spectrum at fixed energy level E_arc set in NAMELISTS PARAMETERS . Set SlabArc_calc=T, and  set Nk1, Nk2, in NAMELISTS PARAMETERS, set k plane in KPLANE_SLAB CARD. Get the plots with  &#8220;gnuplot arc_l.gnu”, &#8220;gnuplot arc_r.gnu”.</p>
+</div>
+<div class="section" id="spin-texture-calculation">
+<h2>Spin texture calculation<a class="headerlink" href="#spin-texture-calculation" title="Permalink to this headline">¶</a></h2>
+<p>Spin texture calculation at fixed energy level E_arc set in NAMELISTS PARAMETERS . Set SlabArc_calc=T, and  set Nk1, Nk2, in NAMELISTS PARAMETERS, set k plane in KPLANE_SLAB CARD. Get the plots with  &#8220;gnuplot spintext_l.gnu”, &#8220;gnuplot spintext_r.gnu”.</p>
+</div>
+<div class="section" id="berry-curvature-calculation">
+<h2>Berry curvature calculation<a class="headerlink" href="#berry-curvature-calculation" title="Permalink to this headline">¶</a></h2>
+<p>Calculate Berry curvature at a fixed k plane in 3D BZ. Set BerryCurvature_calc=T, and  set Nk1, Nk2, in NAMELISTS PARAMETERS, set k plane in KPLANE_BULK CARD. Get the plot with  &#8220;gnuplot Berrycurvature.gnu”.</p>
+</div>
+<div class="section" id="wannier-charge-center-wilson-loop-calculation">
+<h2>Wannier charge center/Wilson loop calculation<a class="headerlink" href="#wannier-charge-center-wilson-loop-calculation" title="Permalink to this headline">¶</a></h2>
+<p>Wannier charge center, which is sometimes called Wilson loop can be calculated by set WannierCenter_calc=T and set KPLANE_BULK CARD,  set number of k points for two vectors is Nk1, Nk2 in NAMELISTS PARAMETERS.  Notice: You should notice that the first vector in KPLANE_BULK CARD is the integration direction, this vector should be equal to one primitive reciprocal lattice vector.  If you want to calculate the Z2 number, Please set the second vector to be half of the reciprocal lattice vector. You can get the Wannier charge center  along the second k line. See more details In the paper written by Alexey. Soluyanov (2011).</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Features of WannierTools</a><ul>
+<li><a class="reference internal" href="#bulk-band-calculation">Bulk band calculation</a></li>
+<li><a class="reference internal" href="#bulkfs-calculation">BulkFS calculation</a></li>
+<li><a class="reference internal" href="#energy-gap-calculations">Energy gap calculations</a></li>
+<li><a class="reference internal" href="#slab-band-calculation">Slab  band calculation</a></li>
+<li><a class="reference internal" href="#nanowire-nanoribbon-band-calculation">Nanowire/nanoribbon  band calculation</a></li>
+<li><a class="reference internal" href="#surface-state-calculation">Surface state calculation</a></li>
+<li><a class="reference internal" href="#fermi-arc-calculation">Fermi arc calculation</a></li>
+<li><a class="reference internal" href="#spin-texture-calculation">Spin texture calculation</a></li>
+<li><a class="reference internal" href="#berry-curvature-calculation">Berry curvature calculation</a></li>
+<li><a class="reference internal" href="#wannier-charge-center-wilson-loop-calculation">Wannier charge center/Wilson loop calculation</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="installation.html" title="previous chapter">Installation (Linux or Mac)</a></li>
+      <li>Next: <a href="input.html" title="next chapter">Input</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/features.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, QuanSheng Wu.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="_sources/features.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

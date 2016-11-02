@@ -1,0 +1,54 @@
+Features of WannierTools
+========================
+
+-  Bulk band calculation
+-  Bulk Fermi surface calculation
+-  Energy gap calculations at k space
+-  Slab  band calculation
+-  Nanowire/nanoribbon  band calculation
+-  Surface state calculation (ARPES)
+-  Surface state calculation (QPI)
+-  Fermi arc calculation
+-  Spin texture calculation
+-  Berry curvature calculation
+-  Wannier charge center/Wilson loop calculation
+
+Bulk band calculation
+---------------------
+You should specify the number of k lines and the special lines  KPATH_BULK CARDS.  The outputs for this function are bulkek.dat and bulkek.gnu. You can run "gnuplot bulkek.gnu", or "xmgrace bulkek.dat" to get bandstucture plot.  
+
+BulkFS calculation
+------------------
+Bulk Fermi surface calculation. you should specify the number of k points for each three reciprocal vectors Nk1, Nk2, Nk3 in NAMELISTS PARAMETERS.  The outputs for this function are FS3D.bxsf. You can run “xcrysden —bxsf FS3D.bxsf” to get the plot. By the way, Bulk band and BulkFS calculations are already implemented in Wannier90 code.
+
+Energy gap calculations
+-----------------------
+We support two modes for energy gap calculations. A. We can plot the energy gap as a function of k in a k plane, which can be done by setting BulkGap_plane_calc=T. The k plane can be set in KPLANE_BULK. The number of k points for two vectors is Nk1, Nk2, set in NAMELISTS PARAMETERS.  You can get gap plot GapPlane.png with “gnuplot GapPlane.gnu”. B. We also can get energy gap in a 3D k cube defined by three vectors with a start point, which are set in CARD KCUBE_BULK. The number of k points for three vectors is Nk1, Nk2, Nk3, set in NAMELISTS PARAMETERS. This helps us to find Weyl points in the 3D BZ. For 3D GapCube calculation, the output is the k points at which the energy gap is small than Gap_threshold. You can list all the k points satisfied such criterion by “gnuplot GapCube.gnu”. 
+
+Slab  band calculation
+----------------------
+Before using iterative green’s function to get the surface state spectrum for semi-infinite system. We also can just construct a finite thickness slab system and calculate the band structure for it. Set SlabBand_calc=T in NAMELISTS CONTROL, and set Nk1 in NAMELISTS PARAMETERS, set k path in KPATH_SLAB CARD. And get plot slabek.png with “gnuplot  slabek.gnu”. 
+
+Nanowire/nanoribbon  band calculation
+-------------------------------------
+Band calculation for wire system. Set WireBand_calc=T  in NAMELISTS CONTROL, and set Nk1 in NAMELISTS PARAMETERS. Get plot ribbonek.png with “gnuplot ribbonek.gnu"
+
+Surface state calculation
+-------------------------
+Surface state spectrum at each k point and each energy level. Set SlabSS_calc=T, and  set Nk1 in NAMELISTS PARAMETERS, set k path in KPATH_SLAB CARD. Get the plots with  "gnuplot surfdos_l.gnu”, "gnuplot surfdos_r.gnu”. 
+
+Fermi arc calculation
+---------------------
+Surface state spectrum at fixed energy level E_arc set in NAMELISTS PARAMETERS . Set SlabArc_calc=T, and  set Nk1, Nk2, in NAMELISTS PARAMETERS, set k plane in KPLANE_SLAB CARD. Get the plots with  "gnuplot arc_l.gnu”, "gnuplot arc_r.gnu”.
+
+Spin texture calculation
+------------------------
+Spin texture calculation at fixed energy level E_arc set in NAMELISTS PARAMETERS . Set SlabArc_calc=T, and  set Nk1, Nk2, in NAMELISTS PARAMETERS, set k plane in KPLANE_SLAB CARD. Get the plots with  "gnuplot spintext_l.gnu”, "gnuplot spintext_r.gnu”.
+
+Berry curvature calculation
+---------------------------
+Calculate Berry curvature at a fixed k plane in 3D BZ. Set BerryCurvature_calc=T, and  set Nk1, Nk2, in NAMELISTS PARAMETERS, set k plane in KPLANE_BULK CARD. Get the plot with  "gnuplot Berrycurvature.gnu”.
+
+Wannier charge center/Wilson loop calculation
+---------------------------------------------
+Wannier charge center, which is sometimes called Wilson loop can be calculated by set WannierCenter_calc=T and set KPLANE_BULK CARD,  set number of k points for two vectors is Nk1, Nk2 in NAMELISTS PARAMETERS.  Notice: You should notice that the first vector in KPLANE_BULK CARD is the integration direction, this vector should be equal to one primitive reciprocal lattice vector.  If you want to calculate the Z2 number, Please set the second vector to be half of the reciprocal lattice vector. You can get the Wannier charge center  along the second k line. See more details In the paper written by Alexey. Soluyanov (2011). 
