@@ -27,8 +27,8 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="top" title="WannierTools 2.1 documentation" href="index.html" />
-    <link rel="next" title="Input" href="input.html" />
-    <link rel="prev" title="Installation (Linux or Mac)" href="installation.html" /> 
+    <link rel="next" title="Examples" href="examples.html" />
+    <link rel="prev" title="Input" href="input.html" /> 
   </head>
   <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
@@ -41,10 +41,10 @@
           <a href="f-modindex.html" title="Fortran Module Index"
              >fortran modules</a> |</li>
         <li class="right" >
-          <a href="input.html" title="Input"
+          <a href="examples.html" title="Examples"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="installation.html" title="Installation (Linux or Mac)"
+          <a href="input.html" title="Input"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">WannierTools 2.1 documentation</a> &#187;</li> 
       </ul>
@@ -61,7 +61,7 @@
 <li><a class="reference internal" href="#bulkbandcalculation"><span class="std std-ref">Bulk band calculation</span></a></li>
 <li><a class="reference internal" href="#bulkfscalculation"><span class="std std-ref">BulkFS calculation</span></a></li>
 <li><a class="reference internal" href="#energygapcalculation"><span class="std std-ref">Energy gap calculations</span></a></li>
-<li><a class="reference internal" href="#slabbandcalculation"><span class="std std-ref">Slab  band calculation</span></a></li>
+<li><a class="reference internal" href="#slabbandcalculation"><span class="std std-ref">Slab band calculation</span></a></li>
 <li><a class="reference internal" href="#ribbonbandcalculation"><span class="std std-ref">Nanowire/nanoribbon  band calculation</span></a></li>
 <li><a class="reference internal" href="#sscalculation"><span class="std std-ref">Surface state ARPES calculation</span></a></li>
 <li><a class="reference internal" href="#ssqpicalculation"><span class="std std-ref">Surface state QPI calculation</span></a></li>
@@ -123,15 +123,170 @@ to 255 for the color plot convinence.</li>
 </div>
 <div class="section" id="bulkfs-calculation">
 <span id="bulkfscalculation"></span><h2>BulkFS calculation<a class="headerlink" href="#bulkfs-calculation" title="Permalink to this headline">¶</a></h2>
-<p>Bulk Fermi surface calculation. you should specify the number of k points for each three reciprocal vectors Nk1, Nk2, Nk3 in NAMELISTS PARAMETERS.  The outputs for this function are FS3D.bxsf. You can run “xcrysden —bxsf FS3D.bxsf” to get the plot. By the way, Bulk band and BulkFS calculations are already implemented in Wannier90 code.</p>
+<p>Bulk Fermi surface calculation.</p>
+<div class="section" id="id1">
+<h3>Input<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>You should specify the number of k points for each three reciprocal vectors Nk1, Nk2, Nk3
+in NAMELISTS PARAMETERS</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>&amp;CONTROL
+BulkFS_calc = T
+/
+&amp;PARAMETERS
+Nk1 = 101   ! No. of slices for the 1st reciprocal vector
+Nk2 = 101   ! No. of slices for the 2nd reciprocal vector
+Nk3 = 101   ! No. of slices for the 3rd reciprocal vector
+/
+</pre></div>
+</div>
+</div>
+<div class="section" id="id2">
+<h3>Output<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>The outputs for this function are <strong>FS3D.bxsf</strong>.
+You can plot the FS with <a class="reference external" href="http://www.xcrysden.org">xcrysden</a>  run</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>xcrysden —bxsf FS3D.bxsf
+</pre></div>
+</div>
+<p>to get the plot.</p>
+<p>By the way, Bulk band and BulkFS calculations were already implemented in Wannier90 code.</p>
+</div>
 </div>
 <div class="section" id="energy-gap-calculations">
 <span id="energygapcalculation"></span><h2>Energy gap calculations<a class="headerlink" href="#energy-gap-calculations" title="Permalink to this headline">¶</a></h2>
-<p>We support two modes for energy gap calculations. A. We can plot the energy gap as a function of k in a k plane, which can be done by setting BulkGap_plane_calc=T. The k plane can be set in KPLANE_BULK. The number of k points for two vectors is Nk1, Nk2, set in NAMELISTS PARAMETERS.  You can get gap plot GapPlane.png with “gnuplot GapPlane.gnu”. B. We also can get energy gap in a 3D k cube defined by three vectors with a start point, which are set in CARD KCUBE_BULK. The number of k points for three vectors is Nk1, Nk2, Nk3, set in NAMELISTS PARAMETERS. This helps us to find Weyl points in the 3D BZ. For 3D GapCube calculation, the output is the k points at which the energy gap is small than Gap_threshold. You can list all the k points satisfied such criterion by “gnuplot GapCube.gnu”.</p>
+<p>We support two modes for energy gap calculations.The formula is
+<span class="math">\(gap(k)= E_{NumOccupied+1}(k)- E_{NumOccpuied}(k)\)</span></p>
+<div class="section" id="gap-plane-mode">
+<h3>Gap_plane mode<a class="headerlink" href="#gap-plane-mode" title="Permalink to this headline">¶</a></h3>
+<p>Calculate the energy gap for the k points in the KPLANE_BULK.
+This is useful to show Weyl points and nodal line structure.</p>
+<div class="section" id="id3">
+<h4>Input<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<p>Typical input parameters for BulkGap_plane calculation</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>&amp;CONTROL
+BulkGap_Plane_calc = T
+/
+&amp;PARAMETERS
+Nk1 = 101   ! No. of slices for the 1st reciprocal vector
+Nk2 = 101   ! No. of slices for the 2nd reciprocal vector
+/
+
+KPLANE_BULK
+ 0.00  0.00  0.00   ! Original point for 3D k plane
+ 1.00  0.00  0.00   ! The first vector to define 3d k space plane
+ 0.00  0.50  0.00   ! The second vector to define 3d k space plane
+</pre></div>
+</div>
+</div>
+<div class="section" id="id4">
+<h4>Output<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
+<p>The outputs for Gap_plane mode are <strong>GapPlane.dat</strong>, <strong>GapPlane.gnu</strong>. The <strong>GapPlane.png</strong> will get by</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">gnuplot</span> <span class="n">GapPlane</span><span class="o">.</span><span class="n">gnu</span>
+</pre></div>
+</div>
+<p>The head of <strong>GapPlane.dat</strong></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">kx</span>              <span class="n">ky</span>              <span class="n">kz</span>             <span class="n">gap</span>             <span class="n">Ev4</span>             <span class="n">Ev3</span>             <span class="n">Ev2</span>             <span class="n">Ev1</span>             <span class="n">Ec1</span>             <span class="n">Ec2</span>             <span class="n">Ec3</span>             <span class="n">Ec4</span>              <span class="n">k1</span>              <span class="n">k2</span>              <span class="n">k3</span>
+<span class="mf">0.00000000</span>      <span class="mf">0.00000000</span>      <span class="mf">0.00000000</span>      <span class="mf">0.45569845</span>     <span class="o">-</span><span class="mf">0.69109275</span>     <span class="o">-</span><span class="mf">0.69109055</span>     <span class="o">-</span><span class="mf">0.29654328</span>     <span class="o">-</span><span class="mf">0.29654073</span>      <span class="mf">0.15915772</span>      <span class="mf">0.15915871</span>      <span class="mf">1.24348171</span>      <span class="mf">1.24348457</span>      <span class="mf">0.00000000</span>      <span class="mf">0.00000000</span>      <span class="mf">0.00000000</span>
+<span class="mf">0.03796028</span>     <span class="o">-</span><span class="mf">0.02191637</span>      <span class="mf">0.00548462</span>      <span class="mf">0.43770730</span>     <span class="o">-</span><span class="mf">0.77636510</span>     <span class="o">-</span><span class="mf">0.77598312</span>     <span class="o">-</span><span class="mf">0.26035113</span>     <span class="o">-</span><span class="mf">0.26027881</span>      <span class="mf">0.17742849</span>      <span class="mf">0.17771545</span>      <span class="mf">1.29499437</span>      <span class="mf">1.29505298</span>      <span class="mf">0.00000000</span>      <span class="mf">0.02500000</span>      <span class="mf">0.00000000</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Column 1-3 are the Cartesian coordinates of the k points in the KPLANE_BULK, in unit of <span class="math">\(\frac{1}{Angstrom}\)</span></li>
+<li>Column 4 is the energy gap</li>
+<li>Column 5-12 are the energy value for valence and conduction bands close to the Fermi level. There are
+4 conduction bands and 4 valence bands.</li>
+<li>Column 13-15 are the Direct coordinates of the k points in the KPLANE_BULK</li>
+</ul>
+</div>
+</div>
+<div class="section" id="gap-cube-mode">
+<h3>Gap_Cube mode<a class="headerlink" href="#gap-cube-mode" title="Permalink to this headline">¶</a></h3>
+<p>This helps us to find Weyl points and nodal line structure in the 3D BZ.</p>
+<div class="section" id="id5">
+<h4>Input<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
+<p>Typical input parameters for BulkGap_cube calculation</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>&amp;CONTROL
+BulkGap_Cube_calc = T
+/
+&amp;PARAMETERS
+Nk1 = 101   ! No. of slices for the 1st reciprocal vector
+Nk2 = 101   ! No. of slices for the 2nd reciprocal vector
+Nk3 = 101   ! No. of slices for the 3rd reciprocal vector
+/
+
+KCUBE_BULK
+-0.50 -0.50 -0.50   ! Original point for 3D k plane
+ 1.00  0.00  0.00   ! The 1st vector to define 3d k cube
+ 0.00  1.00  0.00   ! The 2nd vector to define 3d k cube
+ 0.00  0.00  1.00   ! The 3rd vector to define 3d k cube
+</pre></div>
+</div>
+</div>
+<div class="section" id="id6">
+<h4>Output<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h4>
+<p>The outputs for Gap_plane mode are <strong>GapCube.dat</strong>, <strong>GapCube.gnu</strong>. The <strong>GapCube.png</strong> will get by</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">gnuplot</span> <span class="n">GapCube</span><span class="o">.</span><span class="n">gnu</span>
+</pre></div>
+</div>
+<p>The head of <strong>GapCube.dat</strong> are</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">kx</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">A</span><span class="p">)</span>        <span class="n">ky</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">A</span><span class="p">)</span>        <span class="n">kz</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">A</span><span class="p">)</span>      <span class="n">Energy</span> <span class="n">gap</span>              <span class="n">Ev</span>              <span class="n">Ec</span>      <span class="n">k1</span> <span class="p">(</span><span class="mi">2</span><span class="n">pi</span><span class="o">/</span><span class="n">a</span><span class="p">)</span>      <span class="n">k2</span> <span class="p">(</span><span class="mi">2</span><span class="n">pi</span><span class="o">/</span><span class="n">b</span><span class="p">)</span>      <span class="n">k3</span> <span class="p">(</span><span class="mi">2</span><span class="n">pi</span><span class="o">/</span><span class="n">c</span><span class="p">)</span>
+<span class="mf">0.00000000</span>      <span class="mf">0.87665487</span>     <span class="o">-</span><span class="mf">0.54846229</span>      <span class="mf">0.79075142</span>     <span class="o">-</span><span class="mf">0.34827281</span>      <span class="mf">0.44247861</span>     <span class="o">-</span><span class="mf">0.50000000</span>     <span class="o">-</span><span class="mf">0.50000000</span>     <span class="o">-</span><span class="mf">0.50000000</span>
+<span class="mf">0.00000000</span>      <span class="mf">0.87665487</span>     <span class="o">-</span><span class="mf">0.51555455</span>      <span class="mf">0.86792416</span>     <span class="o">-</span><span class="mf">0.38635069</span>      <span class="mf">0.48157346</span>     <span class="o">-</span><span class="mf">0.50000000</span>     <span class="o">-</span><span class="mf">0.50000000</span>     <span class="o">-</span><span class="mf">0.45000000</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Column 1-3 are the Cartesian coordinates of the k points where energy gap is small than Gap_threshold, in unit of <span class="math">\(\frac{1}{Angstrom}\)</span></li>
+<li>Column 4 is the energy gap. Those values are smaller than Gap_threshold, see <a class="reference internal" href="input.html#parametersnamelist"><span class="std std-ref">PARAMETERS</span></a></li>
+<li>Column 5-6 are the energy value for valence and conduction bands close to the Fermi level. There are
+4 conduction bands and 4 valence bands.</li>
+<li>Column 7-9 are the Direct coordinates of the k points.</li>
+</ul>
+</div>
+</div>
 </div>
 <div class="section" id="slab-band-calculation">
-<span id="slabbandcalculation"></span><h2>Slab  band calculation<a class="headerlink" href="#slab-band-calculation" title="Permalink to this headline">¶</a></h2>
-<p>Before using iterative green’s function to get the surface state spectrum for semi-infinite system. We also can just construct a finite thickness slab system and calculate the band structure for it. Set SlabBand_calc=T in NAMELISTS CONTROL, and set Nk1 in NAMELISTS PARAMETERS, set k path in KPATH_SLAB CARD. And get plot slabek.png with “gnuplot  slabek.gnu”.</p>
+<span id="slabbandcalculation"></span><h2>Slab band calculation<a class="headerlink" href="#slab-band-calculation" title="Permalink to this headline">¶</a></h2>
+<p>Before using iterative green’s function to get the surface state spectrum for semi-infinite system.
+We also can just construct a finite thickness slab system and
+calculate the band structure for it.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For slab calculations, please read carefully the input card <a class="reference internal" href="input.html#surface"><span class="std std-ref">SURFACE</span></a></p>
+</div>
+<div class="section" id="id7">
+<h3>Input<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default"><div class="highlight"><pre><span></span>&amp;CONTROL
+SlabBand_calc = T
+/
+&amp;PARAMETERS
+Nk1 = 101   ! No. of slices for the 1st reciprocal vector
+/
+KPATH_SLAB
+2        ! numker of k line for 2D case
+K 0.33 0.67 G 0.0 0.0  ! k path for 2D case
+G 0.0 0.0 M 0.5 0.5
+</pre></div>
+</div>
+</div>
+<div class="section" id="id8">
+<h3>Output<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<p>Outputs are <strong>slabek.dat</strong> and <strong>slabek.gnu</strong></p>
+<p>The heads of <strong>slabek.dat</strong> are</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mf">0.0000000</span>     <span class="o">-</span><span class="mf">4.9575466</span>     <span class="mi">240</span>
+<span class="mf">0.0508687</span>     <span class="o">-</span><span class="mf">5.0110528</span>     <span class="mi">226</span>
+<span class="mf">0.1017373</span>     <span class="o">-</span><span class="mf">5.0566963</span>     <span class="mi">221</span>
+<span class="mf">0.1526060</span>     <span class="o">-</span><span class="mf">5.0671994</span>     <span class="mi">220</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>The 1st column are k points in the KPATH_SLAB</li>
+<li>The 2nd column are energy values.</li>
+<li>The 3rd column represent the surface weight, which is normalized to 255.</li>
+</ul>
+<p>The colorfull plot <strong>slabek.png</strong> of the slab energy bands can be obtained by</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">gnuplot</span> <span class="n">slabek</span><span class="o">.</span><span class="n">gnu</span>
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="nanowire-nanoribbon-band-calculation">
 <span id="ribbonbandcalculation"></span><h2>Nanowire/nanoribbon  band calculation<a class="headerlink" href="#nanowire-nanoribbon-band-calculation" title="Permalink to this headline">¶</a></h2>
@@ -177,9 +332,29 @@ to 255 for the color plot convinence.</li>
 <li><a class="reference internal" href="#output">Output</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#bulkfs-calculation">BulkFS calculation</a></li>
-<li><a class="reference internal" href="#energy-gap-calculations">Energy gap calculations</a></li>
-<li><a class="reference internal" href="#slab-band-calculation">Slab  band calculation</a></li>
+<li><a class="reference internal" href="#bulkfs-calculation">BulkFS calculation</a><ul>
+<li><a class="reference internal" href="#id1">Input</a></li>
+<li><a class="reference internal" href="#id2">Output</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#energy-gap-calculations">Energy gap calculations</a><ul>
+<li><a class="reference internal" href="#gap-plane-mode">Gap_plane mode</a><ul>
+<li><a class="reference internal" href="#id3">Input</a></li>
+<li><a class="reference internal" href="#id4">Output</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#gap-cube-mode">Gap_Cube mode</a><ul>
+<li><a class="reference internal" href="#id5">Input</a></li>
+<li><a class="reference internal" href="#id6">Output</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#slab-band-calculation">Slab band calculation</a><ul>
+<li><a class="reference internal" href="#id7">Input</a></li>
+<li><a class="reference internal" href="#id8">Output</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#nanowire-nanoribbon-band-calculation">Nanowire/nanoribbon  band calculation</a></li>
 <li><a class="reference internal" href="#surface-state-arpes-calculation">Surface state ARPES calculation</a></li>
 <li><a class="reference internal" href="#surface-state-qpi-calculation">Surface state QPI calculation</a></li>
@@ -192,11 +367,11 @@ to 255 for the color plot convinence.</li>
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="installation.html"
-                        title="previous chapter">Installation (Linux or Mac)</a></p>
-  <h4>Next topic</h4>
   <p class="topless"><a href="input.html"
-                        title="next chapter">Input</a></p>
+                        title="previous chapter">Input</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="examples.html"
+                        title="next chapter">Examples</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -228,10 +403,10 @@ to 255 for the color plot convinence.</li>
           <a href="f-modindex.html" title="Fortran Module Index"
              >fortran modules</a> |</li>
         <li class="right" >
-          <a href="input.html" title="Input"
+          <a href="examples.html" title="Examples"
              >next</a> |</li>
         <li class="right" >
-          <a href="installation.html" title="Installation (Linux or Mac)"
+          <a href="input.html" title="Input"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">WannierTools 2.1 documentation</a> &#187;</li> 
       </ul>

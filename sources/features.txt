@@ -71,19 +71,175 @@ The subrotine for this feature is :f:func:`ek_bulk`
 
 BulkFS calculation
 ------------------
-Bulk Fermi surface calculation. you should specify the number of k points for each three reciprocal vectors Nk1, Nk2, Nk3 in NAMELISTS PARAMETERS.  The outputs for this function are FS3D.bxsf. You can run “xcrysden —bxsf FS3D.bxsf” to get the plot. By the way, Bulk band and BulkFS calculations are already implemented in Wannier90 code.
+Bulk Fermi surface calculation. 
+
+Input
+^^^^^
+
+You should specify the number of k points for each three reciprocal vectors Nk1, Nk2, Nk3 
+in NAMELISTS PARAMETERS ::
+
+  &CONTROL
+  BulkFS_calc = T
+  /
+  &PARAMETERS
+  Nk1 = 101   ! No. of slices for the 1st reciprocal vector
+  Nk2 = 101   ! No. of slices for the 2nd reciprocal vector
+  Nk3 = 101   ! No. of slices for the 3rd reciprocal vector
+  /
+
+Output
+^^^^^^
+The outputs for this function are **FS3D.bxsf**. 
+You can plot the FS with `xcrysden <http://www.xcrysden.org>`_  run ::
+
+   xcrysden —bxsf FS3D.bxsf
+
+to get the plot. 
+
+By the way, Bulk band and BulkFS calculations were already implemented in Wannier90 code.
 
 .. _energygapcalculation:
 
 Energy gap calculations
 -----------------------
-We support two modes for energy gap calculations. A. We can plot the energy gap as a function of k in a k plane, which can be done by setting BulkGap_plane_calc=T. The k plane can be set in KPLANE_BULK. The number of k points for two vectors is Nk1, Nk2, set in NAMELISTS PARAMETERS.  You can get gap plot GapPlane.png with “gnuplot GapPlane.gnu”. B. We also can get energy gap in a 3D k cube defined by three vectors with a start point, which are set in CARD KCUBE_BULK. The number of k points for three vectors is Nk1, Nk2, Nk3, set in NAMELISTS PARAMETERS. This helps us to find Weyl points in the 3D BZ. For 3D GapCube calculation, the output is the k points at which the energy gap is small than Gap_threshold. You can list all the k points satisfied such criterion by “gnuplot GapCube.gnu”. 
+We support two modes for energy gap calculations.The formula is 
+:math:`gap(k)= E_{NumOccupied+1}(k)- E_{NumOccpuied}(k)`
+
+Gap_plane mode
+^^^^^^^^^^^^^^
+Calculate the energy gap for the k points in the KPLANE_BULK. 
+This is useful to show Weyl points and nodal line structure.
+
+Input 
+"""""
+Typical input parameters for BulkGap_plane calculation ::
+
+  &CONTROL
+  BulkGap_Plane_calc = T
+  /
+  &PARAMETERS
+  Nk1 = 101   ! No. of slices for the 1st reciprocal vector
+  Nk2 = 101   ! No. of slices for the 2nd reciprocal vector
+  /
+
+  KPLANE_BULK
+   0.00  0.00  0.00   ! Original point for 3D k plane 
+   1.00  0.00  0.00   ! The first vector to define 3d k space plane
+   0.00  0.50  0.00   ! The second vector to define 3d k space plane
+
+Output
+""""""
+The outputs for Gap_plane mode are **GapPlane.dat**, **GapPlane.gnu**. The **GapPlane.png** will get by ::
+   
+   gnuplot GapPlane.gnu
+
+The head of **GapPlane.dat** ::
+
+    kx              ky              kz             gap             Ev4             Ev3             Ev2             Ev1             Ec1             Ec2             Ec3             Ec4              k1              k2              k3
+    0.00000000      0.00000000      0.00000000      0.45569845     -0.69109275     -0.69109055     -0.29654328     -0.29654073      0.15915772      0.15915871      1.24348171      1.24348457      0.00000000      0.00000000      0.00000000
+    0.03796028     -0.02191637      0.00548462      0.43770730     -0.77636510     -0.77598312     -0.26035113     -0.26027881      0.17742849      0.17771545      1.29499437      1.29505298      0.00000000      0.02500000      0.00000000
+
+* Column 1-3 are the Cartesian coordinates of the k points in the KPLANE_BULK, in unit of :math:`\frac{1}{Angstrom}`
+* Column 4 is the energy gap
+* Column 5-12 are the energy value for valence and conduction bands close to the Fermi level. There are
+  4 conduction bands and 4 valence bands. 
+* Column 13-15 are the Direct coordinates of the k points in the KPLANE_BULK
+
+
+Gap_Cube mode
+^^^^^^^^^^^^^^
+
+This helps us to find Weyl points and nodal line structure in the 3D BZ. 
+
+Input
+"""""
+
+Typical input parameters for BulkGap_cube calculation ::
+
+  &CONTROL
+  BulkGap_Cube_calc = T
+  /
+  &PARAMETERS
+  Nk1 = 101   ! No. of slices for the 1st reciprocal vector
+  Nk2 = 101   ! No. of slices for the 2nd reciprocal vector
+  Nk3 = 101   ! No. of slices for the 3rd reciprocal vector
+  /
+
+  KCUBE_BULK
+  -0.50 -0.50 -0.50   ! Original point for 3D k plane 
+   1.00  0.00  0.00   ! The 1st vector to define 3d k cube
+   0.00  1.00  0.00   ! The 2nd vector to define 3d k cube
+   0.00  0.00  1.00   ! The 3rd vector to define 3d k cube
+
+Output
+""""""
+
+The outputs for Gap_plane mode are **GapCube.dat**, **GapCube.gnu**. The **GapCube.png** will get by ::
+   
+   gnuplot GapCube.gnu
+
+The head of **GapCube.dat** are ::
+
+   kx (1/A)        ky (1/A)        kz (1/A)      Energy gap              Ev              Ec      k1 (2pi/a)      k2 (2pi/b)      k3 (2pi/c)
+   0.00000000      0.87665487     -0.54846229      0.79075142     -0.34827281      0.44247861     -0.50000000     -0.50000000     -0.50000000
+   0.00000000      0.87665487     -0.51555455      0.86792416     -0.38635069      0.48157346     -0.50000000     -0.50000000     -0.45000000
+
+* Column 1-3 are the Cartesian coordinates of the k points where energy gap is small than Gap_threshold, in unit of :math:`\frac{1}{Angstrom}`
+* Column 4 is the energy gap. Those values are smaller than Gap_threshold, see :ref:`parametersnamelist`
+* Column 5-6 are the energy value for valence and conduction bands close to the Fermi level. There are
+  4 conduction bands and 4 valence bands. 
+* Column 7-9 are the Direct coordinates of the k points.
 
 .. _slabbandcalculation:
 
-Slab  band calculation
+Slab band calculation
 ----------------------
-Before using iterative green’s function to get the surface state spectrum for semi-infinite system. We also can just construct a finite thickness slab system and calculate the band structure for it. Set SlabBand_calc=T in NAMELISTS CONTROL, and set Nk1 in NAMELISTS PARAMETERS, set k path in KPATH_SLAB CARD. And get plot slabek.png with “gnuplot  slabek.gnu”. 
+Before using iterative green’s function to get the surface state spectrum for semi-infinite system. 
+We also can just construct a finite thickness slab system and
+calculate the band structure for it. 
+
+.. NOTE::
+
+ For slab calculations, please read carefully the input card :ref:`surface`
+
+
+Input
+^^^^^
+::
+ 
+  &CONTROL
+  SlabBand_calc = T
+  /
+  &PARAMETERS
+  Nk1 = 101   ! No. of slices for the 1st reciprocal vector
+  /
+  KPATH_SLAB
+  2        ! numker of k line for 2D case
+  K 0.33 0.67 G 0.0 0.0  ! k path for 2D case
+  G 0.0 0.0 M 0.5 0.5
+
+Output
+^^^^^^
+Outputs are **slabek.dat** and **slabek.gnu** 
+
+The heads of **slabek.dat** are ::
+
+    0.0000000     -4.9575466     240
+    0.0508687     -5.0110528     226
+    0.1017373     -5.0566963     221
+    0.1526060     -5.0671994     220
+    ...
+
+* The 1st column are k points in the KPATH_SLAB
+* The 2nd column are energy values.
+* The 3rd column represent the surface weight, which is normalized to 255.
+
+The colorfull plot **slabek.png** of the slab energy bands can be obtained by ::
+
+   gnuplot slabek.gnu
+
+
 
 .. _ribbonbandcalculation:
 
@@ -94,13 +250,13 @@ Band calculation for wire system. Set WireBand_calc=T  in NAMELISTS CONTROL, and
 .. _sscalculation:
 
 Surface state ARPES calculation
--------------------------
+-------------------------------
 Surface state spectrum at each k point and each energy level. Set SlabSS_calc=T, and  set Nk1 in NAMELISTS PARAMETERS, set k path in KPATH_SLAB CARD. Get the plots with  "gnuplot surfdos_l.gnu”, "gnuplot surfdos_r.gnu”. 
 
 .. _ssqpicalculation:
 
 Surface state QPI calculation
--------------------------
+-----------------------------
 Surface state spectrum at each k point and each energy level. Set SlabSS_calc=T, and  set Nk1 in NAMELISTS PARAMETERS, set k path in KPATH_SLAB CARD. Get the plots with  "gnuplot surfdos_l.gnu”, "gnuplot surfdos_r.gnu”. 
 
 
