@@ -41,6 +41,8 @@ Typical flags for bulk band calculation in the input.dat. ::
   F 0.50000 0.50000 0.0000 G 0.00000 0.00000 0.0000
   G 0.00000 0.00000 0.0000 L 0.50000 0.00000 0.0000  
 
+See :ref:`controlnamelist`, :ref:`parametersnamelist`, :ref:`kpathbulk`
+
 .. _bulkekout:
 Output
 ^^^^^^
@@ -88,6 +90,8 @@ in NAMELISTS PARAMETERS ::
   Nk3 = 101   ! No. of slices for the 3rd reciprocal vector
   /
 
+See :ref:`controlnamelist`, :ref:`parametersnamelist`
+
 Output
 ^^^^^^
 The outputs for this function are **FS3D.bxsf**. 
@@ -127,6 +131,8 @@ Typical input parameters for BulkGap_plane calculation ::
    0.00  0.00  0.00   ! Original point for 3D k plane 
    1.00  0.00  0.00   ! The first vector to define 3d k space plane
    0.00  0.50  0.00   ! The second vector to define 3d k space plane
+
+See :ref:`controlnamelist`, :ref:`parametersnamelist`, :ref:`kpathbulk`
 
 Output
 """"""
@@ -172,6 +178,8 @@ Typical input parameters for BulkGap_cube calculation ::
    0.00  1.00  0.00   ! The 2nd vector to define 3d k cube
    0.00  0.00  1.00   ! The 3rd vector to define 3d k cube
 
+See :ref:`controlnamelist`, :ref:`parametersnamelist`, :ref:`kcubebulk`
+
 Output
 """"""
 
@@ -211,6 +219,9 @@ Input
   &CONTROL
   SlabBand_calc = T
   /
+  &SYSTEM
+  NSLAB = 10 
+  /
   &PARAMETERS
   Nk1 = 101   ! No. of slices for the 1st reciprocal vector
   /
@@ -218,6 +229,8 @@ Input
   2        ! numker of k line for 2D case
   K 0.33 0.67 G 0.0 0.0  ! k path for 2D case
   G 0.0 0.0 M 0.5 0.5
+
+See :ref:`controlnamelist`, :ref:`systemnamelist` :ref:`parametersnamelist`, :ref:`kpathslab`
 
 Output
 ^^^^^^
@@ -240,24 +253,103 @@ The colorfull plot **slabek.png** of the slab energy bands can be obtained by ::
    gnuplot slabek.gnu
 
 
-
 .. _ribbonbandcalculation:
 
 Nanowire/nanoribbon  band calculation
 -------------------------------------
-Band calculation for wire system. Set WireBand_calc=T  in NAMELISTS CONTROL, and set Nk1 in NAMELISTS PARAMETERS. Get plot ribbonek.png with “gnuplot ribbonek.gnu"
+Band calculation for wire system. Only one direction is periodic, the other two directions are confined.
+
+Input
+^^^^^
+
+You don't have to set the k path, because it only has one direction. ::
+
+  &CONTROL
+  WireBand_calc = T
+  /
+  &SYSTEM
+  NSLAB1 = 4  
+  NSLAB2 = 4  
+  /
+  &PARAMETERS
+  Nk1 = 101   ! No. of slices for the 1st reciprocal vector
+  /
+
+See :ref:`controlnamelist`, :ref:`systemnamelist` :ref:`parametersnamelist`
+
+Output
+^^^^^^
+
+Outputs are **ribbonek.dat** and **ribbonek.gnu**. The data format of **ribbonek.dat** is the same as
+**slabek.dat**. Get plot ribbonek.png with ::
+   
+   gnuplot ribbonek.gnu
+
 
 .. _sscalculation:
 
 Surface state ARPES calculation
 -------------------------------
-Surface state spectrum at each k point and each energy level. Set SlabSS_calc=T, and  set Nk1 in NAMELISTS PARAMETERS, set k path in KPATH_SLAB CARD. Get the plots with  "gnuplot surfdos_l.gnu”, "gnuplot surfdos_r.gnu”. 
+
+One important feature for topological materials is the surface state. The bulk-edge correspondence 
+tells us, if the topological property of the bulk system is nontrivial, then there will be
+nontrivial states on the surface. Nowadays, there are several method to detect the surface states. 
+One direct way is the angle resolved photoemission spectroscopy (ARPES). Such spectrum can be 
+obtained by the iterative Green's function. 
+
+.. NOTE::
+
+ For slab calculations, please read carefully the input card :ref:`surface`
+
+Input
+^^^^^
+::
+ 
+  &CONTROL
+  SlabSS_calc = T
+  /
+  &PARAMETERS
+  OmegaNum = 101
+  OmegaMin = -1.0
+  OmegaMax =  1.0
+  Nk1 = 101   ! No. of slices for the 1st reciprocal vector
+  NP = 2      ! principle layer
+  /
+  KPATH_SLAB
+  2        ! numker of k line for 2D case
+  K 0.33 0.67 G 0.0 0.0  ! k path for 2D case
+  G 0.0 0.0 M 0.5 0.5
+
+See :ref:`controlnamelist`, :ref:`parametersnamelist`, :ref:`kpathslab`
+
+NP : integer valued, Number of principle layers, see details related to iterative green’s function. Used if  SlabSS_calc= T, SlabArc_calc=T, SlabSpintexture_calc=T. Default value is 2. You need to do a convergence test by setting Np= 1, Np=2, Np=3, and check the surface state spectrum. Basically, the value of Np depends on the spread of Wannier functions you constructed. One thing should be mentioned is that the computational time grows cubically of Np. 
 
 .. _ssqpicalculation:
 
 Surface state QPI calculation
 -----------------------------
-Surface state spectrum at each k point and each energy level. Set SlabSS_calc=T, and  set Nk1 in NAMELISTS PARAMETERS, set k path in KPATH_SLAB CARD. Get the plots with  "gnuplot surfdos_l.gnu”, "gnuplot surfdos_r.gnu”. 
+
+Settings for this feature are almost the same as :ref:`fermiarccalculation`. Only difference is that 
+you should set  ::
+
+   &CONTROL
+   SlabQPI_calc          = T
+   /
+   
+Output
+^^^^^^
+
+There are a lot of outputs for QPI calculation. including 
+ arc.dat_l, arc.dat_r,     
+ arc_l.gnu, arc_r.gnu,     
+ arc_l_only.gnu, arc_l_only.gnu,           
+ arc.jdat_l, arc.jdat_r,   
+ arc.jsdat_l, arc.jsdat_r, 
+ arc_l_jdos.gnu, arc_l_jsdos.gnu,          
+ arc_r_jdos.gnu, arc_r_jsdos.gnu. 
+
+ The gnu script with 'only' means we only plot the spectrum with the surface contribution, exclude the 
+ bulk contribution.
 
 
 .. _fermiarccalculation:

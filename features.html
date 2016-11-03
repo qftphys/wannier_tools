@@ -93,6 +93,7 @@ F 0.50000 0.50000 0.0000 G 0.00000 0.00000 0.0000
 G 0.00000 0.00000 0.0000 L 0.50000 0.00000 0.0000
 </pre></div>
 </div>
+<p>See <a class="reference internal" href="input.html#controlnamelist"><span class="std std-ref">CONTROL</span></a>, <a class="reference internal" href="input.html#parametersnamelist"><span class="std std-ref">PARAMETERS</span></a>, <a class="reference internal" href="input.html#kpathbulk"><span class="std std-ref">KPATH_BULK</span></a></p>
 </div>
 <div class="section" id="output">
 <h3>Output<a class="headerlink" href="#output" title="Permalink to this headline">¶</a></h3>
@@ -138,6 +139,7 @@ Nk3 = 101   ! No. of slices for the 3rd reciprocal vector
 /
 </pre></div>
 </div>
+<p>See <a class="reference internal" href="input.html#controlnamelist"><span class="std std-ref">CONTROL</span></a>, <a class="reference internal" href="input.html#parametersnamelist"><span class="std std-ref">PARAMETERS</span></a></p>
 </div>
 <div class="section" id="id2">
 <h3>Output<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
@@ -175,6 +177,7 @@ KPLANE_BULK
  0.00  0.50  0.00   ! The second vector to define 3d k space plane
 </pre></div>
 </div>
+<p>See <a class="reference internal" href="input.html#controlnamelist"><span class="std std-ref">CONTROL</span></a>, <a class="reference internal" href="input.html#parametersnamelist"><span class="std std-ref">PARAMETERS</span></a>, <a class="reference internal" href="input.html#kpathbulk"><span class="std std-ref">KPATH_BULK</span></a></p>
 </div>
 <div class="section" id="id4">
 <h4>Output<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
@@ -219,6 +222,7 @@ KCUBE_BULK
  0.00  0.00  1.00   ! The 3rd vector to define 3d k cube
 </pre></div>
 </div>
+<p>See <a class="reference internal" href="input.html#controlnamelist"><span class="std std-ref">CONTROL</span></a>, <a class="reference internal" href="input.html#parametersnamelist"><span class="std std-ref">PARAMETERS</span></a>, <span class="xref std std-ref">kcubebulk</span></p>
 </div>
 <div class="section" id="id6">
 <h4>Output<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h4>
@@ -256,6 +260,9 @@ calculate the band structure for it.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>&amp;CONTROL
 SlabBand_calc = T
 /
+&amp;SYSTEM
+NSLAB = 10
+/
 &amp;PARAMETERS
 Nk1 = 101   ! No. of slices for the 1st reciprocal vector
 /
@@ -265,6 +272,7 @@ K 0.33 0.67 G 0.0 0.0  ! k path for 2D case
 G 0.0 0.0 M 0.5 0.5
 </pre></div>
 </div>
+<p>See <a class="reference internal" href="input.html#controlnamelist"><span class="std std-ref">CONTROL</span></a>, <a class="reference internal" href="input.html#systemnamelist"><span class="std std-ref">SYSTEM</span></a> <a class="reference internal" href="input.html#parametersnamelist"><span class="std std-ref">PARAMETERS</span></a>, <a class="reference internal" href="input.html#kpathslab"><span class="std std-ref">KPATH_SLAB</span></a></p>
 </div>
 <div class="section" id="id8">
 <h3>Output<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
@@ -290,15 +298,91 @@ G 0.0 0.0 M 0.5 0.5
 </div>
 <div class="section" id="nanowire-nanoribbon-band-calculation">
 <span id="ribbonbandcalculation"></span><h2>Nanowire/nanoribbon  band calculation<a class="headerlink" href="#nanowire-nanoribbon-band-calculation" title="Permalink to this headline">¶</a></h2>
-<p>Band calculation for wire system. Set WireBand_calc=T  in NAMELISTS CONTROL, and set Nk1 in NAMELISTS PARAMETERS. Get plot ribbonek.png with “gnuplot ribbonek.gnu&#8221;</p>
+<p>Band calculation for wire system. Only one direction is periodic, the other two directions are confined.</p>
+<div class="section" id="id9">
+<h3>Input<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<p>You don&#8217;t have to set the k path, because it only has one direction.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>&amp;CONTROL
+WireBand_calc = T
+/
+&amp;SYSTEM
+NSLAB1 = 4
+NSLAB2 = 4
+/
+&amp;PARAMETERS
+Nk1 = 101   ! No. of slices for the 1st reciprocal vector
+/
+</pre></div>
+</div>
+<p>See <a class="reference internal" href="input.html#controlnamelist"><span class="std std-ref">CONTROL</span></a>, <a class="reference internal" href="input.html#systemnamelist"><span class="std std-ref">SYSTEM</span></a> <a class="reference internal" href="input.html#parametersnamelist"><span class="std std-ref">PARAMETERS</span></a></p>
+</div>
+<div class="section" id="id10">
+<h3>Output<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<p>Outputs are <strong>ribbonek.dat</strong> and <strong>ribbonek.gnu</strong>. The data format of <strong>ribbonek.dat</strong> is the same as
+<strong>slabek.dat</strong>. Get plot ribbonek.png with</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">gnuplot</span> <span class="n">ribbonek</span><span class="o">.</span><span class="n">gnu</span>
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="surface-state-arpes-calculation">
 <span id="sscalculation"></span><h2>Surface state ARPES calculation<a class="headerlink" href="#surface-state-arpes-calculation" title="Permalink to this headline">¶</a></h2>
-<p>Surface state spectrum at each k point and each energy level. Set SlabSS_calc=T, and  set Nk1 in NAMELISTS PARAMETERS, set k path in KPATH_SLAB CARD. Get the plots with  &#8220;gnuplot surfdos_l.gnu”, &#8220;gnuplot surfdos_r.gnu”.</p>
+<p>One important feature for topological materials is the surface state. The bulk-edge correspondence
+tells us, if the topological property of the bulk system is nontrivial, then there will be
+nontrivial states on the surface. Nowadays, there are several method to detect the surface states.
+One direct way is the angle resolved photoemission spectroscopy (ARPES). Such spectrum can be
+obtained by the iterative Green&#8217;s function.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For slab calculations, please read carefully the input card <a class="reference internal" href="input.html#surface"><span class="std std-ref">SURFACE</span></a></p>
+</div>
+<div class="section" id="id11">
+<h3>Input<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default"><div class="highlight"><pre><span></span>&amp;CONTROL
+SlabSS_calc = T
+/
+&amp;PARAMETERS
+OmegaNum = 101
+OmegaMin = -1.0
+OmegaMax =  1.0
+Nk1 = 101   ! No. of slices for the 1st reciprocal vector
+NP = 2      ! principle layer
+/
+KPATH_SLAB
+2        ! numker of k line for 2D case
+K 0.33 0.67 G 0.0 0.0  ! k path for 2D case
+G 0.0 0.0 M 0.5 0.5
+</pre></div>
+</div>
+<p>See <a class="reference internal" href="input.html#controlnamelist"><span class="std std-ref">CONTROL</span></a>, <a class="reference internal" href="input.html#parametersnamelist"><span class="std std-ref">PARAMETERS</span></a>, <a class="reference internal" href="input.html#kpathslab"><span class="std std-ref">KPATH_SLAB</span></a></p>
+<p>NP : integer valued, Number of principle layers, see details related to iterative green’s function. Used if  SlabSS_calc= T, SlabArc_calc=T, SlabSpintexture_calc=T. Default value is 2. You need to do a convergence test by setting Np= 1, Np=2, Np=3, and check the surface state spectrum. Basically, the value of Np depends on the spread of Wannier functions you constructed. One thing should be mentioned is that the computational time grows cubically of Np.</p>
+</div>
 </div>
 <div class="section" id="surface-state-qpi-calculation">
 <span id="ssqpicalculation"></span><h2>Surface state QPI calculation<a class="headerlink" href="#surface-state-qpi-calculation" title="Permalink to this headline">¶</a></h2>
-<p>Surface state spectrum at each k point and each energy level. Set SlabSS_calc=T, and  set Nk1 in NAMELISTS PARAMETERS, set k path in KPATH_SLAB CARD. Get the plots with  &#8220;gnuplot surfdos_l.gnu”, &#8220;gnuplot surfdos_r.gnu”.</p>
+<p>Settings for this feature are almost the same as <a class="reference internal" href="#fermiarccalculation"><span class="std std-ref">Fermi arc calculation</span></a>. Only difference is that
+you should set</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&amp;</span><span class="n">CONTROL</span>
+<span class="n">SlabQPI_calc</span>          <span class="o">=</span> <span class="n">T</span>
+<span class="o">/</span>
+</pre></div>
+</div>
+<div class="section" id="id12">
+<h3>Output<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>There are a lot of outputs for QPI calculation. including</dt>
+<dd><p class="first">arc.dat_l, arc.dat_r,
+arc_l.gnu, arc_r.gnu,
+arc_l_only.gnu, arc_l_only.gnu,
+arc.jdat_l, arc.jdat_r,
+arc.jsdat_l, arc.jsdat_r,
+arc_l_jdos.gnu, arc_l_jsdos.gnu,
+arc_r_jdos.gnu, arc_r_jsdos.gnu.</p>
+<p class="last">The gnu script with &#8216;only&#8217; means we only plot the spectrum with the surface contribution, exclude the
+bulk contribution.</p>
+</dd>
+</dl>
+</div>
 </div>
 <div class="section" id="fermi-arc-calculation">
 <span id="fermiarccalculation"></span><h2>Fermi arc calculation<a class="headerlink" href="#fermi-arc-calculation" title="Permalink to this headline">¶</a></h2>
@@ -355,9 +439,19 @@ G 0.0 0.0 M 0.5 0.5
 <li><a class="reference internal" href="#id8">Output</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#nanowire-nanoribbon-band-calculation">Nanowire/nanoribbon  band calculation</a></li>
-<li><a class="reference internal" href="#surface-state-arpes-calculation">Surface state ARPES calculation</a></li>
-<li><a class="reference internal" href="#surface-state-qpi-calculation">Surface state QPI calculation</a></li>
+<li><a class="reference internal" href="#nanowire-nanoribbon-band-calculation">Nanowire/nanoribbon  band calculation</a><ul>
+<li><a class="reference internal" href="#id9">Input</a></li>
+<li><a class="reference internal" href="#id10">Output</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#surface-state-arpes-calculation">Surface state ARPES calculation</a><ul>
+<li><a class="reference internal" href="#id11">Input</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#surface-state-qpi-calculation">Surface state QPI calculation</a><ul>
+<li><a class="reference internal" href="#id12">Output</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#fermi-arc-calculation">Fermi arc calculation</a></li>
 <li><a class="reference internal" href="#spin-texture-calculation">Spin texture calculation</a></li>
 <li><a class="reference internal" href="#berry-curvature-calculation">Berry curvature calculation</a></li>
