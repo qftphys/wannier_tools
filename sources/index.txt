@@ -7,6 +7,9 @@ Welcome to WannierTools's documentation!
 ========================================
 **WannierTools: an open-source software package for topological novel materials**
 
+.. image:: wannier_tools-logo-crop.*
+   :scale: 20 %
+
 Installation and Usage
 ======================
 .. toctree::
