@@ -5,7 +5,10 @@
 
 Welcome to WannierTools's documentation!
 ========================================
+
 **WannierTools: an open-source software package for topological novel materials**
+
+Source on Github : https://github.com/quanshengwu/wannier_tools
 
 .. image:: wannier_tools-logo-crop.png
    :scale: 20 %
