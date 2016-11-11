@@ -246,6 +246,46 @@ KCUBE_BULK
 </div>
 </div>
 </div>
+<div class="section" id="find-nodes-calculation">
+<span id="findnodescalculation"></span><h2>Find Nodes calculation<a class="headerlink" href="#find-nodes-calculation" title="Permalink to this headline">¶</a></h2>
+<p>Beside by using GapCube and GapPlane to find Weyl/Dirac nodes or node lines, we can directly
+using FindNodes function.</p>
+<p>Typical input parameters for FindNodes_cube calculation</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>&amp;CONTROL
+FindNodes_calc = T
+/
+&amp;PARAMETERS
+Nk1 = 8   ! No. of slices for the 1st reciprocal vector
+Nk2 = 8   ! No. of slices for the 2nd reciprocal vector
+Nk3 = 8   ! No. of slices for the 3rd reciprocal vector
+/
+
+KCUBE_BULK
+-0.50 -0.50 -0.50   ! Original point for 3D k plane
+ 1.00  0.00  0.00   ! The 1st vector to define 3d k cube
+ 0.00  1.00  0.00   ! The 2nd vector to define 3d k cube
+ 0.00  0.00  1.00   ! The 3rd vector to define 3d k cube
+</pre></div>
+</div>
+<p>Outputs are <strong>Nodes.dat</strong> and <strong>Nodes.gnu</strong>. Nodes.png will be obtained by</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">gnuplot</span> <span class="n">Nodes</span><span class="o">.</span><span class="n">gnu</span>
+</pre></div>
+</div>
+<p>Here are the output for WTe2 <strong>Nodes.dat</strong></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># local minimal position and the related energy gap</span>
+<span class="c1">#      kx          ky          kz         gap           E          k1          k2          k3</span>
+    <span class="mf">0.219436</span>   <span class="o">-</span><span class="mf">0.045611</span>   <span class="o">-</span><span class="mf">0.000001</span>    <span class="mf">0.000000</span>    <span class="mf">0.056688</span>    <span class="mf">0.121432</span>   <span class="o">-</span><span class="mf">0.045363</span>   <span class="o">-</span><span class="mf">0.000003</span>
+   <span class="o">-</span><span class="mf">0.219515</span>   <span class="o">-</span><span class="mf">0.045063</span>   <span class="o">-</span><span class="mf">0.000001</span>    <span class="mf">0.000000</span>    <span class="mf">0.056461</span>   <span class="o">-</span><span class="mf">0.121476</span>   <span class="o">-</span><span class="mf">0.044818</span>   <span class="o">-</span><span class="mf">0.000002</span>
+    <span class="mf">0.220195</span>   <span class="o">-</span><span class="mf">0.038682</span>   <span class="o">-</span><span class="mf">0.000002</span>    <span class="mf">0.000000</span>    <span class="mf">0.051264</span>    <span class="mf">0.121852</span>   <span class="o">-</span><span class="mf">0.038472</span>   <span class="o">-</span><span class="mf">0.000003</span>
+   <span class="o">-</span><span class="mf">0.220183</span>   <span class="o">-</span><span class="mf">0.038936</span>   <span class="o">-</span><span class="mf">0.000001</span>    <span class="mf">0.000000</span>    <span class="mf">0.051618</span>   <span class="o">-</span><span class="mf">0.121845</span>   <span class="o">-</span><span class="mf">0.038724</span>   <span class="o">-</span><span class="mf">0.000003</span>
+    <span class="mf">0.219514</span>    <span class="mf">0.045063</span>    <span class="mf">0.000001</span>    <span class="mf">0.000000</span>    <span class="mf">0.056459</span>    <span class="mf">0.121475</span>    <span class="mf">0.044818</span>    <span class="mf">0.000003</span>
+   <span class="o">-</span><span class="mf">0.219434</span>    <span class="mf">0.045620</span>    <span class="mf">0.000002</span>    <span class="mf">0.000000</span>    <span class="mf">0.056692</span>   <span class="o">-</span><span class="mf">0.121431</span>    <span class="mf">0.045371</span>    <span class="mf">0.000004</span>
+   <span class="o">-</span><span class="mf">0.220194</span>    <span class="mf">0.038678</span>    <span class="mf">0.000000</span>    <span class="mf">0.000000</span>    <span class="mf">0.051259</span>   <span class="o">-</span><span class="mf">0.121851</span>    <span class="mf">0.038468</span>    <span class="mf">0.000001</span>
+    <span class="mf">0.220181</span>    <span class="mf">0.038941</span>    <span class="mf">0.000000</span>    <span class="mf">0.000000</span>    <span class="mf">0.051620</span>    <span class="mf">0.121844</span>    <span class="mf">0.038729</span>    <span class="mf">0.000001</span>
+</pre></div>
+</div>
+<p>You will find that there are 8 Weyl points in the BZ as expected.</p>
+</div>
 <div class="section" id="slab-band-calculation">
 <span id="slabbandcalculation"></span><h2>Slab band calculation<a class="headerlink" href="#slab-band-calculation" title="Permalink to this headline">¶</a></h2>
 <p>Before using iterative green’s function to get the surface state spectrum for semi-infinite system.
@@ -434,6 +474,7 @@ bulk contribution.</p>
 </li>
 </ul>
 </li>
+<li><a class="reference internal" href="#find-nodes-calculation">Find Nodes calculation</a></li>
 <li><a class="reference internal" href="#slab-band-calculation">Slab band calculation</a><ul>
 <li><a class="reference internal" href="#id7">Input</a></li>
 <li><a class="reference internal" href="#id8">Output</a></li>

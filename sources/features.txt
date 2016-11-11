@@ -199,6 +199,61 @@ The head of **GapCube.dat** are ::
   4 conduction bands and 4 valence bands. 
 * Column 7-9 are the Direct coordinates of the k points.
 
+.. _findnodescalculation:
+
+Find Nodes calculation
+----------------------
+
+Beside by using GapCube and GapPlane to find Weyl/Dirac nodes or node lines, we can directly
+using FindNodes function. 
+
+Input
+"""""
+
+Typical input parameters for FindNodes_cube calculation ::
+
+  &CONTROL
+  FindNodes_calc = T
+  /
+  &PARAMETERS
+  Nk1 = 8   ! No. of slices for the 1st reciprocal vector
+  Nk2 = 8   ! No. of slices for the 2nd reciprocal vector
+  Nk3 = 8   ! No. of slices for the 3rd reciprocal vector
+  /
+
+  KCUBE_BULK
+  -0.50 -0.50 -0.50   ! Original point for 3D k plane 
+   1.00  0.00  0.00   ! The 1st vector to define 3d k cube
+   0.00  1.00  0.00   ! The 2nd vector to define 3d k cube
+   0.00  0.00  1.00   ! The 3rd vector to define 3d k cube
+
+.. Notes::
+   
+   Please don't set Nk1, Nk2, Nk3 too large. Otherwise, it will become very time consuming. 
+
+Output
+""""""
+   
+Outputs are **Nodes.dat** and **Nodes.gnu**. Nodes.png will be obtained by ::
+   
+   gnuplot Nodes.gnu
+
+Here are the output for WTe2 **Nodes.dat** ::
+
+   # local minimal position and the related energy gap
+   #      kx          ky          kz         gap           E          k1          k2          k3
+       0.219436   -0.045611   -0.000001    0.000000    0.056688    0.121432   -0.045363   -0.000003
+      -0.219515   -0.045063   -0.000001    0.000000    0.056461   -0.121476   -0.044818   -0.000002
+       0.220195   -0.038682   -0.000002    0.000000    0.051264    0.121852   -0.038472   -0.000003
+      -0.220183   -0.038936   -0.000001    0.000000    0.051618   -0.121845   -0.038724   -0.000003
+       0.219514    0.045063    0.000001    0.000000    0.056459    0.121475    0.044818    0.000003
+      -0.219434    0.045620    0.000002    0.000000    0.056692   -0.121431    0.045371    0.000004
+      -0.220194    0.038678    0.000000    0.000000    0.051259   -0.121851    0.038468    0.000001
+       0.220181    0.038941    0.000000    0.000000    0.051620    0.121844    0.038729    0.000001
+
+You will find that there are 8 Weyl points in the BZ as expected. 
+
+
 .. _slabbandcalculation:
 
 Slab band calculation
