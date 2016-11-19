@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Features of WannierTools &#8212; WannierTools 2.1 documentation</title>
+    <title>Capabilities of WannierTools &#8212; WannierTools 2.1 documentation</title>
     
     <link rel="stylesheet" href="static/classic.css" type="text/css" />
     <link rel="stylesheet" href="static/pygments.css" type="text/css" />
@@ -55,11 +55,12 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="features-of-wanniertools">
-<h1>Features of WannierTools<a class="headerlink" href="#features-of-wanniertools" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="capabilities-of-wanniertools">
+<h1>Capabilities of WannierTools<a class="headerlink" href="#capabilities-of-wanniertools" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><a class="reference internal" href="#bulkbandcalculation"><span class="std std-ref">Bulk band calculation</span></a></li>
 <li><a class="reference internal" href="#bulkfscalculation"><span class="std std-ref">BulkFS calculation</span></a></li>
+<li><a class="reference internal" href="#findnodescalculation"><span class="std std-ref">Find Nodes calculation</span></a></li>
 <li><a class="reference internal" href="#energygapcalculation"><span class="std std-ref">Energy gap calculations</span></a></li>
 <li><a class="reference internal" href="#slabbandcalculation"><span class="std std-ref">Slab band calculation</span></a></li>
 <li><a class="reference internal" href="#ribbonbandcalculation"><span class="std std-ref">Nanowire/nanoribbon  band calculation</span></a></li>
@@ -96,7 +97,7 @@ G 0.00000 0.00000 0.0000 L 0.50000 0.00000 0.0000
 <p>See <a class="reference internal" href="input.html#controlnamelist"><span class="std std-ref">CONTROL</span></a>, <a class="reference internal" href="input.html#parametersnamelist"><span class="std std-ref">PARAMETERS</span></a>, <a class="reference internal" href="input.html#kpathbulk"><span class="std std-ref">KPATH_BULK</span></a></p>
 </div>
 <div class="section" id="output">
-<h3>Output<a class="headerlink" href="#output" title="Permalink to this headline">¶</a></h3>
+<span id="bulkekout"></span><h3>Output<a class="headerlink" href="#output" title="Permalink to this headline">¶</a></h3>
 <p>The outputs for bulk band calculation are <strong>bulkek.dat</strong> and <strong>bulkek.gnu</strong>. You can get the band plot by running</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">gnuplot</span> <span class="n">bulkek</span><span class="o">.</span><span class="n">gnu</span>
 </pre></div>
@@ -248,8 +249,11 @@ KCUBE_BULK
 </div>
 <div class="section" id="find-nodes-calculation">
 <span id="findnodescalculation"></span><h2>Find Nodes calculation<a class="headerlink" href="#find-nodes-calculation" title="Permalink to this headline">¶</a></h2>
+<p>(Will come in the next release)</p>
 <p>Beside by using GapCube and GapPlane to find Weyl/Dirac nodes or node lines, we can directly
 using FindNodes function.</p>
+<div class="section" id="id7">
+<h3>Input<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
 <p>Typical input parameters for FindNodes_cube calculation</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>&amp;CONTROL
 FindNodes_calc = T
@@ -258,6 +262,7 @@ FindNodes_calc = T
 Nk1 = 8   ! No. of slices for the 1st reciprocal vector
 Nk2 = 8   ! No. of slices for the 2nd reciprocal vector
 Nk3 = 8   ! No. of slices for the 3rd reciprocal vector
+Gap_threshold = 0.0001 ! a value to determine which point should be identified as a node
 /
 
 KCUBE_BULK
@@ -267,11 +272,18 @@ KCUBE_BULK
  0.00  0.00  1.00   ! The 3rd vector to define 3d k cube
 </pre></div>
 </div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Please don&#8217;t set Nk1, Nk2, Nk3 too large. Otherwise, it will become very time consuming.</p>
+</div>
+</div>
+<div class="section" id="id8">
+<h3>Output<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
 <p>Outputs are <strong>Nodes.dat</strong> and <strong>Nodes.gnu</strong>. Nodes.png will be obtained by</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">gnuplot</span> <span class="n">Nodes</span><span class="o">.</span><span class="n">gnu</span>
 </pre></div>
 </div>
-<p>Here are the output for WTe2 <strong>Nodes.dat</strong></p>
+<p>Here are heads of output for WTe2 <strong>Nodes.dat</strong></p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># local minimal position and the related energy gap</span>
 <span class="c1">#      kx          ky          kz         gap           E          k1          k2          k3</span>
     <span class="mf">0.219436</span>   <span class="o">-</span><span class="mf">0.045611</span>   <span class="o">-</span><span class="mf">0.000001</span>    <span class="mf">0.000000</span>    <span class="mf">0.056688</span>    <span class="mf">0.121432</span>   <span class="o">-</span><span class="mf">0.045363</span>   <span class="o">-</span><span class="mf">0.000003</span>
@@ -286,6 +298,62 @@ KCUBE_BULK
 </div>
 <p>You will find that there are 8 Weyl points in the BZ as expected.</p>
 </div>
+</div>
+<div class="section" id="weyl-chirality-calculation">
+<span id="weylchiralitycalculation"></span><h2>Weyl Chirality calculation<a class="headerlink" href="#weyl-chirality-calculation" title="Permalink to this headline">¶</a></h2>
+<p>(Will come in the next release)</p>
+<p>After you identify the positions of Weyl points, you could use this function to calculate the chirality,
+which tells you whether a Weyl point is a sink or a source of the Berry Curvature.</p>
+<div class="section" id="id9">
+<h3>Input<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<p>Typical input parameters for WeylChirality_calc calculation</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>&amp;CONTROL
+WeylChirality_calc = T
+/
+&amp;PARAMETERS
+Nk1 = 41   ! No. of slices for the 1st reciprocal vector, berry phase integration direction
+Nk2 = 21   ! No. of slices for the 2nd reciprocal vector
+/
+
+WEYL_CHIRALITY
+8            ! Num_Weyls
+Cartesian    ! Direct or Cartesian coordinate
+0.004        ! Radius of the ball surround a Weyl point
+ 0.219436   -0.045611   -0.000000    ! Positions of Weyl points, No. of lines should larger than Num_weyls
+-0.219515   -0.045063   -0.000000
+ 0.220195   -0.038682   -0.000000
+-0.220183   -0.038936   -0.000000
+ 0.219514    0.045063    0.000000
+-0.219434    0.045620    0.000000
+-0.220194    0.038678    0.000000
+ 0.220181    0.038941    0.000000
+</pre></div>
+</div>
+<div class="section" id="id10">
+<h4>Output<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h4>
+<p>Outputs are <strong>wanniercenter3D_Weyl.dat</strong> and <strong>wanniercenter3D_Weyl_i.gnu</strong>. wanniercenter3D_Weyl.png will be obtained by</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>gnuplot wanniercenter3D_Weyl_i.gnu
+
+for ((i=1; i&lt;9; i++)); do gnuplot wanniercenter3D_Weyl_$i.gnu;done
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">i is an integer from 1 to Num_weyls</p>
+</div>
+<p>Here are heads of output for WTe2 <strong>wanniercenter3D_Weyl.dat</strong></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># Chirality              -1               1               1              -1               1              -1               1              -1</span>
+       <span class="c1"># k            phase           phase           phase           phase           phase           phase           phase           phase</span>
+ <span class="mf">0.00000000</span>      <span class="mf">0.99970932</span>      <span class="mf">0.00005854</span>      <span class="mf">0.00004671</span>      <span class="mf">0.99975139</span>      <span class="mf">0.00005851</span>      <span class="mf">0.99970861</span>      <span class="mf">0.00004736</span>      <span class="mf">0.99975087</span>
+ <span class="mf">0.05000000</span>      <span class="mf">0.89229069</span>      <span class="mf">0.08696587</span>      <span class="mf">0.08941971</span>      <span class="mf">0.90855415</span>      <span class="mf">0.08723118</span>      <span class="mf">0.89170870</span>      <span class="mf">0.09022452</span>      <span class="mf">0.90795187</span>
+ <span class="mf">0.10000000</span>      <span class="mf">0.79659821</span>      <span class="mf">0.16589558</span>      <span class="mf">0.17112299</span>      <span class="mf">0.82248889</span>      <span class="mf">0.16697194</span>      <span class="mf">0.79511289</span>      <span class="mf">0.17279423</span>      <span class="mf">0.82108022</span>
+</pre></div>
+</div>
+<p>The first line shows the chiralities of each Weyl point. The first column is k point. From the 2nd to the last column
+show the Wannier charge center phase. In total, there are Num_weyls columns.</p>
+</div>
+</div>
+</div>
 <div class="section" id="slab-band-calculation">
 <span id="slabbandcalculation"></span><h2>Slab band calculation<a class="headerlink" href="#slab-band-calculation" title="Permalink to this headline">¶</a></h2>
 <p>Before using iterative green’s function to get the surface state spectrum for semi-infinite system.
@@ -295,8 +363,8 @@ calculate the band structure for it.</p>
 <p class="first admonition-title">Note</p>
 <p class="last">For slab calculations, please read carefully the input card <a class="reference internal" href="input.html#surface"><span class="std std-ref">SURFACE</span></a></p>
 </div>
-<div class="section" id="id7">
-<h3>Input<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id11">
+<h3>Input<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default"><div class="highlight"><pre><span></span>&amp;CONTROL
 SlabBand_calc = T
 /
@@ -314,8 +382,8 @@ G 0.0 0.0 M 0.5 0.5
 </div>
 <p>See <a class="reference internal" href="input.html#controlnamelist"><span class="std std-ref">CONTROL</span></a>, <a class="reference internal" href="input.html#systemnamelist"><span class="std std-ref">SYSTEM</span></a> <a class="reference internal" href="input.html#parametersnamelist"><span class="std std-ref">PARAMETERS</span></a>, <a class="reference internal" href="input.html#kpathslab"><span class="std std-ref">KPATH_SLAB</span></a></p>
 </div>
-<div class="section" id="id8">
-<h3>Output<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id12">
+<h3>Output<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
 <p>Outputs are <strong>slabek.dat</strong> and <strong>slabek.gnu</strong></p>
 <p>The heads of <strong>slabek.dat</strong> are</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="mf">0.0000000</span>     <span class="o">-</span><span class="mf">4.9575466</span>     <span class="mi">240</span>
@@ -339,8 +407,8 @@ G 0.0 0.0 M 0.5 0.5
 <div class="section" id="nanowire-nanoribbon-band-calculation">
 <span id="ribbonbandcalculation"></span><h2>Nanowire/nanoribbon  band calculation<a class="headerlink" href="#nanowire-nanoribbon-band-calculation" title="Permalink to this headline">¶</a></h2>
 <p>Band calculation for wire system. Only one direction is periodic, the other two directions are confined.</p>
-<div class="section" id="id9">
-<h3>Input<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id13">
+<h3>Input<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
 <p>You don&#8217;t have to set the k path, because it only has one direction.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>&amp;CONTROL
 WireBand_calc = T
@@ -356,8 +424,8 @@ Nk1 = 101   ! No. of slices for the 1st reciprocal vector
 </div>
 <p>See <a class="reference internal" href="input.html#controlnamelist"><span class="std std-ref">CONTROL</span></a>, <a class="reference internal" href="input.html#systemnamelist"><span class="std std-ref">SYSTEM</span></a> <a class="reference internal" href="input.html#parametersnamelist"><span class="std std-ref">PARAMETERS</span></a></p>
 </div>
-<div class="section" id="id10">
-<h3>Output<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id14">
+<h3>Output<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
 <p>Outputs are <strong>ribbonek.dat</strong> and <strong>ribbonek.gnu</strong>. The data format of <strong>ribbonek.dat</strong> is the same as
 <strong>slabek.dat</strong>. Get plot ribbonek.png with</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">gnuplot</span> <span class="n">ribbonek</span><span class="o">.</span><span class="n">gnu</span>
@@ -376,8 +444,8 @@ obtained by the iterative Green&#8217;s function.</p>
 <p class="first admonition-title">Note</p>
 <p class="last">For slab calculations, please read carefully the input card <a class="reference internal" href="input.html#surface"><span class="std std-ref">SURFACE</span></a></p>
 </div>
-<div class="section" id="id11">
-<h3>Input<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id15">
+<h3>Input<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default"><div class="highlight"><pre><span></span>&amp;CONTROL
 SlabSS_calc = T
 /
@@ -407,8 +475,8 @@ you should set</p>
 <span class="o">/</span>
 </pre></div>
 </div>
-<div class="section" id="id12">
-<h3>Output<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id16">
+<h3>Output<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h3>
 <dl class="docutils">
 <dt>There are a lot of outputs for QPI calculation. including</dt>
 <dd><p class="first">arc.dat_l, arc.dat_r,
@@ -450,7 +518,7 @@ bulk contribution.</p>
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Features of WannierTools</a><ul>
+<li><a class="reference internal" href="#">Capabilities of WannierTools</a><ul>
 <li><a class="reference internal" href="#bulk-band-calculation">Bulk band calculation</a><ul>
 <li><a class="reference internal" href="#input">Input</a></li>
 <li><a class="reference internal" href="#output">Output</a></li>
@@ -474,23 +542,34 @@ bulk contribution.</p>
 </li>
 </ul>
 </li>
-<li><a class="reference internal" href="#find-nodes-calculation">Find Nodes calculation</a></li>
-<li><a class="reference internal" href="#slab-band-calculation">Slab band calculation</a><ul>
+<li><a class="reference internal" href="#find-nodes-calculation">Find Nodes calculation</a><ul>
 <li><a class="reference internal" href="#id7">Input</a></li>
 <li><a class="reference internal" href="#id8">Output</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#nanowire-nanoribbon-band-calculation">Nanowire/nanoribbon  band calculation</a><ul>
-<li><a class="reference internal" href="#id9">Input</a></li>
+<li><a class="reference internal" href="#weyl-chirality-calculation">Weyl Chirality calculation</a><ul>
+<li><a class="reference internal" href="#id9">Input</a><ul>
 <li><a class="reference internal" href="#id10">Output</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#surface-state-arpes-calculation">Surface state ARPES calculation</a><ul>
+</ul>
+</li>
+<li><a class="reference internal" href="#slab-band-calculation">Slab band calculation</a><ul>
 <li><a class="reference internal" href="#id11">Input</a></li>
+<li><a class="reference internal" href="#id12">Output</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nanowire-nanoribbon-band-calculation">Nanowire/nanoribbon  band calculation</a><ul>
+<li><a class="reference internal" href="#id13">Input</a></li>
+<li><a class="reference internal" href="#id14">Output</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#surface-state-arpes-calculation">Surface state ARPES calculation</a><ul>
+<li><a class="reference internal" href="#id15">Input</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#surface-state-qpi-calculation">Surface state QPI calculation</a><ul>
-<li><a class="reference internal" href="#id12">Output</a></li>
+<li><a class="reference internal" href="#id16">Output</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#fermi-arc-calculation">Fermi arc calculation</a></li>
