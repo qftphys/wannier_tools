@@ -70,6 +70,7 @@
 <li><a class="reference internal" href="#spintexturecalculation"><span class="std std-ref">Spin texture calculation</span></a></li>
 <li><a class="reference internal" href="#berrycurvcalculation"><span class="std std-ref">Berry curvature calculation</span></a></li>
 <li><a class="reference internal" href="#wanniercentercalculation"><span class="std std-ref">Wannier charge center/Wilson loop calculation</span></a></li>
+<li><a class="reference internal" href="#z2bulkcalculation"><span class="std std-ref">Z2 number for 3D bulk materials</span></a></li>
 </ul>
 <div class="section" id="bulk-band-calculation">
 <span id="bulkbandcalculation"></span><h2>Bulk band calculation<a class="headerlink" href="#bulk-band-calculation" title="Permalink to this headline">¶</a></h2>
@@ -508,6 +509,37 @@ bulk contribution.</p>
 <span id="wanniercentercalculation"></span><h2>Wannier charge center/Wilson loop calculation<a class="headerlink" href="#wannier-charge-center-wilson-loop-calculation" title="Permalink to this headline">¶</a></h2>
 <p>Wannier charge center, which is sometimes called Wilson loop can be calculated by set WannierCenter_calc=T and set KPLANE_BULK CARD,  set number of k points for two vectors is Nk1, Nk2 in NAMELISTS PARAMETERS.  Notice: You should notice that the first vector in KPLANE_BULK CARD is the integration direction, this vector should be equal to one primitive reciprocal lattice vector.  If you want to calculate the Z2 number, Please set the second vector to be half of the reciprocal lattice vector. You can get the Wannier charge center  along the second k line. See more details In the paper written by Alexey. Soluyanov (2011).</p>
 </div>
+<div class="section" id="z2-number-for-3d-bulk-materials">
+<span id="z2bulkcalculation"></span><h2>Z2 number for 3D bulk materials<a class="headerlink" href="#z2-number-for-3d-bulk-materials" title="Permalink to this headline">¶</a></h2>
+<p>We can get Z2 topological index (v, v1v2v3) from the z2 calculations of six time invariant planes, i.e. k1=0.0; k1=0.5; k2=0.0; k2=0.5; k3=0.0; k3=0.5;
+Usually, you can call &#8220;Wannier charge center calculation for a plane&#8221;  six times. Here we packed them up to get another function. You can set the input file like the following.</p>
+<div class="section" id="id17">
+<h3>Input<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
+<p>The necessary tags that you should set in the input.dat</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>&amp;CONTROL
+Z2_3D_calc = T
+/
+&amp;PARAMETERS
+NumOccpuied = 18  ! No. of occupied wannier bands
+Nk2 = 41    ! No. of slices of the k points for WCCs
+/
+</pre></div>
+</div>
+</div>
+<div class="section" id="id18">
+<h3>Output<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
+<p>Outputs are <strong>wanniercenter3D_Z2_1.dat, wanniercenter3D_Z2_2.dat, wanniercenter3D_Z2_3.dat, wanniercenter3D_Z2_4.dat, wanniercenter3D_Z2_5.dat, wanniercenter3D_Z2_6.dat</strong>
+and <strong>wanniercenter3D_Z2.gnu</strong>. The z2 value can be found in the WT.out by searching &#8220;z2 number for 6 planes&#8221;.
+The WCC (Wilson loop) plots <strong>wanniercenter3D_Z2.eps</strong> can be got with:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">gnuplot</span> <span class="n">wanniercenter3D_Z2</span><span class="o">.</span><span class="n">gnu</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Important: please set <strong>NumOccpuied</strong> correctly. It represents the occpuied wannier bands, not the total number of electrons.</p>
+</div>
+</div>
+</div>
 </div>
 
 
@@ -576,6 +608,11 @@ bulk contribution.</p>
 <li><a class="reference internal" href="#spin-texture-calculation">Spin texture calculation</a></li>
 <li><a class="reference internal" href="#berry-curvature-calculation">Berry curvature calculation</a></li>
 <li><a class="reference internal" href="#wannier-charge-center-wilson-loop-calculation">Wannier charge center/Wilson loop calculation</a></li>
+<li><a class="reference internal" href="#z2-number-for-3d-bulk-materials">Z2 number for 3D bulk materials</a><ul>
+<li><a class="reference internal" href="#id17">Input</a></li>
+<li><a class="reference internal" href="#id18">Output</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

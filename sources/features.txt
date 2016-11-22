@@ -13,6 +13,7 @@ Capabilities of WannierTools
 -  :ref:`spintexturecalculation`
 -  :ref:`berrycurvcalculation`
 -  :ref:`wanniercentercalculation`
+-  :ref:`z2bulkcalculation`
 
 .. _bulkbandcalculation:
 
@@ -504,3 +505,39 @@ Calculate Berry curvature at a fixed k plane in 3D BZ. Set BerryCurvature_calc=T
 Wannier charge center/Wilson loop calculation
 ---------------------------------------------
 Wannier charge center, which is sometimes called Wilson loop can be calculated by set WannierCenter_calc=T and set KPLANE_BULK CARD,  set number of k points for two vectors is Nk1, Nk2 in NAMELISTS PARAMETERS.  Notice: You should notice that the first vector in KPLANE_BULK CARD is the integration direction, this vector should be equal to one primitive reciprocal lattice vector.  If you want to calculate the Z2 number, Please set the second vector to be half of the reciprocal lattice vector. You can get the Wannier charge center  along the second k line. See more details In the paper written by Alexey. Soluyanov (2011). 
+
+.. _z2bulkcalculation:
+
+Z2 number for 3D bulk materials
+-------------------------------
+
+We can get Z2 topological index (v, v1v2v3) from the z2 calculations of six time invariant planes, i.e. k1=0.0; k1=0.5; k2=0.0; k2=0.5; k3=0.0; k3=0.5;
+Usually, you can call "Wannier charge center calculation for a plane"  six times. Here we packed them up to get another function. You can set the input file like the following.
+
+Input
+^^^^^
+
+The necessary tags that you should set in the input.dat ::
+ 
+  &CONTROL
+  Z2_3D_calc = T
+  /
+  &PARAMETERS
+  NumOccpuied = 18  ! No. of occupied wannier bands
+  Nk2 = 41    ! No. of slices of the k points for WCCs
+  /
+
+Output
+^^^^^^
+
+Outputs are **wanniercenter3D_Z2_1.dat, wanniercenter3D_Z2_2.dat, wanniercenter3D_Z2_3.dat, wanniercenter3D_Z2_4.dat, wanniercenter3D_Z2_5.dat, wanniercenter3D_Z2_6.dat** 
+and **wanniercenter3D_Z2.gnu**. The z2 value can be found in the WT.out by searching "z2 number for 6 planes". 
+The WCC (Wilson loop) plots **wanniercenter3D_Z2.eps** can be got with::
+   
+   gnuplot wanniercenter3D_Z2.gnu
+
+.. NOTE::
+
+   Important: please set **NumOccpuied** correctly. It represents the occpuied wannier bands, not the total number of electrons.
+
+
