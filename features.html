@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Capabilities of WannierTools &#8212; WannierTools 2.1 documentation</title>
+    <title>1.3. Capabilities of WannierTools &#8212; WannierTools 2.1 documentation</title>
     
     <link rel="stylesheet" href="static/classic.css" type="text/css" />
     <link rel="stylesheet" href="static/pygments.css" type="text/css" />
@@ -24,29 +24,27 @@
     <script type="text/javascript" src="static/underscore.js"></script>
     <script type="text/javascript" src="static/doctools.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="top" title="WannierTools 2.1 documentation" href="index.html" />
-    <link rel="next" title="Examples" href="examples.html" />
-    <link rel="prev" title="Input" href="input.html" /> 
+    <link rel="up" title="1. Preliminaries" href="preliminaries.html" />
+    <link rel="next" title="2. Tutorial: learning WannierTools through examples" href="tutorials.html" />
+    <link rel="prev" title="1.2. Introduction of input files" href="input.html" /> 
   </head>
   <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
           <a href="f-modindex.html" title="Fortran Module Index"
-             >fortran modules</a> |</li>
+             >fortran modules</a></li>
         <li class="right" >
-          <a href="examples.html" title="Examples"
+          <a href="tutorials.html" title="2. Tutorial: learning WannierTools through examples"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="input.html" title="Input"
+          <a href="input.html" title="1.2. Introduction of input files"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">WannierTools 2.1 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">WannierTools 2.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="preliminaries.html" accesskey="U">1. Preliminaries</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -56,7 +54,7 @@
           <div class="body" role="main">
             
   <div class="section" id="capabilities-of-wanniertools">
-<h1>Capabilities of WannierTools<a class="headerlink" href="#capabilities-of-wanniertools" title="Permalink to this headline">¶</a></h1>
+<h1>1.3. Capabilities of WannierTools<a class="headerlink" href="#capabilities-of-wanniertools" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><a class="reference internal" href="#bulkbandcalculation"><span class="std std-ref">Bulk band calculation</span></a></li>
 <li><a class="reference internal" href="#bulkfscalculation"><span class="std std-ref">BulkFS calculation</span></a></li>
@@ -73,7 +71,7 @@
 <li><a class="reference internal" href="#z2bulkcalculation"><span class="std std-ref">Z2 number for 3D bulk materials</span></a></li>
 </ul>
 <div class="section" id="bulk-band-calculation">
-<span id="bulkbandcalculation"></span><h2>Bulk band calculation<a class="headerlink" href="#bulk-band-calculation" title="Permalink to this headline">¶</a></h2>
+<span id="bulkbandcalculation"></span><h2>1.3.1. Bulk band calculation<a class="headerlink" href="#bulk-band-calculation" title="Permalink to this headline">¶</a></h2>
 <p>Calculate bulk energy band for a series k lines. This is the basic calculation after the
 construction of Wannier functions. You have to compare your Wannier interpolated bands
 with the DFT bands. Those two bands should match well around the Fermi level.</p>
@@ -125,7 +123,7 @@ to 255 for the color plot convinence.</li>
 </div>
 </div>
 <div class="section" id="bulkfs-calculation">
-<span id="bulkfscalculation"></span><h2>BulkFS calculation<a class="headerlink" href="#bulkfs-calculation" title="Permalink to this headline">¶</a></h2>
+<span id="bulkfscalculation"></span><h2>1.3.2. BulkFS calculation<a class="headerlink" href="#bulkfs-calculation" title="Permalink to this headline">¶</a></h2>
 <p>Bulk Fermi surface calculation.</p>
 <div class="section" id="id1">
 <h3>Input<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
@@ -155,7 +153,7 @@ You can plot the FS with <a class="reference external" href="http://www.xcrysden
 </div>
 </div>
 <div class="section" id="energy-gap-calculations">
-<span id="energygapcalculation"></span><h2>Energy gap calculations<a class="headerlink" href="#energy-gap-calculations" title="Permalink to this headline">¶</a></h2>
+<span id="energygapcalculation"></span><h2>1.3.3. Energy gap calculations<a class="headerlink" href="#energy-gap-calculations" title="Permalink to this headline">¶</a></h2>
 <p>We support two modes for energy gap calculations.The formula is
 <span class="math">\(gap(k)= E_{NumOccupied+1}(k)- E_{NumOccpuied}(k)\)</span></p>
 <div class="section" id="gap-plane-mode">
@@ -249,7 +247,7 @@ KCUBE_BULK
 </div>
 </div>
 <div class="section" id="find-nodes-calculation">
-<span id="findnodescalculation"></span><h2>Find Nodes calculation<a class="headerlink" href="#find-nodes-calculation" title="Permalink to this headline">¶</a></h2>
+<span id="findnodescalculation"></span><h2>1.3.4. Find Nodes calculation<a class="headerlink" href="#find-nodes-calculation" title="Permalink to this headline">¶</a></h2>
 <p>(Will come in the next release)</p>
 <p>Beside by using GapCube and GapPlane to find Weyl/Dirac nodes or node lines, we can directly
 using FindNodes function.</p>
@@ -301,7 +299,7 @@ KCUBE_BULK
 </div>
 </div>
 <div class="section" id="weyl-chirality-calculation">
-<span id="weylchiralitycalculation"></span><h2>Weyl Chirality calculation<a class="headerlink" href="#weyl-chirality-calculation" title="Permalink to this headline">¶</a></h2>
+<span id="weylchiralitycalculation"></span><h2>1.3.5. Weyl Chirality calculation<a class="headerlink" href="#weyl-chirality-calculation" title="Permalink to this headline">¶</a></h2>
 <p>(Will come in the next release)</p>
 <p>After you identify the positions of Weyl points, you could use this function to calculate the chirality,
 which tells you whether a Weyl point is a sink or a source of the Berry Curvature.</p>
@@ -356,7 +354,7 @@ show the Wannier charge center phase. In total, there are Num_weyls columns.</p>
 </div>
 </div>
 <div class="section" id="slab-band-calculation">
-<span id="slabbandcalculation"></span><h2>Slab band calculation<a class="headerlink" href="#slab-band-calculation" title="Permalink to this headline">¶</a></h2>
+<span id="slabbandcalculation"></span><h2>1.3.6. Slab band calculation<a class="headerlink" href="#slab-band-calculation" title="Permalink to this headline">¶</a></h2>
 <p>Before using iterative green’s function to get the surface state spectrum for semi-infinite system.
 We also can just construct a finite thickness slab system and
 calculate the band structure for it.</p>
@@ -406,7 +404,7 @@ G 0.0 0.0 M 0.5 0.5
 </div>
 </div>
 <div class="section" id="nanowire-nanoribbon-band-calculation">
-<span id="ribbonbandcalculation"></span><h2>Nanowire/nanoribbon  band calculation<a class="headerlink" href="#nanowire-nanoribbon-band-calculation" title="Permalink to this headline">¶</a></h2>
+<span id="ribbonbandcalculation"></span><h2>1.3.7. Nanowire/nanoribbon  band calculation<a class="headerlink" href="#nanowire-nanoribbon-band-calculation" title="Permalink to this headline">¶</a></h2>
 <p>Band calculation for wire system. Only one direction is periodic, the other two directions are confined.</p>
 <div class="section" id="id13">
 <h3>Input<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
@@ -435,7 +433,7 @@ Nk1 = 101   ! No. of slices for the 1st reciprocal vector
 </div>
 </div>
 <div class="section" id="surface-state-arpes-calculation">
-<span id="sscalculation"></span><h2>Surface state ARPES calculation<a class="headerlink" href="#surface-state-arpes-calculation" title="Permalink to this headline">¶</a></h2>
+<span id="sscalculation"></span><h2>1.3.8. Surface state ARPES calculation<a class="headerlink" href="#surface-state-arpes-calculation" title="Permalink to this headline">¶</a></h2>
 <p>One important feature for topological materials is the surface state. The bulk-edge correspondence
 tells us, if the topological property of the bulk system is nontrivial, then there will be
 nontrivial states on the surface. Nowadays, there are several method to detect the surface states.
@@ -468,7 +466,7 @@ G 0.0 0.0 M 0.5 0.5
 </div>
 </div>
 <div class="section" id="surface-state-qpi-calculation">
-<span id="ssqpicalculation"></span><h2>Surface state QPI calculation<a class="headerlink" href="#surface-state-qpi-calculation" title="Permalink to this headline">¶</a></h2>
+<span id="ssqpicalculation"></span><h2>1.3.9. Surface state QPI calculation<a class="headerlink" href="#surface-state-qpi-calculation" title="Permalink to this headline">¶</a></h2>
 <p>Settings for this feature are almost the same as <a class="reference internal" href="#fermiarccalculation"><span class="std std-ref">Fermi arc calculation</span></a>. Only difference is that
 you should set</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&amp;</span><span class="n">CONTROL</span>
@@ -494,23 +492,23 @@ bulk contribution.</p>
 </div>
 </div>
 <div class="section" id="fermi-arc-calculation">
-<span id="fermiarccalculation"></span><h2>Fermi arc calculation<a class="headerlink" href="#fermi-arc-calculation" title="Permalink to this headline">¶</a></h2>
+<span id="fermiarccalculation"></span><h2>1.3.10. Fermi arc calculation<a class="headerlink" href="#fermi-arc-calculation" title="Permalink to this headline">¶</a></h2>
 <p>Surface state spectrum at fixed energy level E_arc set in NAMELISTS PARAMETERS . Set SlabArc_calc=T, and  set Nk1, Nk2, in NAMELISTS PARAMETERS, set k plane in KPLANE_SLAB CARD. Get the plots with  &#8220;gnuplot arc_l.gnu”, &#8220;gnuplot arc_r.gnu”.</p>
 </div>
 <div class="section" id="spin-texture-calculation">
-<span id="spintexturecalculation"></span><h2>Spin texture calculation<a class="headerlink" href="#spin-texture-calculation" title="Permalink to this headline">¶</a></h2>
+<span id="spintexturecalculation"></span><h2>1.3.11. Spin texture calculation<a class="headerlink" href="#spin-texture-calculation" title="Permalink to this headline">¶</a></h2>
 <p>Spin texture calculation at fixed energy level E_arc set in NAMELISTS PARAMETERS . Set SlabArc_calc=T, and  set Nk1, Nk2, in NAMELISTS PARAMETERS, set k plane in KPLANE_SLAB CARD. Get the plots with  &#8220;gnuplot spintext_l.gnu”, &#8220;gnuplot spintext_r.gnu”.</p>
 </div>
 <div class="section" id="berry-curvature-calculation">
-<span id="berrycurvcalculation"></span><h2>Berry curvature calculation<a class="headerlink" href="#berry-curvature-calculation" title="Permalink to this headline">¶</a></h2>
+<span id="berrycurvcalculation"></span><h2>1.3.12. Berry curvature calculation<a class="headerlink" href="#berry-curvature-calculation" title="Permalink to this headline">¶</a></h2>
 <p>Calculate Berry curvature at a fixed k plane in 3D BZ. Set BerryCurvature_calc=T, and  set Nk1, Nk2, in NAMELISTS PARAMETERS, set k plane in KPLANE_BULK CARD. Get the plot with  &#8220;gnuplot Berrycurvature.gnu”.</p>
 </div>
 <div class="section" id="wannier-charge-center-wilson-loop-calculation">
-<span id="wanniercentercalculation"></span><h2>Wannier charge center/Wilson loop calculation<a class="headerlink" href="#wannier-charge-center-wilson-loop-calculation" title="Permalink to this headline">¶</a></h2>
+<span id="wanniercentercalculation"></span><h2>1.3.13. Wannier charge center/Wilson loop calculation<a class="headerlink" href="#wannier-charge-center-wilson-loop-calculation" title="Permalink to this headline">¶</a></h2>
 <p>Wannier charge center, which is sometimes called Wilson loop can be calculated by set WannierCenter_calc=T and set KPLANE_BULK CARD,  set number of k points for two vectors is Nk1, Nk2 in NAMELISTS PARAMETERS.  Notice: You should notice that the first vector in KPLANE_BULK CARD is the integration direction, this vector should be equal to one primitive reciprocal lattice vector.  If you want to calculate the Z2 number, Please set the second vector to be half of the reciprocal lattice vector. You can get the Wannier charge center  along the second k line. See more details In the paper written by Alexey. Soluyanov (2011).</p>
 </div>
 <div class="section" id="z2-number-for-3d-bulk-materials">
-<span id="z2bulkcalculation"></span><h2>Z2 number for 3D bulk materials<a class="headerlink" href="#z2-number-for-3d-bulk-materials" title="Permalink to this headline">¶</a></h2>
+<span id="z2bulkcalculation"></span><h2>1.3.14. Z2 number for 3D bulk materials<a class="headerlink" href="#z2-number-for-3d-bulk-materials" title="Permalink to this headline">¶</a></h2>
 <p>We can get Z2 topological index (v, v1v2v3) from the z2 calculations of six time invariant planes, i.e. k1=0.0; k1=0.5; k2=0.0; k2=0.5; k3=0.0; k3=0.5;
 Usually, you can call &#8220;Wannier charge center calculation for a plane&#8221;  six times. Here we packed them up to get another function. You can set the input file like the following.</p>
 <div class="section" id="id17">
@@ -550,18 +548,18 @@ The WCC (Wilson loop) plots <strong>wanniercenter3D_Z2.eps</strong> can be got w
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Capabilities of WannierTools</a><ul>
-<li><a class="reference internal" href="#bulk-band-calculation">Bulk band calculation</a><ul>
+<li><a class="reference internal" href="#">1.3. Capabilities of WannierTools</a><ul>
+<li><a class="reference internal" href="#bulk-band-calculation">1.3.1. Bulk band calculation</a><ul>
 <li><a class="reference internal" href="#input">Input</a></li>
 <li><a class="reference internal" href="#output">Output</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#bulkfs-calculation">BulkFS calculation</a><ul>
+<li><a class="reference internal" href="#bulkfs-calculation">1.3.2. BulkFS calculation</a><ul>
 <li><a class="reference internal" href="#id1">Input</a></li>
 <li><a class="reference internal" href="#id2">Output</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#energy-gap-calculations">Energy gap calculations</a><ul>
+<li><a class="reference internal" href="#energy-gap-calculations">1.3.3. Energy gap calculations</a><ul>
 <li><a class="reference internal" href="#gap-plane-mode">Gap_plane mode</a><ul>
 <li><a class="reference internal" href="#id3">Input</a></li>
 <li><a class="reference internal" href="#id4">Output</a></li>
@@ -574,41 +572,41 @@ The WCC (Wilson loop) plots <strong>wanniercenter3D_Z2.eps</strong> can be got w
 </li>
 </ul>
 </li>
-<li><a class="reference internal" href="#find-nodes-calculation">Find Nodes calculation</a><ul>
+<li><a class="reference internal" href="#find-nodes-calculation">1.3.4. Find Nodes calculation</a><ul>
 <li><a class="reference internal" href="#id7">Input</a></li>
 <li><a class="reference internal" href="#id8">Output</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#weyl-chirality-calculation">Weyl Chirality calculation</a><ul>
+<li><a class="reference internal" href="#weyl-chirality-calculation">1.3.5. Weyl Chirality calculation</a><ul>
 <li><a class="reference internal" href="#id9">Input</a><ul>
 <li><a class="reference internal" href="#id10">Output</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a class="reference internal" href="#slab-band-calculation">Slab band calculation</a><ul>
+<li><a class="reference internal" href="#slab-band-calculation">1.3.6. Slab band calculation</a><ul>
 <li><a class="reference internal" href="#id11">Input</a></li>
 <li><a class="reference internal" href="#id12">Output</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#nanowire-nanoribbon-band-calculation">Nanowire/nanoribbon  band calculation</a><ul>
+<li><a class="reference internal" href="#nanowire-nanoribbon-band-calculation">1.3.7. Nanowire/nanoribbon  band calculation</a><ul>
 <li><a class="reference internal" href="#id13">Input</a></li>
 <li><a class="reference internal" href="#id14">Output</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#surface-state-arpes-calculation">Surface state ARPES calculation</a><ul>
+<li><a class="reference internal" href="#surface-state-arpes-calculation">1.3.8. Surface state ARPES calculation</a><ul>
 <li><a class="reference internal" href="#id15">Input</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#surface-state-qpi-calculation">Surface state QPI calculation</a><ul>
+<li><a class="reference internal" href="#surface-state-qpi-calculation">1.3.9. Surface state QPI calculation</a><ul>
 <li><a class="reference internal" href="#id16">Output</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#fermi-arc-calculation">Fermi arc calculation</a></li>
-<li><a class="reference internal" href="#spin-texture-calculation">Spin texture calculation</a></li>
-<li><a class="reference internal" href="#berry-curvature-calculation">Berry curvature calculation</a></li>
-<li><a class="reference internal" href="#wannier-charge-center-wilson-loop-calculation">Wannier charge center/Wilson loop calculation</a></li>
-<li><a class="reference internal" href="#z2-number-for-3d-bulk-materials">Z2 number for 3D bulk materials</a><ul>
+<li><a class="reference internal" href="#fermi-arc-calculation">1.3.10. Fermi arc calculation</a></li>
+<li><a class="reference internal" href="#spin-texture-calculation">1.3.11. Spin texture calculation</a></li>
+<li><a class="reference internal" href="#berry-curvature-calculation">1.3.12. Berry curvature calculation</a></li>
+<li><a class="reference internal" href="#wannier-charge-center-wilson-loop-calculation">1.3.13. Wannier charge center/Wilson loop calculation</a></li>
+<li><a class="reference internal" href="#z2-number-for-3d-bulk-materials">1.3.14. Z2 number for 3D bulk materials</a><ul>
 <li><a class="reference internal" href="#id17">Input</a></li>
 <li><a class="reference internal" href="#id18">Output</a></li>
 </ul>
@@ -619,17 +617,10 @@ The WCC (Wilson loop) plots <strong>wanniercenter3D_Z2.eps</strong> can be got w
 
   <h4>Previous topic</h4>
   <p class="topless"><a href="input.html"
-                        title="previous chapter">Input</a></p>
+                        title="previous chapter">1.2. Introduction of input files</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="examples.html"
-                        title="next chapter">Examples</a></p>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="sources/features.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
+  <p class="topless"><a href="tutorials.html"
+                        title="next chapter">2. Tutorial: learning WannierTools through examples</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
@@ -648,18 +639,16 @@ The WCC (Wilson loop) plots <strong>wanniercenter3D_Z2.eps</strong> can be got w
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
           <a href="f-modindex.html" title="Fortran Module Index"
-             >fortran modules</a> |</li>
+             >fortran modules</a></li>
         <li class="right" >
-          <a href="examples.html" title="Examples"
+          <a href="tutorials.html" title="2. Tutorial: learning WannierTools through examples"
              >next</a> |</li>
         <li class="right" >
-          <a href="input.html" title="Input"
+          <a href="input.html" title="1.2. Introduction of input files"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">WannierTools 2.1 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">WannierTools 2.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="preliminaries.html" >1. Preliminaries</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

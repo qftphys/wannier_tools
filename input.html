@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Input &#8212; WannierTools 2.1 documentation</title>
+    <title>1.2. Introduction of input files &#8212; WannierTools 2.1 documentation</title>
     
     <link rel="stylesheet" href="static/classic.css" type="text/css" />
     <link rel="stylesheet" href="static/pygments.css" type="text/css" />
@@ -24,29 +24,27 @@
     <script type="text/javascript" src="static/underscore.js"></script>
     <script type="text/javascript" src="static/doctools.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="top" title="WannierTools 2.1 documentation" href="index.html" />
-    <link rel="next" title="Features of WannierTools" href="features.html" />
-    <link rel="prev" title="Installation (Linux or Mac)" href="installation.html" /> 
+    <link rel="up" title="1. Preliminaries" href="preliminaries.html" />
+    <link rel="next" title="1.3. Capabilities of WannierTools" href="features.html" />
+    <link rel="prev" title="1.1. Installation of Wanniertools (Linux or Mac)" href="installation.html" /> 
   </head>
   <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
           <a href="f-modindex.html" title="Fortran Module Index"
-             >fortran modules</a> |</li>
+             >fortran modules</a></li>
         <li class="right" >
-          <a href="features.html" title="Features of WannierTools"
+          <a href="features.html" title="1.3. Capabilities of WannierTools"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="installation.html" title="Installation (Linux or Mac)"
+          <a href="installation.html" title="1.1. Installation of Wanniertools (Linux or Mac)"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">WannierTools 2.1 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">WannierTools 2.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="preliminaries.html" accesskey="U">1. Preliminaries</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -55,12 +53,12 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="input">
-<span id="id1"></span><h1>Input<a class="headerlink" href="#input" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="introduction-of-input-files">
+<h1>1.2. Introduction of input files<a class="headerlink" href="#introduction-of-input-files" title="Permalink to this headline">¶</a></h1>
 <p>There are two input files you should prepare <a class="reference internal" href="#input-dat"><span class="std std-ref">input.dat</span></a>
 and  <a class="reference internal" href="#wannier90-dat"><span class="std std-ref">wannier90_hr.dat</span></a></p>
 <div class="section" id="input-dat">
-<span id="id2"></span><h2>input.dat<a class="headerlink" href="#input-dat" title="Permalink to this headline">¶</a></h2>
+<span id="id1"></span><h2>1.2.1. input.dat<a class="headerlink" href="#input-dat" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><a class="reference internal" href="#tbfilenamelist"><span class="std std-ref">TB_FILE</span></a></li>
 <li><a class="reference internal" href="#systemnamelist"><span class="std std-ref">SYSTEM</span></a></li>
@@ -497,7 +495,7 @@ not the whole atoms in the unit cell.
 </div>
 </div>
 <div class="section" id="projectors">
-<span id="id3"></span><h4>PROJECTORS<a class="headerlink" href="#projectors" title="Permalink to this headline">¶</a></h4>
+<span id="id2"></span><h4>PROJECTORS<a class="headerlink" href="#projectors" title="Permalink to this headline">¶</a></h4>
 <p>In this card, we set the Wannier projectors for the tight binding.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>PROJECTORS
  3 3 3 3 3          ! number of projectors
@@ -511,7 +509,7 @@ not the whole atoms in the unit cell.
 <p>Here we don’t take into account the spin degeneracy, only consider the orbital part. The name of orbitals should be “s”, “px”, “py”, “pz”, “dxy”, “dxz”, “dyz”, “dx2-y2”, “dz2”. I will add f orbitals latter. The order of the orbitals is very important if you want to analyze the symmetry properties.</p>
 </div>
 <div class="section" id="surface">
-<span id="id4"></span><h4>SURFACE<a class="headerlink" href="#surface" title="Permalink to this headline">¶</a></h4>
+<span id="id3"></span><h4>SURFACE<a class="headerlink" href="#surface" title="Permalink to this headline">¶</a></h4>
 <p><strong>This card is very important for slabs and ribbon calculation. You need to read the following text carefully</strong></p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>SURFACE            ! See doc for details
  1  0  0           a11, a12, a13
@@ -561,7 +559,7 @@ G 0.0 0.0 M 0.5 0.5
 <p>including the  band structure calculation and the surface state calculation. It is necessary to set it when SlabBand_calc=T or SlabSS_calc=T.  Number of k points along the line is Nk1.</p>
 </div>
 <div class="section" id="kplane-slab">
-<span id="id5"></span><h4>KPLANE_SLAB<a class="headerlink" href="#kplane-slab" title="Permalink to this headline">¶</a></h4>
+<span id="id4"></span><h4>KPLANE_SLAB<a class="headerlink" href="#kplane-slab" title="Permalink to this headline">¶</a></h4>
 <p>Define a 2D k space plane for arc plots.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>KPLANE_SLAB
 -0.1 -0.1      ! Original point for 2D k plane
@@ -578,7 +576,7 @@ G 0.0 0.0 M 0.5 0.5
 </div>
 </div>
 <div class="section" id="kplane-bulk">
-<span id="id6"></span><h4>KPLANE_BULK<a class="headerlink" href="#kplane-bulk" title="Permalink to this headline">¶</a></h4>
+<span id="id5"></span><h4>KPLANE_BULK<a class="headerlink" href="#kplane-bulk" title="Permalink to this headline">¶</a></h4>
 <p>The same set as KPLANE_SLAB CARD, but for 3D case.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>KPLANE_BULK
 -0.50 -0.50  0.00   ! Original point for 3D k plane
@@ -595,7 +593,7 @@ G 0.0 0.0 M 0.5 0.5
 </div>
 </div>
 <div class="section" id="kcube-bulk">
-<span id="id7"></span><h4>KCUBE_BULK<a class="headerlink" href="#kcube-bulk" title="Permalink to this headline">¶</a></h4>
+<span id="id6"></span><h4>KCUBE_BULK<a class="headerlink" href="#kcube-bulk" title="Permalink to this headline">¶</a></h4>
 <p>The same set as KPLANE_BULK CARD</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>KCUBE_BULK
 -0.50 -0.50 -0.50   ! Original point for 3D k plane
@@ -659,7 +657,82 @@ The default values for this card are atomic positions.</p>
 </div>
 </div>
 <div class="section" id="wannier90-hr-dat">
-<span id="wannier90-dat"></span><h2>wannier90_hr.dat<a class="headerlink" href="#wannier90-hr-dat" title="Permalink to this headline">¶</a></h2>
+<span id="wannier90-dat"></span><h2>1.2.2. wannier90_hr.dat<a class="headerlink" href="#wannier90-hr-dat" title="Permalink to this headline">¶</a></h2>
+<p>This file contains the TB parameters. Usually, it can be generated by <a class="reference external" href="http://wannier.org">Wannier90</a>.</p>
+<p>Of cource, you can generate it from the Slater-Koster method or discretize k.p model onto a cubic lattice.
+The format should like this</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">written</span> <span class="n">on</span>  <span class="mi">8</span><span class="n">May2016</span> <span class="n">at</span> <span class="mi">13</span><span class="p">:</span><span class="mi">57</span><span class="p">:</span><span class="mi">00</span>
+         <span class="mi">30</span>
+        <span class="mi">547</span>
+   <span class="mi">2</span>    <span class="mi">2</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">2</span>    <span class="mi">2</span>    <span class="mi">2</span>    <span class="mi">2</span>    <span class="mi">2</span>
+   <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">2</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">2</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>
+   <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">4</span>
+   <span class="mi">2</span>    <span class="mi">2</span>    <span class="mi">2</span>    <span class="mi">2</span>    <span class="mi">2</span>    <span class="mi">2</span>    <span class="mi">2</span>    <span class="mi">4</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>
+   <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>
+   <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">2</span>    <span class="mi">1</span>
+   <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">2</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>
+   <span class="mi">2</span>    <span class="mi">2</span>    <span class="mi">2</span>    <span class="mi">2</span>    <span class="mi">2</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>
+   <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>
+   <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">2</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>
+   <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">2</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>
+   <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">2</span>    <span class="mi">2</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>
+   <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>
+   <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">2</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>
+   <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">2</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>
+   <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>
+   <span class="mi">1</span>    <span class="mi">2</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">2</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>
+   <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">2</span>
+   <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">2</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>
+   <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>
+   <span class="mi">1</span>    <span class="mi">2</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">2</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>
+   <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>
+   <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">2</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">2</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>
+   <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>
+   <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">2</span>    <span class="mi">2</span>    <span class="mi">1</span>
+   <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>
+   <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">2</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">2</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>
+   <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>
+   <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>
+   <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">2</span>    <span class="mi">2</span>    <span class="mi">2</span>    <span class="mi">2</span>    <span class="mi">2</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>
+   <span class="mi">2</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">2</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>
+   <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>
+   <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">4</span>
+   <span class="mi">2</span>    <span class="mi">2</span>    <span class="mi">2</span>    <span class="mi">2</span>    <span class="mi">2</span>    <span class="mi">2</span>    <span class="mi">2</span>    <span class="mi">4</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>
+   <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">2</span>
+   <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">2</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">2</span>    <span class="mi">2</span>    <span class="mi">2</span>    <span class="mi">2</span>    <span class="mi">2</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>
+   <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">2</span>    <span class="mi">2</span>
+  <span class="o">-</span><span class="mi">6</span>    <span class="mi">2</span>   <span class="o">-</span><span class="mi">3</span>    <span class="mi">1</span>    <span class="mi">1</span>   <span class="o">-</span><span class="mf">0.000002</span>    <span class="mf">0.000003</span>
+  <span class="o">-</span><span class="mi">6</span>    <span class="mi">2</span>   <span class="o">-</span><span class="mi">3</span>    <span class="mi">2</span>    <span class="mi">1</span>    <span class="mf">0.000002</span>    <span class="mf">0.000017</span>
+  <span class="o">-</span><span class="mi">6</span>    <span class="mi">2</span>   <span class="o">-</span><span class="mi">3</span>    <span class="mi">3</span>    <span class="mi">1</span>   <span class="o">-</span><span class="mf">0.000053</span>    <span class="mf">0.000002</span>
+  <span class="o">-</span><span class="mi">6</span>    <span class="mi">2</span>   <span class="o">-</span><span class="mi">3</span>    <span class="mi">4</span>    <span class="mi">1</span>   <span class="o">-</span><span class="mf">0.000031</span>    <span class="mf">0.000002</span>
+  <span class="o">-</span><span class="mi">6</span>    <span class="mi">2</span>   <span class="o">-</span><span class="mi">3</span>    <span class="mi">5</span>    <span class="mi">1</span>    <span class="mf">0.000001</span>   <span class="o">-</span><span class="mf">0.000000</span>
+  <span class="o">-</span><span class="mi">6</span>    <span class="mi">2</span>   <span class="o">-</span><span class="mi">3</span>    <span class="mi">6</span>    <span class="mi">1</span>   <span class="o">-</span><span class="mf">0.000003</span>    <span class="mf">0.000002</span>
+  <span class="o">-</span><span class="mi">6</span>    <span class="mi">2</span>   <span class="o">-</span><span class="mi">3</span>    <span class="mi">7</span>    <span class="mi">1</span>    <span class="mf">0.000037</span>   <span class="o">-</span><span class="mf">0.000001</span>
+  <span class="o">-</span><span class="mi">6</span>    <span class="mi">2</span>   <span class="o">-</span><span class="mi">3</span>    <span class="mi">8</span>    <span class="mi">1</span>   <span class="o">-</span><span class="mf">0.000001</span>   <span class="o">-</span><span class="mf">0.000003</span>
+  <span class="o">-</span><span class="mi">6</span>    <span class="mi">2</span>   <span class="o">-</span><span class="mi">3</span>    <span class="mi">9</span>    <span class="mi">1</span>   <span class="o">-</span><span class="mf">0.000005</span>   <span class="o">-</span><span class="mf">0.000003</span>
+  <span class="o">-</span><span class="mi">6</span>    <span class="mi">2</span>   <span class="o">-</span><span class="mi">3</span>   <span class="mi">10</span>    <span class="mi">1</span>   <span class="o">-</span><span class="mf">0.000062</span>   <span class="o">-</span><span class="mf">0.000001</span>
+  <span class="o">-</span><span class="mi">6</span>    <span class="mi">2</span>   <span class="o">-</span><span class="mi">3</span>   <span class="mi">11</span>    <span class="mi">1</span>   <span class="o">-</span><span class="mf">0.000001</span>    <span class="mf">0.000001</span>
+  <span class="o">-</span><span class="mi">6</span>    <span class="mi">2</span>   <span class="o">-</span><span class="mi">3</span>   <span class="mi">12</span>    <span class="mi">1</span>   <span class="o">-</span><span class="mf">0.000031</span>    <span class="mf">0.000002</span>
+  <span class="o">-</span><span class="mi">6</span>    <span class="mi">2</span>   <span class="o">-</span><span class="mi">3</span>   <span class="mi">13</span>    <span class="mi">1</span>    <span class="mf">0.000011</span>   <span class="o">-</span><span class="mf">0.000000</span>
+  <span class="o">-</span><span class="mi">6</span>    <span class="mi">2</span>   <span class="o">-</span><span class="mi">3</span>   <span class="mi">14</span>    <span class="mi">1</span>   <span class="o">-</span><span class="mf">0.000001</span>    <span class="mf">0.000001</span>
+  <span class="o">-</span><span class="mi">6</span>    <span class="mi">2</span>   <span class="o">-</span><span class="mi">3</span>   <span class="mi">15</span>    <span class="mi">1</span>    <span class="mf">0.000003</span>    <span class="mf">0.000003</span>
+  <span class="o">-</span><span class="mi">6</span>    <span class="mi">2</span>   <span class="o">-</span><span class="mi">3</span>   <span class="mi">16</span>    <span class="mi">1</span>    <span class="mf">0.000000</span>   <span class="o">-</span><span class="mf">0.000010</span>
+  <span class="o">-</span><span class="mi">6</span>    <span class="mi">2</span>   <span class="o">-</span><span class="mi">3</span>   <span class="mi">17</span>    <span class="mi">1</span>   <span class="o">-</span><span class="mf">0.000010</span>   <span class="o">-</span><span class="mf">0.000001</span>
+  <span class="o">-</span><span class="mi">6</span>    <span class="mi">2</span>   <span class="o">-</span><span class="mi">3</span>   <span class="mi">18</span>    <span class="mi">1</span>   <span class="o">-</span><span class="mf">0.000000</span>   <span class="o">-</span><span class="mf">0.000008</span>
+  <span class="o">-</span><span class="mi">6</span>    <span class="mi">2</span>   <span class="o">-</span><span class="mi">3</span>   <span class="mi">19</span>    <span class="mi">1</span>    <span class="mf">0.000000</span>    <span class="mf">0.000000</span>
+  <span class="o">-</span><span class="mi">6</span>    <span class="mi">2</span>   <span class="o">-</span><span class="mi">3</span>   <span class="mi">20</span>    <span class="mi">1</span>    <span class="mf">0.000012</span>   <span class="o">-</span><span class="mf">0.000002</span>
+  <span class="o">......</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li>The 1st line is a comment line with any content.</li>
+<li>The 2nd line is the number of Wannier orbitals, in consideration of spin degeneracy. We call it NUM_WANNS</li>
+<li>The 3rd line is the number of <strong>R</strong> lattice vectors, we call it NRPTS</li>
+<li>This section is about the degeneracy of R points. If you generate wannier90_hr.dat by you self,
+please set it to 1. There are NRPTS number of 1.</li>
+<li>This section gives the TB parameters. The first three integers are the coordinates or R vectors in unit of three lattice vectors.
+The 4th and 5th column are the band index (Row first). The 6th and 7th are complex entities of the Hamiltonian.</li>
+</ol>
 </div>
 </div>
 
@@ -671,8 +744,8 @@ The default values for this card are atomic positions.</p>
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Input</a><ul>
-<li><a class="reference internal" href="#input-dat">input.dat</a><ul>
+<li><a class="reference internal" href="#">1.2. Introduction of input files</a><ul>
+<li><a class="reference internal" href="#input-dat">1.2.1. input.dat</a><ul>
 <li><a class="reference internal" href="#namelists">NAMELISTS</a><ul>
 <li><a class="reference internal" href="#tb-file">TB_FILE</a></li>
 <li><a class="reference internal" href="#system">SYSTEM</a></li>
@@ -696,24 +769,17 @@ The default values for this card are atomic positions.</p>
 </li>
 </ul>
 </li>
-<li><a class="reference internal" href="#wannier90-hr-dat">wannier90_hr.dat</a></li>
+<li><a class="reference internal" href="#wannier90-hr-dat">1.2.2. wannier90_hr.dat</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>Previous topic</h4>
   <p class="topless"><a href="installation.html"
-                        title="previous chapter">Installation (Linux or Mac)</a></p>
+                        title="previous chapter">1.1. Installation of Wanniertools (Linux or Mac)</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="features.html"
-                        title="next chapter">Features of WannierTools</a></p>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="sources/input.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
+                        title="next chapter">1.3. Capabilities of WannierTools</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
@@ -732,18 +798,16 @@ The default values for this card are atomic positions.</p>
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
           <a href="f-modindex.html" title="Fortran Module Index"
-             >fortran modules</a> |</li>
+             >fortran modules</a></li>
         <li class="right" >
-          <a href="features.html" title="Features of WannierTools"
+          <a href="features.html" title="1.3. Capabilities of WannierTools"
              >next</a> |</li>
         <li class="right" >
-          <a href="installation.html" title="Installation (Linux or Mac)"
+          <a href="installation.html" title="1.1. Installation of Wanniertools (Linux or Mac)"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">WannierTools 2.1 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">WannierTools 2.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="preliminaries.html" >1. Preliminaries</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

@@ -3,39 +3,22 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to WannierTools's documentation!
+WannierTools
 ========================================
 
 **WannierTools: an open-source software package for topological novel materials**
+
+.. toctree::
+   :maxdepth: 2
+   :numbered: 3
+
+   preliminaries
+   tutorials
+
 
 Source on Github : https://github.com/quanshengwu/wannier_tools
 
 .. image:: wannier_tools-logo-crop.png
    :scale: 20 %
 
-Installation and Usage
-======================
-.. toctree::
-   :maxdepth: 2
 
-   installation
-   input
-   features
-   examples
-
-
-Index and Search
-=======================
-.. toctree::
-   :maxdepth: 2
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
-
-Subroutines and Modules
-=======================
-.. toctree::
-   :maxdepth: 2
-
-   subroutine
