@@ -66,6 +66,7 @@
 <li><a class="reference internal" href="#ssqpicalculation"><span class="std std-ref">Surface state QPI calculation</span></a></li>
 <li><a class="reference internal" href="#fermiarccalculation"><span class="std std-ref">Fermi arc calculation</span></a></li>
 <li><a class="reference internal" href="#spintexturecalculation"><span class="std std-ref">Spin texture calculation</span></a></li>
+<li><a class="reference internal" href="#berryphasecalculation"><span class="std std-ref">Berry phase calculation</span></a></li>
 <li><a class="reference internal" href="#berrycurvcalculation"><span class="std std-ref">Berry curvature calculation</span></a></li>
 <li><a class="reference internal" href="#wanniercentercalculation"><span class="std std-ref">Wannier charge center/Wilson loop calculation</span></a></li>
 <li><a class="reference internal" href="#z2bulkcalculation"><span class="std std-ref">Z2 number for 3D bulk materials</span></a></li>
@@ -500,20 +501,69 @@ bulk contribution.</p>
 <span id="spintexturecalculation"></span><h2>1.3.11. Spin texture calculation<a class="headerlink" href="#spin-texture-calculation" title="Permalink to this headline">¶</a></h2>
 <p>Spin texture calculation at fixed energy level E_arc set in NAMELISTS PARAMETERS . Set SlabArc_calc=T, and  set Nk1, Nk2, in NAMELISTS PARAMETERS, set k plane in KPLANE_SLAB CARD. Get the plots with  &#8220;gnuplot spintext_l.gnu”, &#8220;gnuplot spintext_r.gnu”.</p>
 </div>
+<div class="section" id="berry-phase-calculation">
+<span id="berryphasecalculation"></span><h2>1.3.12. Berry phase calculation<a class="headerlink" href="#berry-phase-calculation" title="Permalink to this headline">¶</a></h2>
+<p>Calculate Berry phase of a closed k path in 3D BZ. This is useful in a nodal line system. It is demonstrated that
+the Berry phase around a closed mirror symmetric k loop is either 0 or pi for a mirror protect nodal line system.</p>
+<p>In WannierTools, you can specify a k path by a serials  k points. Here we take the WC example, which has two nodal lines around
+K point.</p>
+<div class="section" id="id17">
+<h3>Input<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default"><div class="highlight"><pre><span></span>&amp;CONTROL
+BerryPhase_calc = T
+/
+&amp;SYSTEM
+NumOccupied = 10        ! Number of occupied Wannier orbitals
+/
+&amp;PARAMETERS
+Nk1 = 21    ! No. of slices for the 1st reciprocal vector
+/
+
+KPATH_BERRY
+11
+Direct
+ 0.3    0.333  -0.2
+ 0.3    0.333  -0.1
+ 0.3    0.333  -0.0
+ 0.3    0.333   0.1
+ 0.3    0.333   0.2
+ 0.33   0.333   0.2
+ 0.33   0.333   0.1
+ 0.33   0.333   0.0
+ 0.33   0.333  -0.1
+ 0.33   0.333  -0.2
+ 0.3    0.333  -0.2
+</pre></div>
+</div>
+</div>
+<div class="section" id="id18">
+<h3>Output<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
+<p>The value of Berry phase can be found in the <a href="#id19"><span class="problematic" id="id20">**</span></a>WT.out*.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>1. In principlely, the Berry phase for around a nodal line should be interger. However,
+the MLWF-TB model usally is not symmetric. So the value of Berry phase is close to zero
+or one.</p>
+<ol class="last arabic simple" start="2">
+<li>The first and the last kpoints in the KPATH_BERRY should be the same to form a loop.</li>
+</ol>
+</div>
+</div>
+</div>
 <div class="section" id="berry-curvature-calculation">
-<span id="berrycurvcalculation"></span><h2>1.3.12. Berry curvature calculation<a class="headerlink" href="#berry-curvature-calculation" title="Permalink to this headline">¶</a></h2>
+<span id="berrycurvcalculation"></span><h2>1.3.13. Berry curvature calculation<a class="headerlink" href="#berry-curvature-calculation" title="Permalink to this headline">¶</a></h2>
 <p>Calculate Berry curvature at a fixed k plane in 3D BZ. Set BerryCurvature_calc=T, and  set Nk1, Nk2, in NAMELISTS PARAMETERS, set k plane in KPLANE_BULK CARD. Get the plot with  &#8220;gnuplot Berrycurvature.gnu”.</p>
 </div>
 <div class="section" id="wannier-charge-center-wilson-loop-calculation">
-<span id="wanniercentercalculation"></span><h2>1.3.13. Wannier charge center/Wilson loop calculation<a class="headerlink" href="#wannier-charge-center-wilson-loop-calculation" title="Permalink to this headline">¶</a></h2>
+<span id="wanniercentercalculation"></span><h2>1.3.14. Wannier charge center/Wilson loop calculation<a class="headerlink" href="#wannier-charge-center-wilson-loop-calculation" title="Permalink to this headline">¶</a></h2>
 <p>Wannier charge center, which is sometimes called Wilson loop can be calculated by set WannierCenter_calc=T and set KPLANE_BULK CARD,  set number of k points for two vectors is Nk1, Nk2 in NAMELISTS PARAMETERS.  Notice: You should notice that the first vector in KPLANE_BULK CARD is the integration direction, this vector should be equal to one primitive reciprocal lattice vector.  If you want to calculate the Z2 number, Please set the second vector to be half of the reciprocal lattice vector. You can get the Wannier charge center  along the second k line. See more details In the paper written by Alexey. Soluyanov (2011).</p>
 </div>
 <div class="section" id="z2-number-for-3d-bulk-materials">
-<span id="z2bulkcalculation"></span><h2>1.3.14. Z2 number for 3D bulk materials<a class="headerlink" href="#z2-number-for-3d-bulk-materials" title="Permalink to this headline">¶</a></h2>
+<span id="z2bulkcalculation"></span><h2>1.3.15. Z2 number for 3D bulk materials<a class="headerlink" href="#z2-number-for-3d-bulk-materials" title="Permalink to this headline">¶</a></h2>
 <p>We can get Z2 topological index (v, v1v2v3) from the z2 calculations of six time invariant planes, i.e. k1=0.0; k1=0.5; k2=0.0; k2=0.5; k3=0.0; k3=0.5;
 Usually, you can call &#8220;Wannier charge center calculation for a plane&#8221;  six times. Here we packed them up to get another function. You can set the input file like the following.</p>
-<div class="section" id="id17">
-<h3>Input<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id21">
+<h3>Input<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h3>
 <p>The necessary tags that you should set in the input.dat</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>&amp;CONTROL
 Z2_3D_calc = T
@@ -525,8 +575,8 @@ Nk2 = 41    ! No. of slices of the k points for WCCs
 </pre></div>
 </div>
 </div>
-<div class="section" id="id18">
-<h3>Output<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id22">
+<h3>Output<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h3>
 <p>Outputs are <strong>wanniercenter3D_Z2_1.dat, wanniercenter3D_Z2_2.dat, wanniercenter3D_Z2_3.dat, wanniercenter3D_Z2_4.dat, wanniercenter3D_Z2_5.dat, wanniercenter3D_Z2_6.dat</strong>
 and <strong>wanniercenter3D_Z2.gnu</strong>. The z2 value can be found in the WT.out by searching &#8220;z2 number for 6 planes&#8221;.
 The WCC (Wilson loop) plots <strong>wanniercenter3D_Z2.eps</strong> can be got with:</p>
@@ -605,11 +655,16 @@ The WCC (Wilson loop) plots <strong>wanniercenter3D_Z2.eps</strong> can be got w
 </li>
 <li><a class="reference internal" href="#fermi-arc-calculation">1.3.10. Fermi arc calculation</a></li>
 <li><a class="reference internal" href="#spin-texture-calculation">1.3.11. Spin texture calculation</a></li>
-<li><a class="reference internal" href="#berry-curvature-calculation">1.3.12. Berry curvature calculation</a></li>
-<li><a class="reference internal" href="#wannier-charge-center-wilson-loop-calculation">1.3.13. Wannier charge center/Wilson loop calculation</a></li>
-<li><a class="reference internal" href="#z2-number-for-3d-bulk-materials">1.3.14. Z2 number for 3D bulk materials</a><ul>
+<li><a class="reference internal" href="#berry-phase-calculation">1.3.12. Berry phase calculation</a><ul>
 <li><a class="reference internal" href="#id17">Input</a></li>
 <li><a class="reference internal" href="#id18">Output</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#berry-curvature-calculation">1.3.13. Berry curvature calculation</a></li>
+<li><a class="reference internal" href="#wannier-charge-center-wilson-loop-calculation">1.3.14. Wannier charge center/Wilson loop calculation</a></li>
+<li><a class="reference internal" href="#z2-number-for-3d-bulk-materials">1.3.15. Z2 number for 3D bulk materials</a><ul>
+<li><a class="reference internal" href="#id21">Input</a></li>
+<li><a class="reference internal" href="#id22">Output</a></li>
 </ul>
 </li>
 </ul>
