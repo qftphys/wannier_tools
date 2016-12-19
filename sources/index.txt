@@ -6,7 +6,16 @@
 WannierTools
 ========================================
 
-**WannierTools: an open-source software package for topological novel materials**
+**WannierTools: an open-source software package for novel topological materials**
+
+Aiming to investigate topoligical 
+
+* Electron systems (Tested)
+
+* Phonon systems (Testing)
+
+* Phonton systems (Developing)
+
 
 .. toctree::
    :maxdepth: 2

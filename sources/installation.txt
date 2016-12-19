@@ -1,7 +1,7 @@
 .. _installation:
 
-Installation (Linux or Mac)
-====================
+Installation of WannierTools (Linux or Mac)
+===========================================
 
 Prerequisites
 -------------
@@ -56,7 +56,7 @@ The output information during the running are written in WT.out.
 
 .. _usefultools: 
 
-Plot tools
+Plotting tools
 ------------
 
 1. `gnuplot <http://gnuplot.sourceforge.net>`_
