@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>1.2. Introduction of input files &#8212; WannierTools 2.1 documentation</title>
+    <title>1.2. Introduction of input files &#8212; WannierTools 2.1.5 documentation</title>
     
     <link rel="stylesheet" href="static/classic.css" type="text/css" />
     <link rel="stylesheet" href="static/pygments.css" type="text/css" />
@@ -14,10 +14,11 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '2.1',
+        VERSION:     '2.1.5',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="static/jquery.js"></script>
@@ -25,10 +26,8 @@
     <script type="text/javascript" src="static/doctools.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="search" title="Search" href="search.html" />
-    <link rel="top" title="WannierTools 2.1 documentation" href="index.html" />
-    <link rel="up" title="1. Preliminaries" href="preliminaries.html" />
     <link rel="next" title="1.3. Capabilities of WannierTools" href="features.html" />
-    <link rel="prev" title="1.1. Installation of Wanniertools (Linux or Mac)" href="installation.html" /> 
+    <link rel="prev" title="1.1. Installation of WannierTools (Linux or Mac)" href="installation.html" /> 
   </head>
   <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
@@ -41,9 +40,9 @@
           <a href="features.html" title="1.3. Capabilities of WannierTools"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="installation.html" title="1.1. Installation of Wanniertools (Linux or Mac)"
+          <a href="installation.html" title="1.1. Installation of WannierTools (Linux or Mac)"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">WannierTools 2.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">WannierTools 2.1.5 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="preliminaries.html" accesskey="U">1. Preliminaries</a> &#187;</li> 
       </ul>
     </div>  
@@ -83,6 +82,7 @@ The input file is structured in a number of <strong>NAMELIST</strong> and <stron
 <p>Here we introduce the input.dat for Bi2Se3 as an example</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>&amp;TB_FILE
 Hrfile = &#39;wannier90_hr.dat&#39;
+Package = &#39;VASP&#39;             ! obtained from VASP, it could be &#39;VASP&#39;, &#39;QE&#39;, &#39;Wien2k&#39;, &#39;OpenMx&#39;
 /
 
 &amp;CONTROL
@@ -242,12 +242,15 @@ character_variable1=’a suitable string’
 <span id="tbfilenamelist"></span><h4>TB_FILE<a class="headerlink" href="#tb-file" title="Permalink to this headline">¶</a></h4>
 <p>Set the filename of the tight-binding Hamiltonian.
 At present, we use the format of wannier90_hr.dat specified in Wannier90.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&amp;</span><span class="n">TB_FILE</span>
-<span class="n">Hrfile</span> <span class="o">=</span> <span class="s1">&#39;wannier90_hr.dat&#39;</span>
-<span class="o">/</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span>&amp;TB_FILE
+Hrfile = &#39;wannier90_hr.dat&#39;
+Package = &#39;VASP&#39;             ! obtained from VASP, it could be &#39;VASP&#39;, &#39;QE&#39;, &#39;Wien2k&#39;, &#39;OpenMx&#39;
+/
 </pre></div>
 </div>
-<p>The default value for Hrfile is &#8216;wannier90_hr.dat&#8217;.</p>
+<p>The default value for Hrfile is &#8216;wannier90_hr.dat&#8217;.  You could specify the first-principle package that
+used for obtaining wannier90_hr.dat. Default value for Package is &#8216;VASP&#8217;. We support VASP, QE, Wien2k, OpenMx, Abinit at present.
+Please report new software package to me if you needed.</p>
 </div>
 <div class="section" id="system">
 <span id="systemnamelist"></span><h4>SYSTEM<a class="headerlink" href="#system" title="Permalink to this headline">¶</a></h4>
@@ -776,7 +779,7 @@ The 4th and 5th column are the band index (Row first). The 6th and 7th are compl
 
   <h4>Previous topic</h4>
   <p class="topless"><a href="installation.html"
-                        title="previous chapter">1.1. Installation of Wanniertools (Linux or Mac)</a></p>
+                        title="previous chapter">1.1. Installation of WannierTools (Linux or Mac)</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="features.html"
                         title="next chapter">1.3. Capabilities of WannierTools</a></p>
@@ -804,15 +807,15 @@ The 4th and 5th column are the band index (Row first). The 6th and 7th are compl
           <a href="features.html" title="1.3. Capabilities of WannierTools"
              >next</a> |</li>
         <li class="right" >
-          <a href="installation.html" title="1.1. Installation of Wanniertools (Linux or Mac)"
+          <a href="installation.html" title="1.1. Installation of WannierTools (Linux or Mac)"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">WannierTools 2.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">WannierTools 2.1.5 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="preliminaries.html" >1. Preliminaries</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2016, QuanSheng Wu.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.1.
     </div>
   </body>
 </html>
