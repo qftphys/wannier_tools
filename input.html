@@ -34,11 +34,8 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="f-modindex.html" title="Fortran Module Index"
-             >fortran modules</a></li>
-        <li class="right" >
           <a href="features.html" title="1.3. Capabilities of WannierTools"
-             accesskey="N">next</a> |</li>
+             accesskey="N">next</a></li>
         <li class="right" >
           <a href="installation.html" title="1.1. Installation of WannierTools (Linux or Mac)"
              accesskey="P">previous</a> |</li>
@@ -54,10 +51,12 @@
             
   <div class="section" id="introduction-of-input-files">
 <h1>1.2. Introduction of input files<a class="headerlink" href="#introduction-of-input-files" title="Permalink to this headline">¶</a></h1>
-<p>There are two input files you should prepare <a class="reference internal" href="#input-dat"><span class="std std-ref">input.dat</span></a>
+<p><strong>Attention:</strong> From WannierTools 2.2, the name of input file changes from &#8216;input.dat&#8217; to <strong>&#8216;wt.in&#8217;</strong>.
+The excutable binary changes from &#8216;wann_tools&#8217; to <strong>&#8216;wt.x&#8217;</strong></p>
+<p>There are two input files you should prepare <a class="reference internal" href="#wt-in"><span class="std std-ref">wt.in</span></a>
 and  <a class="reference internal" href="#wannier90-dat"><span class="std std-ref">wannier90_hr.dat</span></a></p>
-<div class="section" id="input-dat">
-<span id="id1"></span><h2>1.2.1. input.dat<a class="headerlink" href="#input-dat" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="wt-in">
+<span id="id1"></span><h2>1.2.1. wt.in<a class="headerlink" href="#wt-in" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><a class="reference internal" href="#tbfilenamelist"><span class="std std-ref">TB_FILE</span></a></li>
 <li><a class="reference internal" href="#systemnamelist"><span class="std std-ref">SYSTEM</span></a></li>
@@ -75,11 +74,11 @@ and  <a class="reference internal" href="#wannier90-dat"><span class="std std-re
 <li><a class="reference internal" href="#effectivemass"><span class="std std-ref">EFFECTIVE_MASS</span></a></li>
 <li><a class="reference internal" href="#wanniercenter"><span class="std std-ref">WANNIER_CENTRES</span></a></li>
 </ul>
-<p>Before executing wann_tools, you should cp the input.dat file
+<p>Before executing wann_tools, you should cp the wt.in file
 in the directory wannier_tools/example by your own necessary.</p>
-<p>For version later than 2.0, we updated the format of input.dat.
+<p>For version later than 2.0, we updated the format of wt.in.
 The input file is structured in a number of <strong>NAMELIST</strong> and <strong>INPUT_CARDS</strong>.</p>
-<p>Here we introduce the input.dat for Bi2Se3 as an example</p>
+<p>Here we introduce the wt.in for Bi2Se3 as an example</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>&amp;TB_FILE
 Hrfile = &#39;wannier90_hr.dat&#39;
 Package = &#39;VASP&#39;             ! obtained from VASP, it could be &#39;VASP&#39;, &#39;QE&#39;, &#39;Wien2k&#39;, &#39;OpenMx&#39;
@@ -97,7 +96,6 @@ SlabArc_calc          = T
 SlabQPI_calc          = T
 SlabSpintexture_calc  = T
 Wanniercenter_calc    = T
-BerryPhase_calc       = T
 BerryCurvature_calc   = T
 EffectiveMass_calc    = T
 /
@@ -231,13 +229,17 @@ The use of NAMELISTS is relatively flexible.
 All the variables in the NAMELISTS have default values.
 You should set them only when it is needed.
 Variables can be inserted in any order. Such as</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>&amp;NAMELIST
-needed_variable2=XX, needed_variable1=YY,
-character_variable1=’a suitable string’
-/
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&amp;</span><span class="n">NAMELIST</span>
+<span class="n">needed_variable2</span><span class="o">=</span><span class="n">XX</span><span class="p">,</span> <span class="n">needed_variable1</span><span class="o">=</span><span class="n">YY</span><span class="p">,</span>
+<span class="n">character_variable1</span><span class="o">=</span><span class="s1">&#39;a suitable string&#39;</span>
+<span class="o">/</span>
 </pre></div>
 </div>
-<p>There are 4 <strong>NAMELISTS</strong> included in input.dat. They are <a class="reference internal" href="#tbfilenamelist"><span class="std std-ref">TB_FILE</span></a>, <strong>SYSTEM</strong>, <strong>CONTROL</strong>, <strong>PARAMETERS</strong>.</p>
+<p>There are 4 <strong>NAMELISTS</strong> included in wt.in. They are <a class="reference internal" href="#tbfilenamelist"><span class="std std-ref">TB_FILE</span></a>, <strong>SYSTEM</strong>, <strong>CONTROL</strong>, <strong>PARAMETERS</strong>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If you want to comment one line, please use &#8216;!&#8217; instead of &#8216;#&#8217;, because our codes were written in Fortran.</p>
+</div>
 <div class="section" id="tb-file">
 <span id="tbfilenamelist"></span><h4>TB_FILE<a class="headerlink" href="#tb-file" title="Permalink to this headline">¶</a></h4>
 <p>Set the filename of the tight-binding Hamiltonian.
@@ -251,6 +253,11 @@ Package = &#39;VASP&#39;             ! obtained from VASP, it could be &#39;VASP
 <p>The default value for Hrfile is &#8216;wannier90_hr.dat&#8217;.  You could specify the first-principle package that
 used for obtaining wannier90_hr.dat. Default value for Package is &#8216;VASP&#8217;. We support VASP, QE, Wien2k, OpenMx, Abinit at present.
 Please report new software package to me if you needed.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Package is very important if you use QE to generate your tight binding model. Because the orbital order in QE is different from
+VASP, Wien2k et al.. And it will affect the results of spin texture. If you got strange spin texture, please carefully check this tag.</p>
+</div>
 </div>
 <div class="section" id="system">
 <span id="systemnamelist"></span><h4>SYSTEM<a class="headerlink" href="#system" title="Permalink to this headline">¶</a></h4>
@@ -296,13 +303,17 @@ BerryCurvature_calc   = F
 /
 </pre></div>
 </div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">New features : :red:  FindNodes_calc; WeylChirality_calc; Z2_3D_calc; Chern_3D_calc</p>
+</div>
 <p>We listed those features in the table below.</p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="23%" />
-<col width="28%" />
-<col width="31%" />
-<col width="18%" />
+<col width="22%" />
+<col width="27%" />
+<col width="34%" />
+<col width="17%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Flag options</th>
@@ -335,31 +346,40 @@ plane for bulk system</td>
 <td>GapPlane.dat, GapPlane.gnu</td>
 <td>yes</td>
 </tr>
-<tr class="row-even"><td>SlabBand_calc</td>
+<tr class="row-even"><td>FindNodes_calc</td>
+<td>Find touching points
+between the
+Numoccpuied&#8217;th band
+and (Numoccpuied+1)&#8217;th
+band</td>
+<td>Nodes.dat, Nodes.gnu</td>
+<td>yes</td>
+</tr>
+<tr class="row-odd"><td>SlabBand_calc</td>
 <td>Band structure for
 2D  slab system</td>
 <td>slabek.dat,slabek.gnu</td>
 <td>yes</td>
 </tr>
-<tr class="row-odd"><td>WireBand_calc</td>
+<tr class="row-even"><td>WireBand_calc</td>
 <td>Band structure for
 1D ribbon system</td>
 <td>ribbonek.dat,ribbonek.gnu</td>
 <td>yes</td>
 </tr>
-<tr class="row-even"><td>Dos_calc</td>
+<tr class="row-odd"><td>Dos_calc</td>
 <td>Density of state for
 3D bulk system</td>
 <td>dos.dat</td>
 <td>yes</td>
 </tr>
-<tr class="row-odd"><td>JDos_calc</td>
+<tr class="row-even"><td>JDos_calc</td>
 <td>Joint Density of state
 for 3D bulk system</td>
 <td>jdos.dat</td>
 <td>yes</td>
 </tr>
-<tr class="row-even"><td>SlabSS_calc</td>
+<tr class="row-odd"><td>SlabSS_calc</td>
 <td>Surface spectrum A(k,E)
 along a kline and energy
 interval for slab system</td>
@@ -371,7 +391,7 @@ surfdos_r_only.gnu,
 surfdos_bulk.gnu</td>
 <td>yes</td>
 </tr>
-<tr class="row-odd"><td>SlabArc_calc</td>
+<tr class="row-even"><td>SlabArc_calc</td>
 <td>Surface spectrum A(k,E0)
 for fixed energy E0
 in 2D k-plane
@@ -382,7 +402,7 @@ arc_l_only.gnu,
 arc_l_only.gnu,</td>
 <td>yes</td>
 </tr>
-<tr class="row-even"><td>SlabQPI_calc</td>
+<tr class="row-odd"><td>SlabQPI_calc</td>
 <td>Surface QPI
 for fixed energy E0
 in 2D k-plane
@@ -399,29 +419,56 @@ arc_r_jdos.gnu,
 arc_r_jsdos.gnu,</td>
 <td>yes</td>
 </tr>
-<tr class="row-odd"><td>SlabSpintexture_calc</td>
+<tr class="row-even"><td>SlabSpintexture_calc</td>
 <td>Spin texture
 in 2D k-plane
 for slab system</td>
-<td>spindos.dat,
-spintext.gnu,
-spintext.dat</td>
+<td>spindos_l.dat spindos_r.dat
+spintext_l.gnu spintext_r.gnu
+spintext_l.dat spintext_r.dat</td>
 <td>yes</td>
 </tr>
-<tr class="row-even"><td>wanniercenter_calc</td>
+<tr class="row-odd"><td>wanniercenter_calc</td>
 <td>Wilson loop
-in 3D k-plane
+of a given 3D k-plane
 for bulk system</td>
 <td>wcc.dat,
 wcc.gnu</td>
+<td>yes</td>
+</tr>
+<tr class="row-even"><td>Z2_3D_calc</td>
+<td>Wilson loop
+in all 6 3D k-planes
+for bulk system
+Z2 number calculation</td>
+<td>wanniercenter3D_Z2.gnu,
+wanniercenter3D_Z2_{1-6}.dat</td>
+<td>yes</td>
+</tr>
+<tr class="row-odd"><td>Chern_3D_calc</td>
+<td>Wilson loop
+in all 6 3D k-planes
+for bulk system
+Chern number calculation</td>
+<td>wanniercenter3D_Z2.gnu,
+wanniercenter3D_Z2_{1-6}.dat</td>
+<td>yes</td>
+</tr>
+<tr class="row-even"><td>WeylChirality_calc</td>
+<td>Weyl Chirality
+calculation for given
+k points</td>
+<td>find chiralities in WT.out,
+wanniercenter3D_Weyl.dat,
+wanniercenter3D_Weyl_*.gnu</td>
 <td>yes</td>
 </tr>
 <tr class="row-odd"><td>BerryPhase_calc</td>
 <td>Berry phase
 with a 3D k path
 for bulk system</td>
-<td>&nbsp;</td>
-<td>No</td>
+<td>find Berry phase in WT.out</td>
+<td>Yes</td>
 </tr>
 <tr class="row-even"><td>BerryCurvature_calc</td>
 <td>Berry Curvature
@@ -462,8 +509,8 @@ Gap_threshold = 1.0    ! threshold for GapCube output
 </div>
 <div class="section" id="input-card">
 <span id="inputcard"></span><h3>Input Card<a class="headerlink" href="#input-card" title="Permalink to this headline">¶</a></h3>
-<p>The second important format in input.dat is the input_card format, which is relatively fixed format. First, we need a keyword like LATTICE, which is name of this card. After this keyword, the number of lines is fixed until it is done.
-There are several INPUT_CARDS in the input.dat. There is no order between the INPUT_CARDS. And any comments or blank lines could be added between the INPUT_CARDS.  Lets introduce them one by one.</p>
+<p>The second important format in wt.in is the input_card format, which is relatively fixed format. First, we need a keyword like LATTICE, which is name of this card. After this keyword, the number of lines is fixed until it is done.
+There are several INPUT_CARDS in the wt.in. There is no order between the INPUT_CARDS. And any comments or blank lines could be added between the INPUT_CARDS.  Lets introduce them one by one.</p>
 <div class="section" id="lattice">
 <span id="latticecard"></span><h4>LATTICE<a class="headerlink" href="#lattice" title="Permalink to this headline">¶</a></h4>
 <p>In this card, we set three lattice vectors coordinates.
@@ -502,15 +549,19 @@ not the whole atoms in the unit cell.
 <p>In this card, we set the Wannier projectors for the tight binding.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>PROJECTORS
  3 3 3 3 3          ! number of projectors
- Bi px py pz         ! projectors
- Bi px py pz
- Se px py pz
- Se px py pz
- Se px py pz
+ Bi pz px py         ! projectors
+ Bi pz px py
+ Se pz px py
+ Se pz px py
+ Se pz px py
 </pre></div>
 </div>
 <p>Here we don’t take into account the spin degeneracy, only consider the orbital part. The name of orbitals should be “s”, “px”, “py”, “pz”, “dxy”, “dxz”, “dyz”, “dx2-y2”, “dz2”. I will add f orbitals latter. The order of the orbitals is very important if you want to analyze the symmetry properties.
-The default order in Wannier90 is &#8220;s&#8221;, &#8220;pz&#8221;, &#8220;px&#8221;, &#8220;py&#8221;, &#8220;dz2&#8221;, &#8220;dxz&#8221;, &#8220;dyz&#8221;, &#8220;dx2-y2&#8221;, &#8220;dxy&#8221;.</p>
+The default order in Wannier90 is &#8220;s&#8221;, &#8220;pz&#8221;, &#8220;px&#8221;, &#8220;py&#8221;, &#8220;dz2&#8221;, &#8220;dxz&#8221;, &#8220;dyz&#8221;, &#8220;dx2-y2&#8221;, &#8220;dxy&#8221;. You can find the orbital order from wannier90.wout.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If you don&#8217;t care about the calculation related to symmetry like mirror chern number. The order or the name is not important. So for the f electrons, please write 7 random orbitals like px or dz2 or what else you want.</p>
+</div>
 </div>
 <div class="section" id="surface">
 <span id="id3"></span><h4>SURFACE<a class="headerlink" href="#surface" title="Permalink to this headline">¶</a></h4>
@@ -537,6 +588,10 @@ The relations between old and new basis are</p>
 <p>The slab calculations are base on the surface constructed by vector <span class="math">\(R_1', R_2'\)</span>.</p>
 <p>The ribbon is along <span class="math">\(R_3'\)</span> direction,
 two surfaces are constructed by vector  <span class="math">\(R_1', R_3'\)</span> and  <span class="math">\(R_2', R_3'\)</span> respectively.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">a11, a12, a13 ..., a33 should be integers.</p>
+</div>
 </div>
 <div class="section" id="kpath-bulk">
 <span id="kpathbulk"></span><h4>KPATH_BULK<a class="headerlink" href="#kpath-bulk" title="Permalink to this headline">¶</a></h4>
@@ -749,7 +804,7 @@ The 4th and 5th column are the band index (Row first). The 6th and 7th are compl
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">1.2. Introduction of input files</a><ul>
-<li><a class="reference internal" href="#input-dat">1.2.1. input.dat</a><ul>
+<li><a class="reference internal" href="#wt-in">1.2.1. wt.in</a><ul>
 <li><a class="reference internal" href="#namelists">NAMELISTS</a><ul>
 <li><a class="reference internal" href="#tb-file">TB_FILE</a></li>
 <li><a class="reference internal" href="#system">SYSTEM</a></li>
@@ -802,11 +857,8 @@ The 4th and 5th column are the band index (Row first). The 6th and 7th are compl
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="f-modindex.html" title="Fortran Module Index"
-             >fortran modules</a></li>
-        <li class="right" >
           <a href="features.html" title="1.3. Capabilities of WannierTools"
-             >next</a> |</li>
+             >next</a></li>
         <li class="right" >
           <a href="installation.html" title="1.1. Installation of WannierTools (Linux or Mac)"
              >previous</a> |</li>
@@ -816,7 +868,7 @@ The 4th and 5th column are the band index (Row first). The 6th and 7th are compl
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2016, QuanSheng Wu.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.1.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.3.
     </div>
   </body>
 </html>

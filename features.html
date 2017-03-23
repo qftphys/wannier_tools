@@ -34,11 +34,8 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="f-modindex.html" title="Fortran Module Index"
-             >fortran modules</a></li>
-        <li class="right" >
           <a href="tutorials.html" title="2. Tutorial: learning WannierTools through examples"
-             accesskey="N">next</a> |</li>
+             accesskey="N">next</a></li>
         <li class="right" >
           <a href="input.html" title="1.2. Introduction of input files"
              accesskey="P">previous</a> |</li>
@@ -120,14 +117,14 @@ function at each k point and each band onto
 each wannier orbitals. Those weights are normalized
 to 255 for the color plot convinence.</li>
 </ol>
-<p>The subrotine for this feature is <a class="reference internal" href="subroutine.html#f/_/ek_bulk" title="f/_/ek_bulk"><code class="xref f f-func docutils literal"><span class="pre">ek_bulk()</span></code></a></p>
+<p>The subrotine for this feature is <a href="#id1"><span class="problematic" id="id2">:f:func:`ek_bulk`</span></a></p>
 </div>
 </div>
 <div class="section" id="bulkfs-calculation">
 <span id="bulkfscalculation"></span><h2>1.3.2. BulkFS calculation<a class="headerlink" href="#bulkfs-calculation" title="Permalink to this headline">¶</a></h2>
 <p>Bulk Fermi surface calculation.</p>
-<div class="section" id="id1">
-<h3>Input<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id3">
+<h3>Input<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <p>You should specify the number of k points for each three reciprocal vectors Nk1, Nk2, Nk3
 in NAMELISTS PARAMETERS</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>&amp;CONTROL
@@ -142,8 +139,8 @@ Nk3 = 101   ! No. of slices for the 3rd reciprocal vector
 </div>
 <p>See <a class="reference internal" href="input.html#controlnamelist"><span class="std std-ref">CONTROL</span></a>, <a class="reference internal" href="input.html#parametersnamelist"><span class="std std-ref">PARAMETERS</span></a></p>
 </div>
-<div class="section" id="id2">
-<h3>Output<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id4">
+<h3>Output<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <p>The outputs for this function are <strong>FS3D.bxsf</strong>.
 You can plot the FS with <a class="reference external" href="http://www.xcrysden.org">xcrysden</a>  run</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>xcrysden —bxsf FS3D.bxsf
@@ -161,8 +158,8 @@ You can plot the FS with <a class="reference external" href="http://www.xcrysden
 <h3>Gap_plane mode<a class="headerlink" href="#gap-plane-mode" title="Permalink to this headline">¶</a></h3>
 <p>Calculate the energy gap for the k points in the KPLANE_BULK.
 This is useful to show Weyl points and nodal line structure.</p>
-<div class="section" id="id3">
-<h4>Input<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id5">
+<h4>Input<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
 <p>Typical input parameters for BulkGap_plane calculation</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>&amp;CONTROL
 BulkGap_Plane_calc = T
@@ -180,8 +177,8 @@ KPLANE_BULK
 </div>
 <p>See <a class="reference internal" href="input.html#controlnamelist"><span class="std std-ref">CONTROL</span></a>, <a class="reference internal" href="input.html#parametersnamelist"><span class="std std-ref">PARAMETERS</span></a>, <a class="reference internal" href="input.html#kpathbulk"><span class="std std-ref">KPATH_BULK</span></a></p>
 </div>
-<div class="section" id="id4">
-<h4>Output<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id6">
+<h4>Output<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h4>
 <p>The outputs for Gap_plane mode are <strong>GapPlane.dat</strong>, <strong>GapPlane.gnu</strong>. The <strong>GapPlane.png</strong> will get by</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">gnuplot</span> <span class="n">GapPlane</span><span class="o">.</span><span class="n">gnu</span>
 </pre></div>
@@ -204,8 +201,8 @@ KPLANE_BULK
 <div class="section" id="gap-cube-mode">
 <h3>Gap_Cube mode<a class="headerlink" href="#gap-cube-mode" title="Permalink to this headline">¶</a></h3>
 <p>This helps us to find Weyl points and nodal line structure in the 3D BZ.</p>
-<div class="section" id="id5">
-<h4>Input<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id7">
+<h4>Input<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h4>
 <p>Typical input parameters for BulkGap_cube calculation</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>&amp;CONTROL
 BulkGap_Cube_calc = T
@@ -225,8 +222,8 @@ KCUBE_BULK
 </div>
 <p>See <a class="reference internal" href="input.html#controlnamelist"><span class="std std-ref">CONTROL</span></a>, <a class="reference internal" href="input.html#parametersnamelist"><span class="std std-ref">PARAMETERS</span></a>, <span class="xref std std-ref">kcubebulk</span></p>
 </div>
-<div class="section" id="id6">
-<h4>Output<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id8">
+<h4>Output<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h4>
 <p>The outputs for Gap_plane mode are <strong>GapCube.dat</strong>, <strong>GapCube.gnu</strong>. The <strong>GapCube.png</strong> will get by</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">gnuplot</span> <span class="n">GapCube</span><span class="o">.</span><span class="n">gnu</span>
 </pre></div>
@@ -249,11 +246,11 @@ KCUBE_BULK
 </div>
 <div class="section" id="find-nodes-calculation">
 <span id="findnodescalculation"></span><h2>1.3.4. Find Nodes calculation<a class="headerlink" href="#find-nodes-calculation" title="Permalink to this headline">¶</a></h2>
-<p>(Will come in the next release)</p>
 <p>Beside by using GapCube and GapPlane to find Weyl/Dirac nodes or node lines, we can directly
-using FindNodes function.</p>
-<div class="section" id="id7">
-<h3>Input<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+using FindNodes function.
+<span class="math">\(gap(k)= E_{NumOccupied+1}(k)- E_{NumOccpuied}(k)\)</span></p>
+<div class="section" id="id9">
+<h3>Input<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
 <p>Typical input parameters for FindNodes_cube calculation</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>&amp;CONTROL
 FindNodes_calc = T
@@ -274,11 +271,11 @@ KCUBE_BULK
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Please don&#8217;t set Nk1, Nk2, Nk3 too large. Otherwise, it will become very time consuming.</p>
+<p class="last">Please don&#8217;t set Nk1, Nk2, Nk3 too large. Otherwise, it will become very time consuming. Usually, 15*15*15 is enough to get converged number of Weyl/Dirac points.</p>
 </div>
 </div>
-<div class="section" id="id8">
-<h3>Output<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id10">
+<h3>Output<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
 <p>Outputs are <strong>Nodes.dat</strong> and <strong>Nodes.gnu</strong>. Nodes.png will be obtained by</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">gnuplot</span> <span class="n">Nodes</span><span class="o">.</span><span class="n">gnu</span>
 </pre></div>
@@ -303,8 +300,8 @@ KCUBE_BULK
 <span id="weylchiralitycalculation"></span><h2>1.3.5. Weyl Chirality calculation<a class="headerlink" href="#weyl-chirality-calculation" title="Permalink to this headline">¶</a></h2>
 <p>After you identify the positions of Weyl points, you could use this function to calculate the chirality,
 which tells you whether a Weyl point is a sink or a source of the Berry Curvature.</p>
-<div class="section" id="id9">
-<h3>Input<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id11">
+<h3>Input<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
 <p>Typical input parameters for WeylChirality_calc calculation</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>&amp;CONTROL
 WeylChirality_calc = T
@@ -328,8 +325,8 @@ Cartesian    ! Direct or Cartesian coordinate
  0.220181    0.038941    0.000000
 </pre></div>
 </div>
-<div class="section" id="id10">
-<h4>Output<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id12">
+<h4>Output<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h4>
 <p>Outputs are <strong>wanniercenter3D_Weyl.dat</strong> and <strong>wanniercenter3D_Weyl_i.gnu</strong>. wanniercenter3D_Weyl.png will be obtained by</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>gnuplot wanniercenter3D_Weyl_i.gnu
 
@@ -362,8 +359,8 @@ calculate the band structure for it.</p>
 <p class="first admonition-title">Note</p>
 <p class="last">For slab calculations, please read carefully the input card <a class="reference internal" href="input.html#surface"><span class="std std-ref">SURFACE</span></a></p>
 </div>
-<div class="section" id="id11">
-<h3>Input<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id13">
+<h3>Input<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default"><div class="highlight"><pre><span></span>&amp;CONTROL
 SlabBand_calc = T
 /
@@ -381,8 +378,8 @@ G 0.0 0.0 M 0.5 0.5
 </div>
 <p>See <a class="reference internal" href="input.html#controlnamelist"><span class="std std-ref">CONTROL</span></a>, <a class="reference internal" href="input.html#systemnamelist"><span class="std std-ref">SYSTEM</span></a> <a class="reference internal" href="input.html#parametersnamelist"><span class="std std-ref">PARAMETERS</span></a>, <a class="reference internal" href="input.html#kpathslab"><span class="std std-ref">KPATH_SLAB</span></a></p>
 </div>
-<div class="section" id="id12">
-<h3>Output<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id14">
+<h3>Output<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
 <p>Outputs are <strong>slabek.dat</strong> and <strong>slabek.gnu</strong></p>
 <p>The heads of <strong>slabek.dat</strong> are</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="mf">0.0000000</span>     <span class="o">-</span><span class="mf">4.9575466</span>     <span class="mi">240</span>
@@ -406,8 +403,8 @@ G 0.0 0.0 M 0.5 0.5
 <div class="section" id="nanowire-nanoribbon-band-calculation">
 <span id="ribbonbandcalculation"></span><h2>1.3.7. Nanowire/nanoribbon  band calculation<a class="headerlink" href="#nanowire-nanoribbon-band-calculation" title="Permalink to this headline">¶</a></h2>
 <p>Band calculation for wire system. Only one direction is periodic, the other two directions are confined.</p>
-<div class="section" id="id13">
-<h3>Input<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id15">
+<h3>Input<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
 <p>You don&#8217;t have to set the k path, because it only has one direction.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>&amp;CONTROL
 WireBand_calc = T
@@ -423,8 +420,8 @@ Nk1 = 101   ! No. of slices for the 1st reciprocal vector
 </div>
 <p>See <a class="reference internal" href="input.html#controlnamelist"><span class="std std-ref">CONTROL</span></a>, <a class="reference internal" href="input.html#systemnamelist"><span class="std std-ref">SYSTEM</span></a> <a class="reference internal" href="input.html#parametersnamelist"><span class="std std-ref">PARAMETERS</span></a></p>
 </div>
-<div class="section" id="id14">
-<h3>Output<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id16">
+<h3>Output<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h3>
 <p>Outputs are <strong>ribbonek.dat</strong> and <strong>ribbonek.gnu</strong>. The data format of <strong>ribbonek.dat</strong> is the same as
 <strong>slabek.dat</strong>. Get plot ribbonek.png with</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">gnuplot</span> <span class="n">ribbonek</span><span class="o">.</span><span class="n">gnu</span>
@@ -443,8 +440,8 @@ obtained by the iterative Green&#8217;s function.</p>
 <p class="first admonition-title">Note</p>
 <p class="last">For slab calculations, please read carefully the input card <a class="reference internal" href="input.html#surface"><span class="std std-ref">SURFACE</span></a></p>
 </div>
-<div class="section" id="id15">
-<h3>Input<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id17">
+<h3>Input<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default"><div class="highlight"><pre><span></span>&amp;CONTROL
 SlabSS_calc = T
 /
@@ -474,8 +471,8 @@ you should set</p>
 <span class="o">/</span>
 </pre></div>
 </div>
-<div class="section" id="id16">
-<h3>Output<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id18">
+<h3>Output<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
 <dl class="docutils">
 <dt>There are a lot of outputs for QPI calculation. including</dt>
 <dd><p class="first">arc.dat_l, arc.dat_r,
@@ -497,7 +494,7 @@ bulk contribution.</p>
 </div>
 <div class="section" id="spin-texture-calculation">
 <span id="spintexturecalculation"></span><h2>1.3.11. Spin texture calculation<a class="headerlink" href="#spin-texture-calculation" title="Permalink to this headline">¶</a></h2>
-<p>Spin texture calculation at fixed energy level E_arc set in NAMELISTS PARAMETERS . Set SlabArc_calc=T, and  set Nk1, Nk2, in NAMELISTS PARAMETERS, set k plane in KPLANE_SLAB CARD. Get the plots with  &#8220;gnuplot spintext_l.gnu”, &#8220;gnuplot spintext_r.gnu”.</p>
+<p>Spin texture calculation at fixed energy level E_arc set in NAMELISTS PARAMETERS . Set Slabspintexture_calc=T, and  set Nk1, Nk2, in NAMELISTS PARAMETERS, set k plane in KPLANE_SLAB CARD. Get the plots with  &#8220;gnuplot spintext_l.gnu”, &#8220;gnuplot spintext_r.gnu”.</p>
 </div>
 <div class="section" id="berry-phase-calculation">
 <span id="berryphasecalculation"></span><h2>1.3.12. Berry phase calculation<a class="headerlink" href="#berry-phase-calculation" title="Permalink to this headline">¶</a></h2>
@@ -505,8 +502,8 @@ bulk contribution.</p>
 the Berry phase around a closed mirror symmetric k loop is either 0 or pi for a mirror protect nodal line system.</p>
 <p>In WannierTools, you can specify a k path by a serials  k points. Here we take the WC example, which has two nodal lines around
 K point.</p>
-<div class="section" id="id17">
-<h3>Input<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id19">
+<h3>Input<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default"><div class="highlight"><pre><span></span>&amp;CONTROL
 BerryPhase_calc = T
 /
@@ -534,9 +531,9 @@ Direct
 </pre></div>
 </div>
 </div>
-<div class="section" id="id18">
-<h3>Output<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
-<p>The value of Berry phase can be found in the <a href="#id19"><span class="problematic" id="id20">**</span></a>WT.out*.</p>
+<div class="section" id="id20">
+<h3>Output<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h3>
+<p>The value of Berry phase can be found in the <strong>WT.out</strong>.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p>1. In principlely, the Berry phase for around a nodal line should be interger. However,
@@ -604,58 +601,58 @@ The WCC (Wilson loop) plots <strong>wanniercenter3D_Z2.eps</strong> can be got w
 </ul>
 </li>
 <li><a class="reference internal" href="#bulkfs-calculation">1.3.2. BulkFS calculation</a><ul>
-<li><a class="reference internal" href="#id1">Input</a></li>
-<li><a class="reference internal" href="#id2">Output</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#energy-gap-calculations">1.3.3. Energy gap calculations</a><ul>
-<li><a class="reference internal" href="#gap-plane-mode">Gap_plane mode</a><ul>
 <li><a class="reference internal" href="#id3">Input</a></li>
 <li><a class="reference internal" href="#id4">Output</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#gap-cube-mode">Gap_Cube mode</a><ul>
+<li><a class="reference internal" href="#energy-gap-calculations">1.3.3. Energy gap calculations</a><ul>
+<li><a class="reference internal" href="#gap-plane-mode">Gap_plane mode</a><ul>
 <li><a class="reference internal" href="#id5">Input</a></li>
 <li><a class="reference internal" href="#id6">Output</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#gap-cube-mode">Gap_Cube mode</a><ul>
+<li><a class="reference internal" href="#id7">Input</a></li>
+<li><a class="reference internal" href="#id8">Output</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li><a class="reference internal" href="#find-nodes-calculation">1.3.4. Find Nodes calculation</a><ul>
-<li><a class="reference internal" href="#id7">Input</a></li>
-<li><a class="reference internal" href="#id8">Output</a></li>
+<li><a class="reference internal" href="#id9">Input</a></li>
+<li><a class="reference internal" href="#id10">Output</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#weyl-chirality-calculation">1.3.5. Weyl Chirality calculation</a><ul>
-<li><a class="reference internal" href="#id9">Input</a><ul>
-<li><a class="reference internal" href="#id10">Output</a></li>
+<li><a class="reference internal" href="#id11">Input</a><ul>
+<li><a class="reference internal" href="#id12">Output</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li><a class="reference internal" href="#slab-band-calculation">1.3.6. Slab band calculation</a><ul>
-<li><a class="reference internal" href="#id11">Input</a></li>
-<li><a class="reference internal" href="#id12">Output</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#nanowire-nanoribbon-band-calculation">1.3.7. Nanowire/nanoribbon  band calculation</a><ul>
 <li><a class="reference internal" href="#id13">Input</a></li>
 <li><a class="reference internal" href="#id14">Output</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#surface-state-arpes-calculation">1.3.8. Surface state ARPES calculation</a><ul>
+<li><a class="reference internal" href="#nanowire-nanoribbon-band-calculation">1.3.7. Nanowire/nanoribbon  band calculation</a><ul>
 <li><a class="reference internal" href="#id15">Input</a></li>
+<li><a class="reference internal" href="#id16">Output</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#surface-state-arpes-calculation">1.3.8. Surface state ARPES calculation</a><ul>
+<li><a class="reference internal" href="#id17">Input</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#surface-state-qpi-calculation">1.3.9. Surface state QPI calculation</a><ul>
-<li><a class="reference internal" href="#id16">Output</a></li>
+<li><a class="reference internal" href="#id18">Output</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#fermi-arc-calculation">1.3.10. Fermi arc calculation</a></li>
 <li><a class="reference internal" href="#spin-texture-calculation">1.3.11. Spin texture calculation</a></li>
 <li><a class="reference internal" href="#berry-phase-calculation">1.3.12. Berry phase calculation</a><ul>
-<li><a class="reference internal" href="#id17">Input</a></li>
-<li><a class="reference internal" href="#id18">Output</a></li>
+<li><a class="reference internal" href="#id19">Input</a></li>
+<li><a class="reference internal" href="#id20">Output</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#berry-curvature-calculation">1.3.13. Berry curvature calculation</a></li>
@@ -693,11 +690,8 @@ The WCC (Wilson loop) plots <strong>wanniercenter3D_Z2.eps</strong> can be got w
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="f-modindex.html" title="Fortran Module Index"
-             >fortran modules</a></li>
-        <li class="right" >
           <a href="tutorials.html" title="2. Tutorial: learning WannierTools through examples"
-             >next</a> |</li>
+             >next</a></li>
         <li class="right" >
           <a href="input.html" title="1.2. Introduction of input files"
              >previous</a> |</li>
@@ -707,7 +701,7 @@ The WCC (Wilson loop) plots <strong>wanniercenter3D_Z2.eps</strong> can be got w
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2016, QuanSheng Wu.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.1.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.3.
     </div>
   </body>
 </html>
