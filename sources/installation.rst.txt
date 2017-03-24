@@ -46,11 +46,11 @@ There are two files you have to prepare,
 
 After the preparation of these two files, you can just run wann_tools in the same folder ::
 
-   wann_tools &
+   wt.x &
 
 or in multi-cores  ::
 
-   mpirun -np 4 wann_tools &
+   mpirun -np 4 wt.x &
 
 The output information during the running are written in WT.out. 
 

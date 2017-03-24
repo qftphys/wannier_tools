@@ -275,6 +275,8 @@ All these tasks can be set to be true at the same time. ::
 
 We listed those features in the table below. 
 
+.. tabularcolumns:: |p{3.3cm}|p{5cm}|p{4.0cm}|p{1.3cm}|
+
 +----------------------+--------------------------+---------------------------------+-----------------+
 |Flag options          |         Function         |           Output                |      Tested     |
 +======================+==========================+=================================+=================+
