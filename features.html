@@ -75,7 +75,7 @@ construction of Wannier functions. You have to compare your Wannier interpolated
 with the DFT bands. Those two bands should match well around the Fermi level.</p>
 <div class="section" id="input">
 <span id="bulkekin"></span><h3>Input<a class="headerlink" href="#input" title="Permalink to this headline">¶</a></h3>
-<p>Typical flags for bulk band calculation in the input.dat.</p>
+<p>Typical flags for bulk band calculation in the wt.in.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>&amp;CONTROL
 BulkBand_calc = T
 /
@@ -559,7 +559,7 @@ or one.</p>
 Usually, you can call &#8220;Wannier charge center calculation for a plane&#8221;  six times. Here we packed them up to get another function. You can set the input file like the following.</p>
 <div class="section" id="id21">
 <h3>Input<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h3>
-<p>The necessary tags that you should set in the input.dat</p>
+<p>The necessary tags that you should set in the wt.in</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>&amp;CONTROL
 Z2_3D_calc = T
 /
@@ -580,7 +580,12 @@ The WCC (Wilson loop) plots <strong>wanniercenter3D_Z2.eps</strong> can be got w
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Important: please set <strong>NumOccpuied</strong> correctly. It represents the occpuied wannier bands, not the total number of electrons.</p>
+<p>Important: please set <strong>NumOccpuied</strong> correctly. It represents the &#8220;occpuied&#8221; wannier bands, not the total number of electrons.
+In this application, the Wilson loop is the trace of NumOccupied bands. If you want to study the topology between the 8th and the 9th band,
+then set NumOccupied=8.</p>
+<p>About the Z2 index for 3D system.</p>
+<p>v0= (z2(ki=0)+z2(ki=0.5))mod 2</p>
+<p class="last">vi= z2(ki=0.5)</p>
 </div>
 </div>
 </div>

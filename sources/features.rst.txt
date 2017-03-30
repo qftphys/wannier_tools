@@ -29,7 +29,7 @@ with the DFT bands. Those two bands should match well around the Fermi level.
 
 Input
 ^^^^^
-Typical flags for bulk band calculation in the input.dat. ::
+Typical flags for bulk band calculation in the wt.in. ::
 
   &CONTROL
   BulkBand_calc = T
@@ -570,7 +570,7 @@ Usually, you can call "Wannier charge center calculation for a plane"  six times
 Input
 ^^^^^
 
-The necessary tags that you should set in the input.dat ::
+The necessary tags that you should set in the wt.in ::
  
   &CONTROL
   Z2_3D_calc = T
@@ -591,6 +591,14 @@ The WCC (Wilson loop) plots **wanniercenter3D_Z2.eps** can be got with::
 
 .. NOTE::
 
-   Important: please set **NumOccpuied** correctly. It represents the occpuied wannier bands, not the total number of electrons.
+   Important: please set **NumOccpuied** correctly. It represents the "occpuied" wannier bands, not the total number of electrons. 
+   In this application, the Wilson loop is the trace of NumOccupied bands. If you want to study the topology between the 8th and the 9th band,
+   then set NumOccupied=8. 
+
+   About the Z2 index for 3D system. 
+   
+   v0= (z2(ki=0)+z2(ki=0.5))mod 2
+
+   vi= z2(ki=0.5)
 
 
