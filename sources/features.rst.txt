@@ -451,7 +451,8 @@ Input
 
 See :ref:`controlnamelist`, :ref:`parametersnamelist`, :ref:`kpathslab`
 
-NP : integer valued, Number of principle layers, see details related to iterative green’s function. Used if  SlabSS_calc= T, SlabArc_calc=T, SlabSpintexture_calc=T. Default value is 2. You need to do a convergence test by setting Np= 1, Np=2, Np=3, and check the surface state spectrum. Basically, the value of Np depends on the spread of Wannier functions you constructed. One thing should be mentioned is that the computational time grows cubically of Np. 
+NP : integer valued, Number of principle layers, see details related to iterative green’s function. 
+Used if  SlabSS_calc= T, SlabArc_calc=T, SlabSpintexture_calc=T. Default value is 2. You need to do a convergence test by setting Np= 1, Np=2, Np=3, and check the surface state spectrum. Basically, the value of Np depends on the spread of Wannier functions you constructed. One thing should be mentioned is that the computational time grows cubically of Np. 
 
 .. _ssqpicalculation:
 
@@ -485,13 +486,17 @@ There are a lot of outputs for QPI calculation. including
 
 Fermi arc calculation
 ---------------------
-Surface state spectrum at fixed energy level E_arc set in NAMELISTS PARAMETERS . Set SlabArc_calc=T, and  set Nk1, Nk2, in NAMELISTS PARAMETERS, set k plane in KPLANE_SLAB CARD. Get the plots with  "gnuplot arc_l.gnu”, "gnuplot arc_r.gnu”.
+Surface state spectrum at fixed energy level E_arc set in NAMELISTS PARAMETERS . Set SlabArc_calc=T, 
+and  set Nk1, Nk2, in NAMELISTS PARAMETERS, set k plane in KPLANE_SLAB CARD. 
+Get the plots with  "gnuplot arc_l.gnu”, "gnuplot arc_r.gnu”.
 
 .. _spintexturecalculation:
 
 Spin texture calculation
 ------------------------
-Spin texture calculation at fixed energy level E_arc set in NAMELISTS PARAMETERS . Set Slabspintexture_calc=T, and  set Nk1, Nk2, in NAMELISTS PARAMETERS, set k plane in KPLANE_SLAB CARD. Get the plots with  "gnuplot spintext_l.gnu”, "gnuplot spintext_r.gnu”.
+Spin texture calculation at fixed energy level E_arc set in NAMELISTS PARAMETERS . 
+Set Slabspintexture_calc=T, and  set Nk1, Nk2, in NAMELISTS PARAMETERS, set k plane in KPLANE_SLAB CARD. 
+Get the plots with  "gnuplot spintext_l.gnu”, "gnuplot spintext_r.gnu”.
 
 
 .. _berryphasecalculation:
@@ -553,11 +558,22 @@ Berry curvature calculation
 ---------------------------
 Calculate Berry curvature at a fixed k plane in 3D BZ. Set BerryCurvature_calc=T, and  set Nk1, Nk2, in NAMELISTS PARAMETERS, set k plane in KPLANE_BULK CARD. Get the plot with  "gnuplot Berrycurvature.gnu”.
 
+
+please set NumOccpuied correctly. It represents the “occpuied” wannier bands, not the total number of electrons. In this application, the Berrycurvature is the summation over NumOccupied bands. 
+
+
 .. _wanniercentercalculation:
 
 Wannier charge center/Wilson loop calculation
 ---------------------------------------------
 Wannier charge center, which is sometimes called Wilson loop can be calculated by set WannierCenter_calc=T and set KPLANE_BULK CARD,  set number of k points for two vectors is Nk1, Nk2 in NAMELISTS PARAMETERS.  Notice: You should notice that the first vector in KPLANE_BULK CARD is the integration direction, this vector should be equal to one primitive reciprocal lattice vector.  If you want to calculate the Z2 number, Please set the second vector to be half of the reciprocal lattice vector. You can get the Wannier charge center  along the second k line. See more details In the paper written by Alexey. Soluyanov (2011). 
+
+.. NOTE::
+
+   Important: please set **NumOccpuied** correctly. It represents the "occpuied" wannier bands, not the total number of electrons. 
+   In this application, the Wilson loop is the trace of NumOccupied bands. If you want to study the topology between the 8th and the 9th band,
+   then set NumOccupied=8. 
+
 
 .. _z2bulkcalculation:
 
