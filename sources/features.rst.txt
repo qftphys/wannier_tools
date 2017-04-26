@@ -479,7 +479,7 @@ There are a lot of outputs for QPI calculation. including
  arc_r_jdos.gnu, arc_r_jsdos.gnu. 
 
  The gnu script with 'only' means we only plot the spectrum with the surface contribution, exclude the 
- bulk contribution.
+ bulk contribution.  jdat_l is the QPI data without consideration of spin scattering. jsdat_l is the QPI data in consideration of spin scattering. 
 
 
 .. _fermiarccalculation:

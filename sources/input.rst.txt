@@ -10,7 +10,7 @@ and  :ref:`wannier90_hr.dat <wannier90.dat>`
 
 wt.in
 ---------
-
+-  :ref:`basic_parameters`
 -  :ref:`tbfilenamelist`
 -  :ref:`systemnamelist`
 -  :ref:`controlnamelist`
@@ -39,7 +39,35 @@ Here we introduce the wt.in for Bi2Se3 as an example ::
   Hrfile = 'wannier90_hr.dat'
   Package = 'VASP'             ! obtained from VASP, it could be 'VASP', 'QE', 'Wien2k', 'OpenMx'
   /
-
+  
+  LATTICE
+  Angstrom
+  -2.069  -3.583614  0.000000     ! crystal lattice information
+   2.069  -3.583614  0.000000
+   0.000   2.389075  9.546667
+  
+  ATOM_POSITIONS
+  5                               ! number of atoms for projectors
+  Direct                          ! Direct or Cartisen coordinate
+   Bi 0.3990    0.3990    0.6970
+   Bi 0.6010    0.6010    0.3030
+   Se 0     0     0.5
+   Se 0.2060    0.2060    0.1180
+   Se 0.7940    0.7940    0.8820
+  
+  PROJECTORS
+   3 3 3 3 3          ! number of projectors
+  Bi px py pz         ! projectors
+  Bi px py pz
+  Se px py pz
+  Se px py pz
+  Se px py pz
+  
+  SURFACE            ! See doc for details
+   1  0  0
+   0  1  0
+   0  0  1
+ 
   &CONTROL
   BulkBand_calc         = T
   BulkFS_calc           = T
@@ -79,35 +107,7 @@ Here we introduce the wt.in for Bi2Se3 as an example ::
   NP = 1              ! number of principle layers
   Gap_threshold = 1.0 ! threshold for GapCube output
   /
-  
-  LATTICE
-  Angstrom
-  -2.069  -3.583614  0.000000     ! crystal lattice information
-   2.069  -3.583614  0.000000
-   0.000   2.389075  9.546667
-  
-  ATOM_POSITIONS
-  5                               ! number of atoms for projectors
-  Direct                          ! Direct or Cartisen coordinate
-   Bi 0.3990    0.3990    0.6970
-   Bi 0.6010    0.6010    0.3030
-   Se 0     0     0.5
-   Se 0.2060    0.2060    0.1180
-   Se 0.7940    0.7940    0.8820
-  
-  PROJECTORS
-   3 3 3 3 3          ! number of projectors
-  Bi px py pz         ! projectors
-  Bi px py pz
-  Se px py pz
-  Se px py pz
-  Se px py pz
-  
-  SURFACE            ! See doc for details
-   1  0  0
-   0  1  0
-   0  0  1
-  
+ 
   KPATH_BULK            ! k point path
   4              ! number of k line only for bulk band
   G 0.00000 0.00000 0.0000 Z 0.00000 0.00000 0.5000
@@ -176,6 +176,13 @@ Here we introduce the wt.in for Bi2Se3 as an example ::
    -0.000006  -3.583766   8.416405 
     0.000018  -3.561165   8.406400 
    -0.000007  -3.605935   8.405982 
+
+.. _basic_parameters:
+Basic Parameters
+^^^^^^^^^^^^^^^^
+
+**TB_fils, LATTICE, ATOM_POSITIONS, PROJECTORS and SURFACE are the necessary basic parameters. They are used by almost all 
+functionalities listed in CONTROL namelist.**
 
 .. _namelist:
 
