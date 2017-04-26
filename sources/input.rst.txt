@@ -181,7 +181,7 @@ Here we introduce the wt.in for Bi2Se3 as an example ::
 Basic Parameters
 ^^^^^^^^^^^^^^^^
 
-**TB_fils, LATTICE, ATOM_POSITIONS, PROJECTORS and SURFACE are the necessary basic parameters. They are used by almost all 
+**TB_FILE, LATTICE, ATOM_POSITIONS, PROJECTORS and SURFACE are the necessary basic parameters. They are used by almost all 
 functionalities listed in CONTROL namelist.**
 
 .. _namelist:
