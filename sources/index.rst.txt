@@ -28,8 +28,10 @@ Aiming to investigate topoligical properties of
    tutorials
 
 **Citation**
+^^^^^^^^^^^^
 
-Please cite this paper when using WannierTools for your researchs ::
+Please cite this paper when using WannierTools for your researchs::
+
    @article{Wu2017,
    archivePrefix = {arXiv},
    arxivId = {1703.07789},
@@ -41,12 +43,14 @@ Please cite this paper when using WannierTools for your researchs ::
    }
 
 **Correspondence**
+^^^^^^^^^^^^^^^^^^
 
 Please report bugs to wuquansheng at gmail.com.
 
 If you know about Chinese characters, you could find more information on http://bbs.materialsgene.org
 
 **Advertisement**
+^^^^^^^^^^^^^^^^^^
 
 We already developed a tool to symmetrize Wannier tight binding models. It can symmetrize your wannier90_hr.dat which made of 
 s, p, d and f orbitals. However, it is not released and under testing. If you want to use this part, plase contact one of our 
