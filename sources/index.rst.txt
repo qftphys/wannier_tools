@@ -26,6 +26,22 @@ Aiming to investigate topoligical properties of
    preliminaries
    tutorials
 
+**Citation**
+Please cite this paper when using WannierTools for your researchs ::
+   @article{Wu2017,
+   archivePrefix = {arXiv},
+   arxivId = {1703.07789},
+   author = {Wu, QuanSheng and Zhang, ShengNan and Song, Hai-Feng and Troyer, Matthias and Soluyanov, Alexey A.},
+   eprint = {1703.07789},
+   title = {{WannierTools: An open-source software package for novel topological materials}},
+   url = {http://arxiv.org/abs/1703.07789},
+   year = {2017}
+   }
+
+**Correspondence**
+Please report bugs to wuquansheng at gmail.com.
+
+If you know about Chinese characters, you could find more information on http://bbs.materialsgene.org
 
 
 .. image:: wannier_tools-logo-crop.png
