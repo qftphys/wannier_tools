@@ -7,6 +7,7 @@ WannierTools
 ============
 
 **WannierTools: an open-source software package for novel topological materials**
+
 Source on Github : https://github.com/quanshengwu/wannier_tools
 
  
@@ -27,6 +28,7 @@ Aiming to investigate topoligical properties of
    tutorials
 
 **Citation**
+
 Please cite this paper when using WannierTools for your researchs ::
    @article{Wu2017,
    archivePrefix = {arXiv},
@@ -39,10 +41,16 @@ Please cite this paper when using WannierTools for your researchs ::
    }
 
 **Correspondence**
+
 Please report bugs to wuquansheng at gmail.com.
 
 If you know about Chinese characters, you could find more information on http://bbs.materialsgene.org
 
+**Advertisement**
+
+We already developed a tool to symmetrize Wannier tight binding models. It can symmetrize your wannier90_hr.dat which made of 
+s, p, d and f orbitals. However, it is not released and under testing. If you want to use this part, plase contact one of our 
+developers Changming Yue (yuechangming8 at gmail.com). 
 
 .. image:: wannier_tools-logo-crop.png
    :scale: 20 %
