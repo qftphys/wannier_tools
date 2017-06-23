@@ -574,6 +574,20 @@ Wannier charge center, which is sometimes called Wilson loop can be calculated b
    In this application, the Wilson loop is the trace of NumOccupied bands. If you want to study the topology between the 8th and the 9th band,
    then set NumOccupied=8. 
 
+Output
+^^^^^^
+
+Outputs are **wcc.dat** and **wcc.gnu**, the format of **wcc.dat** is::
+
+     #         k      largestgap  sum(wcc(:,ik))      wcc(i, ik)(i=1, NumOccupied)
+      0.00000000      0.60940556      0.99998388      0.00000850      0.07701431      0.07702018      0.19328973      0.19329593      0.28118760      0.28119336      0.49998615      0.50000060      0.71881052      0.71881646      0.80675987      0.80676424      0.92297767      0.92298328      0.99993530      0.99994085      0.99999935
+      0.00312500      0.61256609      0.99998716      0.00030351      0.00082300      0.07688154      0.07709302      0.19117885      0.19525313      0.27952027      0.28297172      0.49188658      0.50810192      0.71703027      0.72048573      0.80480135      0.80887751      0.92290159      0.92311931      0.99908212      0.99967575
+      0.00625000      0.61569946      0.99999557      0.00061525      0.00168708      0.07668131      0.07711296      0.18887026      0.19709893      0.27796336      0.28485788      0.48373617      0.51625672      0.71514220      0.72204447      0.80295562      0.81118878      0.92287871      0.92332259      0.99821913      0.99936414
+
+      ......
+
+The second column is the position of the largest gap of WCC. It is used for drawing a line to calculate the Z2 number (see A. Soluyanov 2011), 
+From the fourth column to the last column, they are wcc for the occupied bands specified with "NumOccupied". 
 
 .. _z2bulkcalculation:
 
