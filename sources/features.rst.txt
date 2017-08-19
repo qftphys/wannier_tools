@@ -589,6 +589,34 @@ Outputs are **wcc.dat** and **wcc.gnu**, the format of **wcc.dat** is::
 The second column is the position of the largest gap of WCC. It is used for drawing a line to calculate the Z2 number (see A. Soluyanov 2011), 
 From the fourth column to the last column, they are wcc for the occupied bands specified with "NumOccupied". 
 
+Example
+^^^^^^^
+Take Bi2Se3 for example, we calculate the Wilson loop (WCC) at k3=0 plane, where k1, k2, k3 is in unit
+of reciprocal lattice vector.  The you should set the particular inputs like this ::
+ 
+   &CONTROL
+    WannierCenter_calc=T 
+   /
+   &SYSTEM
+   NumOccupied = 10        ! Number of occupied Wannier orbitals
+   /
+   &PARAMETERS
+   Nk1 = 41    ! No. of slices for the 1st reciprocal vector
+   Nk2 = 41    ! No. of slices for the 2st reciprocal vector
+   /
+
+   KPLANE_BULK
+   0.00  0.00  0.00   ! Original point for 3D k slice  k3=0
+   1.00  0.00  0.00   ! The first vector. Integrate along this direction to get WCC 
+   0.00  0.50  0.00   ! WCC along this direction, for Z2, usually half of the reciprocal lattice vector
+
+For 2D materials stacked along z direction, you could think it as a 3D material with
+weak coupling along z direction. You can use this function to get the Z2 value at k3=0 
+plane to characterize the topology. 
+
+Use "gnuplot wcc.gnu" to get "wcc.eps" plot. 
+
+
 .. _z2bulkcalculation:
 
 Z2 number for 3D bulk materials
