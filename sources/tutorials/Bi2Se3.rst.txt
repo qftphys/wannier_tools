@@ -277,27 +277,28 @@ Full settings in WT.in of Bi2Se3
     0.0  0.2      ! The second vector to define 2D k plane  for arc plots
    
    KPLANE_BULK
-    0.00  0.00  0.00   ! Original point for 3D k plane  kz=0.5, bar{x}, along ky
+    0.00  0.00  0.50   ! Original point for 3D k plane  k3=0.5, bar{a}, along k1
+    1.00  0.00  0.00   ! The first vector to define 3d k space plane
+    0.00  0.50  0.00   ! The second vector to define 3d k space plane
+
+   !> The following 5 matrices are for backup using, will not affect the main input for WannierTools 
+    0.00  0.00  0.00   ! Original point for 3D k plane  k3=0.0, bar{a}, along k1
     1.00  0.00  0.00   ! The first vector to define 3d k space plane
     0.00  0.50  0.00   ! The second vector to define 3d k space plane
    
-    0.00  0.00  0.00   ! Original point for 3D k plane  kz=0.0, bar{x}, along ky
-    1.00  0.00  0.00   ! The first vector to define 3d k space plane
-    0.00  0.50  0.00   ! The second vector to define 3d k space plane
-   
-    0.00  0.50  0.00   ! Original point for 3D k plane  ky=0.5, bar{z}, along kx
+    0.00  0.50  0.00   ! Original point for 3D k plane  k2=0.5, bar{c}, along ka
     0.00  0.00  1.00   ! The first vector to define 3d k space plane
     0.50  0.00  0.00   ! The second vector to define 3d k space plane
    
-    0.00  0.00  0.00   ! Original point for 3D k plane  ky=0, bar{z}, along kx
+    0.00  0.00  0.00   ! Original point for 3D k plane  k2=0, bar{c}, along ka
     0.00  0.00  1.00   ! The first vector to define 3d k space plane
     0.50  0.00  0.00   ! The second vector to define 3d k space plane
    
-    0.50  0.00  0.00   ! Original point for 3D k plane  kx=0.5, bar{z}, along ky
+    0.50  0.00  0.00   ! Original point for 3D k plane  k1=0.5, bar{c}, along kb
     0.00  0.00  1.00   ! The first vector to define 3d k space plane
     0.00  0.50  0.00   ! The second vector to define 3d k space plane
    
-    0.00  0.00  0.00   ! Original point for 3D k plane  kx=0, bar{z}, along ky
+    0.00  0.00  0.00   ! Original point for 3D k plane  k1=0, bar{c}, along kb
     0.00  0.00  1.00   ! The first vector to define 3d k space plane
     0.00  0.50  0.00   ! The second vector to define 3d k space plane
    
