@@ -63,7 +63,10 @@ Here we introduce the wt.in for Bi2Se3 as an example ::
   Se px py pz
   Se px py pz
   
-  SURFACE            ! See doc for details
+  MILLER_INDICES      ! Miller indices for surface choosen
+  0 0 1
+
+  !SURFACE            ! See doc for details
    1  0  0
    0  1  0
    0  0  1
@@ -471,7 +474,21 @@ The default order in Wannier90 is "s", "pz", "px", "py", "dz2", "dxz", "dyz", "d
 .. _surface:
 
 SURFACE
-"""""""
+'''''''
+
+**Attention: from now on, you can specify a surface with MILLER_INDICES card or with SURFACE card**. If you have both cards in the **wt.in** file, then we will take the SURFACE card.
+
+MILLER_INDICES CARD
+"""""""""""""""""""
+Miller indices form a notation system in crystallography for planes in crystal (Bravais) lattices. You can find more information from Wikipedia https://en.wikipedia.org/wiki/Miller_index. 
+In WannierTools, you only need to specfiy three integers like ::
+
+   MILLER_INDICES
+   0 0 1
+
+
+SURFACE CARD
+""""""""""""
 **This card is very important for slabs and ribbon calculation. You need to read the following text carefully** ::
 
    SURFACE            ! See doc for details
@@ -506,6 +523,7 @@ two surfaces are constructed by vector  :math:`R_1', R_3'` and  :math:`R_2', R_3
 .. NOTE::
    
    a11, a12, a13 ..., a33 should be integers. 
+
 
 
 .. _kpathbulk:

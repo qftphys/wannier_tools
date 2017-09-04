@@ -1,16 +1,14 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>1.2. Introduction of input files &#8212; WannierTools 2.2 documentation</title>
-    
     <link rel="stylesheet" href="static/classic.css" type="text/css" />
     <link rel="stylesheet" href="static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
@@ -24,12 +22,12 @@
     <script type="text/javascript" src="static/jquery.js"></script>
     <script type="text/javascript" src="static/underscore.js"></script>
     <script type="text/javascript" src="static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="1.3. Capabilities of WannierTools" href="features.html" />
     <link rel="prev" title="1.1. Installation of WannierTools (Linux or Mac)" href="installation.html" /> 
   </head>
-  <body role="document">
+  <body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -51,8 +49,8 @@
             
   <div class="section" id="introduction-of-input-files">
 <h1>1.2. Introduction of input files<a class="headerlink" href="#introduction-of-input-files" title="Permalink to this headline">¶</a></h1>
-<p><strong>Attention:</strong> From WannierTools 2.2, the name of input file changes from &#8216;input.dat&#8217; to <strong>&#8216;wt.in&#8217;</strong>.
-The excutable binary changes from &#8216;wann_tools&#8217; to <strong>&#8216;wt.x&#8217;</strong></p>
+<p><strong>Attention:</strong> From WannierTools 2.2, the name of input file changes from ‘input.dat’ to <strong>‘wt.in’</strong>.
+The excutable binary changes from ‘wann_tools’ to <strong>‘wt.x’</strong></p>
 <p>There are two input files you should prepare <a class="reference internal" href="#wt-in"><span class="std std-ref">wt.in</span></a>
 and  <a class="reference internal" href="#wannier90-dat"><span class="std std-ref">wannier90_hr.dat</span></a></p>
 <div class="section" id="wt-in">
@@ -108,7 +106,10 @@ Se px py pz
 Se px py pz
 Se px py pz
 
-SURFACE            ! See doc for details
+MILLER_INDICES      ! Miller indices for surface choosen
+0 0 1
+
+!SURFACE            ! See doc for details
  1  0  0
  0  1  0
  0  0  1
@@ -244,7 +245,7 @@ Variables can be inserted in any order. Such as</p>
 <p>There are 4 <strong>NAMELISTS</strong> included in wt.in. They are <a class="reference internal" href="#tbfilenamelist"><span class="std std-ref">TB_FILE</span></a>, <strong>SYSTEM</strong>, <strong>CONTROL</strong>, <strong>PARAMETERS</strong>.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">If you want to comment one line, please use &#8216;!&#8217; instead of &#8216;#&#8217;, because our codes were written in Fortran.</p>
+<p class="last">If you want to comment one line, please use ‘!’ instead of ‘#’, because our codes were written in Fortran.</p>
 </div>
 <div class="section" id="tb-file">
 <span id="tbfilenamelist"></span><h4>TB_FILE<a class="headerlink" href="#tb-file" title="Permalink to this headline">¶</a></h4>
@@ -256,8 +257,8 @@ Package = &#39;VASP&#39;             ! obtained from VASP, it could be &#39;VASP
 /
 </pre></div>
 </div>
-<p>The default value for Hrfile is &#8216;wannier90_hr.dat&#8217;.  You could specify the first-principle package that
-used for obtaining wannier90_hr.dat. Default value for Package is &#8216;VASP&#8217;. We support VASP, QE, Wien2k, OpenMx, Abinit at present.
+<p>The default value for Hrfile is ‘wannier90_hr.dat’.  You could specify the first-principle package that
+used for obtaining wannier90_hr.dat. Default value for Package is ‘VASP’. We support VASP, QE, Wien2k, OpenMx, Abinit at present.
 Please report new software package to me if you needed.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -355,8 +356,8 @@ plane for bulk system</td>
 <tr class="row-even"><td>FindNodes_calc</td>
 <td>Find touching points
 between the
-Numoccpuied&#8217;th band
-and (Numoccpuied+1)&#8217;th
+Numoccpuied’th band
+and (Numoccpuied+1)’th
 band</td>
 <td>Nodes.dat, Nodes.gnu</td>
 <td>yes</td>
@@ -547,7 +548,7 @@ Se 0.7940    0.7940    0.8820
 <p class="first admonition-title">Note</p>
 <p class="last">1. Here the atom means that the atoms with projectors.
 not the whole atoms in the unit cell.
-2. You can use “Direct&#8221; or “Cartesian&#8221; coordinates. “Direct&#8221; means the fractional coordinate based on the primitive lattice vector listed in LATTICE CARDS.</p>
+2. You can use “Direct” or “Cartesian” coordinates. “Direct” means the fractional coordinate based on the primitive lattice vector listed in LATTICE CARDS.</p>
 </div>
 </div>
 <div class="section" id="projectors">
@@ -563,14 +564,27 @@ not the whole atoms in the unit cell.
 </pre></div>
 </div>
 <p>Here we don’t take into account the spin degeneracy, only consider the orbital part. The name of orbitals should be “s”, “px”, “py”, “pz”, “dxy”, “dxz”, “dyz”, “dx2-y2”, “dz2”. I will add f orbitals latter. The order of the orbitals is very important if you want to analyze the symmetry properties.
-The default order in Wannier90 is &#8220;s&#8221;, &#8220;pz&#8221;, &#8220;px&#8221;, &#8220;py&#8221;, &#8220;dz2&#8221;, &#8220;dxz&#8221;, &#8220;dyz&#8221;, &#8220;dx2-y2&#8221;, &#8220;dxy&#8221;. You can find the orbital order from wannier90.wout.</p>
+The default order in Wannier90 is “s”, “pz”, “px”, “py”, “dz2”, “dxz”, “dyz”, “dx2-y2”, “dxy”. You can find the orbital order from wannier90.wout.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">If you don&#8217;t care about the calculation related to symmetry like mirror chern number. The order or the name is not important. So for the f electrons, please write 7 random orbitals like px or dz2 or what else you want.</p>
-</div>
+<p class="last">If you don’t care about the calculation related to symmetry like mirror chern number. The order or the name is not important. So for the f electrons, please write 7 random orbitals like px or dz2 or what else you want.</p>
 </div>
 <div class="section" id="surface">
-<span id="id4"></span><h4>SURFACE<a class="headerlink" href="#surface" title="Permalink to this headline">¶</a></h4>
+<span id="id4"></span><h5>SURFACE<a class="headerlink" href="#surface" title="Permalink to this headline">¶</a></h5>
+<p><strong>Attention: from now on, you can specify a surface with MILLER_INDICES card or with SURFACE card</strong>. If you have both cards in the <strong>wt.in</strong> file, then we will take the SURFACE card.</p>
+</div>
+</div>
+<div class="section" id="miller-indices-card">
+<h4>MILLER_INDICES CARD<a class="headerlink" href="#miller-indices-card" title="Permalink to this headline">¶</a></h4>
+<p>Miller indices form a notation system in crystallography for planes in crystal (Bravais) lattices. You can find more information from Wikipedia <a class="reference external" href="https://en.wikipedia.org/wiki/Miller_index">https://en.wikipedia.org/wiki/Miller_index</a>.
+In WannierTools, you only need to specfiy three integers like</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">MILLER_INDICES</span>
+<span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="surface-card">
+<h4>SURFACE CARD<a class="headerlink" href="#surface-card" title="Permalink to this headline">¶</a></h4>
 <p><strong>This card is very important for slabs and ribbon calculation. You need to read the following text carefully</strong></p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>SURFACE            ! See doc for details
  1  0  0           a11, a12, a13
@@ -596,7 +610,7 @@ The relations between old and new basis are</p>
 two surfaces are constructed by vector  <span class="math">\(R_1', R_3'\)</span> and  <span class="math">\(R_2', R_3'\)</span> respectively.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">a11, a12, a13 ..., a33 should be integers.</p>
+<p class="last">a11, a12, a13 …, a33 should be integers.</p>
 </div>
 </div>
 <div class="section" id="kpath-bulk">
@@ -716,7 +730,7 @@ Cartesian
  -0.000007  -3.605935   8.405982
 </pre></div>
 </div>
-<p>Those centres can be obtained from wannier90.wout by searching &#8220;Final state&#8221;.
+<p>Those centres can be obtained from wannier90.wout by searching “Final state”.
 The default values for this card are atomic positions.</p>
 </div>
 </div>
@@ -822,8 +836,12 @@ The 4th and 5th column are the band index (Row first). The 6th and 7th are compl
 <li><a class="reference internal" href="#input-card">Input Card</a><ul>
 <li><a class="reference internal" href="#lattice">LATTICE</a></li>
 <li><a class="reference internal" href="#atom-positions">ATOM_POSITIONS</a></li>
-<li><a class="reference internal" href="#projectors">PROJECTORS</a></li>
+<li><a class="reference internal" href="#projectors">PROJECTORS</a><ul>
 <li><a class="reference internal" href="#surface">SURFACE</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#miller-indices-card">MILLER_INDICES CARD</a></li>
+<li><a class="reference internal" href="#surface-card">SURFACE CARD</a></li>
 <li><a class="reference internal" href="#kpath-bulk">KPATH_BULK</a></li>
 <li><a class="reference internal" href="#kpath-slab">KPATH_SLAB</a></li>
 <li><a class="reference internal" href="#kplane-slab">KPLANE_SLAB</a></li>
@@ -875,7 +893,7 @@ The 4th and 5th column are the band index (Row first). The 6th and 7th are compl
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2016, QuanSheng Wu.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7+.
     </div>
   </body>
 </html>
