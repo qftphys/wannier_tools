@@ -488,7 +488,7 @@ In WannierTools, you only need to specfiy three integers like ::
 
 .. NOTE::
 
-   You should noticed that the Miller indices mentioned here are in basis of three vectors specified in LATTICE card.
+   You should notice that the Miller indices mentioned here are based on three vectors specified in LATTICE card.
 
 
 SURFACE CARD
