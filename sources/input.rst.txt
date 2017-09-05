@@ -63,7 +63,7 @@ Here we introduce the wt.in for Bi2Se3 as an example ::
   Se px py pz
   Se px py pz
   
-  MILLER_INDICES      ! Miller indices for surface choosen
+  MILLER_INDICES      ! Miller indices for surface choosen relatively to LATTICE card
   0 0 1
 
   !SURFACE            ! See doc for details
@@ -485,6 +485,10 @@ In WannierTools, you only need to specfiy three integers like ::
 
    MILLER_INDICES
    0 0 1
+
+.. NOTE::
+
+   You should noticed that the Miller indices mentioned here are in basis of three vectors specified in LATTICE card.
 
 
 SURFACE CARD

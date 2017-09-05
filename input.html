@@ -106,7 +106,7 @@ Se px py pz
 Se px py pz
 Se px py pz
 
-MILLER_INDICES      ! Miller indices for surface choosen
+MILLER_INDICES      ! Miller indices for surface choosen relatively to LATTICE card
 0 0 1
 
 !SURFACE            ! See doc for details
@@ -581,6 +581,10 @@ In WannierTools, you only need to specfiy three integers like</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">MILLER_INDICES</span>
 <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span>
 </pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You should noticed that the Miller indices mentioned here are in basis of three vectors specified in LATTICE card.</p>
 </div>
 </div>
 <div class="section" id="surface-card">
