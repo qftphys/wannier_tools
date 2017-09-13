@@ -3,6 +3,7 @@ Capabilities of WannierTools
 
 -  :ref:`bulkbandcalculation`
 -  :ref:`bulkfscalculation`
+-  :ref:`doscalculation`
 -  :ref:`findnodescalculation`
 -  :ref:`energygapcalculation`
 -  :ref:`slabbandcalculation`
@@ -110,6 +111,37 @@ You can plot the FS with `xcrysden <http://www.xcrysden.org>`_  run ::
 to get the plot. 
 
 By the way, Bulk band and BulkFS calculations were already implemented in Wannier90 code.
+
+.. _doscalculation:
+
+Density state(DOS) calculations
+-------------------------------
+
+Calculation density of state for the bulk system. The typical setup in **wt.in**::
+
+  &CONTROL
+  DOS_calc = T
+  /
+  &PARAMETERS
+  OmegaNum = 601    ! number of slices of energy
+  OmegaMin = -1.0   ! erergy range for DOS
+  OmegaMax =  1.0
+  Nk1 = 51   ! No. of slices for the 1st reciprocal vector
+  Nk2 = 51   ! No. of slices for the 2nd reciprocal vector
+  Nk3 = 51   ! No. of slices for the 3nd reciprocal vector
+  /
+      
+  KCUBE_BULK
+   -0.50 -0.50 -0.50   ! Original point for 3D k plane 
+    1.00  0.00  0.00   ! The first vector to define 3d k space plane
+    0.00  1.00  0.00   ! The second vector to define 3d k space plane
+    0.00  0.00  1.00   ! The third vector to define 3d k cube
+   
+  
+Outputs are **dos.dat** and **dos.gnu**. **dos.eps** will be obtained with ::
+
+   gnuplot dos.gnu
+   
 
 .. _energygapcalculation:
 

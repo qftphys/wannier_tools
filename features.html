@@ -52,6 +52,7 @@
 <ul class="simple">
 <li><a class="reference internal" href="#bulkbandcalculation"><span class="std std-ref">Bulk band calculation</span></a></li>
 <li><a class="reference internal" href="#bulkfscalculation"><span class="std std-ref">BulkFS calculation</span></a></li>
+<li><a class="reference internal" href="#doscalculation"><span class="std std-ref">Density state(DOS) calculations</span></a></li>
 <li><a class="reference internal" href="#findnodescalculation"><span class="std std-ref">Find Nodes calculation</span></a></li>
 <li><a class="reference internal" href="#energygapcalculation"><span class="std std-ref">Energy gap calculations</span></a></li>
 <li><a class="reference internal" href="#slabbandcalculation"><span class="std std-ref">Slab band calculation</span></a></li>
@@ -148,8 +149,35 @@ You can plot the FS with <a class="reference external" href="http://www.xcrysden
 <p>By the way, Bulk band and BulkFS calculations were already implemented in Wannier90 code.</p>
 </div>
 </div>
+<div class="section" id="density-state-dos-calculations">
+<span id="doscalculation"></span><h2>1.3.3. Density state(DOS) calculations<a class="headerlink" href="#density-state-dos-calculations" title="Permalink to this headline">¶</a></h2>
+<p>Calculation density of state for the bulk system. The typical setup in <strong>wt.in</strong>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>&amp;CONTROL
+DOS_calc = T
+/
+&amp;PARAMETERS
+OmegaNum = 601    ! number of slices of energy
+OmegaMin = -1.0   ! erergy range for DOS
+OmegaMax =  1.0
+Nk1 = 51   ! No. of slices for the 1st reciprocal vector
+Nk2 = 51   ! No. of slices for the 2nd reciprocal vector
+Nk3 = 51   ! No. of slices for the 3nd reciprocal vector
+/
+
+KCUBE_BULK
+ -0.50 -0.50 -0.50   ! Original point for 3D k plane
+  1.00  0.00  0.00   ! The first vector to define 3d k space plane
+  0.00  1.00  0.00   ! The second vector to define 3d k space plane
+  0.00  0.00  1.00   ! The third vector to define 3d k cube
+</pre></div>
+</div>
+<p>Outputs are <strong>dos.dat</strong> and <strong>dos.gnu</strong>. <strong>dos.eps</strong> will be obtained with</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">gnuplot</span> <span class="n">dos</span><span class="o">.</span><span class="n">gnu</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="energy-gap-calculations">
-<span id="energygapcalculation"></span><h2>1.3.3. Energy gap calculations<a class="headerlink" href="#energy-gap-calculations" title="Permalink to this headline">¶</a></h2>
+<span id="energygapcalculation"></span><h2>1.3.4. Energy gap calculations<a class="headerlink" href="#energy-gap-calculations" title="Permalink to this headline">¶</a></h2>
 <p>We support two modes for energy gap calculations.The formula is
 <span class="math">\(gap(k)= E_{NumOccupied+1}(k)- E_{NumOccpuied}(k)\)</span></p>
 <div class="section" id="gap-plane-mode">
@@ -243,7 +271,7 @@ KCUBE_BULK
 </div>
 </div>
 <div class="section" id="find-nodes-calculation">
-<span id="findnodescalculation"></span><h2>1.3.4. Find Nodes calculation<a class="headerlink" href="#find-nodes-calculation" title="Permalink to this headline">¶</a></h2>
+<span id="findnodescalculation"></span><h2>1.3.5. Find Nodes calculation<a class="headerlink" href="#find-nodes-calculation" title="Permalink to this headline">¶</a></h2>
 <p>Beside by using GapCube and GapPlane to find Weyl/Dirac nodes or node lines, we can directly
 using FindNodes function.
 <span class="math">\(gap(k)= E_{NumOccupied+1}(k)- E_{NumOccpuied}(k)\)</span></p>
@@ -295,7 +323,7 @@ KCUBE_BULK
 </div>
 </div>
 <div class="section" id="weyl-chirality-calculation">
-<span id="weylchiralitycalculation"></span><h2>1.3.5. Weyl Chirality calculation<a class="headerlink" href="#weyl-chirality-calculation" title="Permalink to this headline">¶</a></h2>
+<span id="weylchiralitycalculation"></span><h2>1.3.6. Weyl Chirality calculation<a class="headerlink" href="#weyl-chirality-calculation" title="Permalink to this headline">¶</a></h2>
 <p>After you identify the positions of Weyl points, you could use this function to calculate the chirality,
 which tells you whether a Weyl point is a sink or a source of the Berry Curvature.</p>
 <div class="section" id="id11">
@@ -349,7 +377,7 @@ show the Wannier charge center phase. In total, there are Num_weyls columns.</p>
 </div>
 </div>
 <div class="section" id="slab-band-calculation">
-<span id="slabbandcalculation"></span><h2>1.3.6. Slab band calculation<a class="headerlink" href="#slab-band-calculation" title="Permalink to this headline">¶</a></h2>
+<span id="slabbandcalculation"></span><h2>1.3.7. Slab band calculation<a class="headerlink" href="#slab-band-calculation" title="Permalink to this headline">¶</a></h2>
 <p>Before using iterative green’s function to get the surface state spectrum for semi-infinite system.
 We also can just construct a finite thickness slab system and
 calculate the band structure for it.</p>
@@ -399,7 +427,7 @@ G 0.0 0.0 M 0.5 0.5
 </div>
 </div>
 <div class="section" id="nanowire-nanoribbon-band-calculation">
-<span id="ribbonbandcalculation"></span><h2>1.3.7. Nanowire/nanoribbon  band calculation<a class="headerlink" href="#nanowire-nanoribbon-band-calculation" title="Permalink to this headline">¶</a></h2>
+<span id="ribbonbandcalculation"></span><h2>1.3.8. Nanowire/nanoribbon  band calculation<a class="headerlink" href="#nanowire-nanoribbon-band-calculation" title="Permalink to this headline">¶</a></h2>
 <p>Band calculation for wire system. Only one direction is periodic, the other two directions are confined.</p>
 <div class="section" id="id15">
 <h3>Input<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
@@ -428,7 +456,7 @@ Nk1 = 101   ! No. of slices for the 1st reciprocal vector
 </div>
 </div>
 <div class="section" id="surface-state-arpes-calculation">
-<span id="sscalculation"></span><h2>1.3.8. Surface state ARPES calculation<a class="headerlink" href="#surface-state-arpes-calculation" title="Permalink to this headline">¶</a></h2>
+<span id="sscalculation"></span><h2>1.3.9. Surface state ARPES calculation<a class="headerlink" href="#surface-state-arpes-calculation" title="Permalink to this headline">¶</a></h2>
 <p>One important feature for topological materials is the surface state. The bulk-edge correspondence
 tells us, if the topological property of the bulk system is nontrivial, then there will be
 nontrivial states on the surface. Nowadays, there are several method to detect the surface states.
@@ -462,7 +490,7 @@ Used if  SlabSS_calc= T, SlabArc_calc=T, SlabSpintexture_calc=T. Default value i
 </div>
 </div>
 <div class="section" id="surface-state-qpi-calculation">
-<span id="ssqpicalculation"></span><h2>1.3.9. Surface state QPI calculation<a class="headerlink" href="#surface-state-qpi-calculation" title="Permalink to this headline">¶</a></h2>
+<span id="ssqpicalculation"></span><h2>1.3.10. Surface state QPI calculation<a class="headerlink" href="#surface-state-qpi-calculation" title="Permalink to this headline">¶</a></h2>
 <p>Settings for this feature are almost the same as <a class="reference internal" href="#fermiarccalculation"><span class="std std-ref">Fermi arc calculation</span></a>. Only difference is that
 you should set</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&amp;</span><span class="n">CONTROL</span>
@@ -488,19 +516,19 @@ bulk contribution.  jdat_l is the QPI data without consideration of spin scatter
 </div>
 </div>
 <div class="section" id="fermi-arc-calculation">
-<span id="fermiarccalculation"></span><h2>1.3.10. Fermi arc calculation<a class="headerlink" href="#fermi-arc-calculation" title="Permalink to this headline">¶</a></h2>
+<span id="fermiarccalculation"></span><h2>1.3.11. Fermi arc calculation<a class="headerlink" href="#fermi-arc-calculation" title="Permalink to this headline">¶</a></h2>
 <p>Surface state spectrum at fixed energy level E_arc set in NAMELISTS PARAMETERS . Set SlabArc_calc=T,
 and  set Nk1, Nk2, in NAMELISTS PARAMETERS, set k plane in KPLANE_SLAB CARD.
 Get the plots with  “gnuplot arc_l.gnu”, “gnuplot arc_r.gnu”.</p>
 </div>
 <div class="section" id="spin-texture-calculation">
-<span id="spintexturecalculation"></span><h2>1.3.11. Spin texture calculation<a class="headerlink" href="#spin-texture-calculation" title="Permalink to this headline">¶</a></h2>
+<span id="spintexturecalculation"></span><h2>1.3.12. Spin texture calculation<a class="headerlink" href="#spin-texture-calculation" title="Permalink to this headline">¶</a></h2>
 <p>Spin texture calculation at fixed energy level E_arc set in NAMELISTS PARAMETERS .
 Set Slabspintexture_calc=T, and  set Nk1, Nk2, in NAMELISTS PARAMETERS, set k plane in KPLANE_SLAB CARD.
 Get the plots with  “gnuplot spintext_l.gnu”, “gnuplot spintext_r.gnu”.</p>
 </div>
 <div class="section" id="berry-phase-calculation">
-<span id="berryphasecalculation"></span><h2>1.3.12. Berry phase calculation<a class="headerlink" href="#berry-phase-calculation" title="Permalink to this headline">¶</a></h2>
+<span id="berryphasecalculation"></span><h2>1.3.13. Berry phase calculation<a class="headerlink" href="#berry-phase-calculation" title="Permalink to this headline">¶</a></h2>
 <p>Calculate Berry phase of a closed k path in 3D BZ. This is useful in a nodal line system. It is demonstrated that
 the Berry phase around a closed mirror symmetric k loop is either 0 or pi for a mirror protect nodal line system.</p>
 <p>In WannierTools, you can specify a k path by a serials  k points. Here we take the WC example, which has two nodal lines around
@@ -549,12 +577,12 @@ or one.</p>
 </div>
 </div>
 <div class="section" id="berry-curvature-calculation">
-<span id="berrycurvcalculation"></span><h2>1.3.13. Berry curvature calculation<a class="headerlink" href="#berry-curvature-calculation" title="Permalink to this headline">¶</a></h2>
+<span id="berrycurvcalculation"></span><h2>1.3.14. Berry curvature calculation<a class="headerlink" href="#berry-curvature-calculation" title="Permalink to this headline">¶</a></h2>
 <p>Calculate Berry curvature at a fixed k plane in 3D BZ. Set BerryCurvature_calc=T, and  set Nk1, Nk2, in NAMELISTS PARAMETERS, set k plane in KPLANE_BULK CARD. Get the plot with  “gnuplot Berrycurvature.gnu”.</p>
 <p>please set NumOccpuied correctly. It represents the “occpuied” wannier bands, not the total number of electrons. In this application, the Berrycurvature is the summation over NumOccupied bands.</p>
 </div>
 <div class="section" id="wannier-charge-center-wilson-loop-calculation">
-<span id="wanniercentercalculation"></span><h2>1.3.14. Wannier charge center/Wilson loop calculation<a class="headerlink" href="#wannier-charge-center-wilson-loop-calculation" title="Permalink to this headline">¶</a></h2>
+<span id="wanniercentercalculation"></span><h2>1.3.15. Wannier charge center/Wilson loop calculation<a class="headerlink" href="#wannier-charge-center-wilson-loop-calculation" title="Permalink to this headline">¶</a></h2>
 <p>Wannier charge center, which is sometimes called Wilson loop can be calculated by set WannierCenter_calc=T and set KPLANE_BULK CARD,  set number of k points for two vectors is Nk1, Nk2 in NAMELISTS PARAMETERS.  Notice: You should notice that the first vector in KPLANE_BULK CARD is the integration direction, this vector should be equal to one primitive reciprocal lattice vector.  If you want to calculate the Z2 number, Please set the second vector to be half of the reciprocal lattice vector. You can get the Wannier charge center  along the second k line. See more details In the paper written by Alexey. Soluyanov (2011).</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -604,7 +632,7 @@ plane to characterize the topology.</p>
 </div>
 </div>
 <div class="section" id="z2-number-for-3d-bulk-materials">
-<span id="z2bulkcalculation"></span><h2>1.3.15. Z2 number for 3D bulk materials<a class="headerlink" href="#z2-number-for-3d-bulk-materials" title="Permalink to this headline">¶</a></h2>
+<span id="z2bulkcalculation"></span><h2>1.3.16. Z2 number for 3D bulk materials<a class="headerlink" href="#z2-number-for-3d-bulk-materials" title="Permalink to this headline">¶</a></h2>
 <p>We can get Z2 topological index (v, v1v2v3) from the z2 calculations of six time invariant planes, i.e. k1=0.0; k1=0.5; k2=0.0; k2=0.5; k3=0.0; k3=0.5;
 Usually, you can call “Wannier charge center calculation for a plane”  six times. Here we packed them up to get another function. You can set the input file like the following.</p>
 <div class="section" id="id22">
@@ -660,7 +688,8 @@ then set NumOccupied=8.</p>
 <li><a class="reference internal" href="#id4">Output</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#energy-gap-calculations">1.3.3. Energy gap calculations</a><ul>
+<li><a class="reference internal" href="#density-state-dos-calculations">1.3.3. Density state(DOS) calculations</a></li>
+<li><a class="reference internal" href="#energy-gap-calculations">1.3.4. Energy gap calculations</a><ul>
 <li><a class="reference internal" href="#gap-plane-mode">Gap_plane mode</a><ul>
 <li><a class="reference internal" href="#id5">Input</a></li>
 <li><a class="reference internal" href="#id6">Output</a></li>
@@ -673,50 +702,50 @@ then set NumOccupied=8.</p>
 </li>
 </ul>
 </li>
-<li><a class="reference internal" href="#find-nodes-calculation">1.3.4. Find Nodes calculation</a><ul>
+<li><a class="reference internal" href="#find-nodes-calculation">1.3.5. Find Nodes calculation</a><ul>
 <li><a class="reference internal" href="#id9">Input</a></li>
 <li><a class="reference internal" href="#id10">Output</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#weyl-chirality-calculation">1.3.5. Weyl Chirality calculation</a><ul>
+<li><a class="reference internal" href="#weyl-chirality-calculation">1.3.6. Weyl Chirality calculation</a><ul>
 <li><a class="reference internal" href="#id11">Input</a><ul>
 <li><a class="reference internal" href="#id12">Output</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a class="reference internal" href="#slab-band-calculation">1.3.6. Slab band calculation</a><ul>
+<li><a class="reference internal" href="#slab-band-calculation">1.3.7. Slab band calculation</a><ul>
 <li><a class="reference internal" href="#id13">Input</a></li>
 <li><a class="reference internal" href="#id14">Output</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#nanowire-nanoribbon-band-calculation">1.3.7. Nanowire/nanoribbon  band calculation</a><ul>
+<li><a class="reference internal" href="#nanowire-nanoribbon-band-calculation">1.3.8. Nanowire/nanoribbon  band calculation</a><ul>
 <li><a class="reference internal" href="#id15">Input</a></li>
 <li><a class="reference internal" href="#id16">Output</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#surface-state-arpes-calculation">1.3.8. Surface state ARPES calculation</a><ul>
+<li><a class="reference internal" href="#surface-state-arpes-calculation">1.3.9. Surface state ARPES calculation</a><ul>
 <li><a class="reference internal" href="#id17">Input</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#surface-state-qpi-calculation">1.3.9. Surface state QPI calculation</a><ul>
+<li><a class="reference internal" href="#surface-state-qpi-calculation">1.3.10. Surface state QPI calculation</a><ul>
 <li><a class="reference internal" href="#id18">Output</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#fermi-arc-calculation">1.3.10. Fermi arc calculation</a></li>
-<li><a class="reference internal" href="#spin-texture-calculation">1.3.11. Spin texture calculation</a></li>
-<li><a class="reference internal" href="#berry-phase-calculation">1.3.12. Berry phase calculation</a><ul>
+<li><a class="reference internal" href="#fermi-arc-calculation">1.3.11. Fermi arc calculation</a></li>
+<li><a class="reference internal" href="#spin-texture-calculation">1.3.12. Spin texture calculation</a></li>
+<li><a class="reference internal" href="#berry-phase-calculation">1.3.13. Berry phase calculation</a><ul>
 <li><a class="reference internal" href="#id19">Input</a></li>
 <li><a class="reference internal" href="#id20">Output</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#berry-curvature-calculation">1.3.13. Berry curvature calculation</a></li>
-<li><a class="reference internal" href="#wannier-charge-center-wilson-loop-calculation">1.3.14. Wannier charge center/Wilson loop calculation</a><ul>
+<li><a class="reference internal" href="#berry-curvature-calculation">1.3.14. Berry curvature calculation</a></li>
+<li><a class="reference internal" href="#wannier-charge-center-wilson-loop-calculation">1.3.15. Wannier charge center/Wilson loop calculation</a><ul>
 <li><a class="reference internal" href="#id21">Output</a></li>
 <li><a class="reference internal" href="#example">Example</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#z2-number-for-3d-bulk-materials">1.3.15. Z2 number for 3D bulk materials</a><ul>
+<li><a class="reference internal" href="#z2-number-for-3d-bulk-materials">1.3.16. Z2 number for 3D bulk materials</a><ul>
 <li><a class="reference internal" href="#id22">Input</a></li>
 <li><a class="reference internal" href="#id23">Output</a></li>
 </ul>
