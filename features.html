@@ -133,10 +133,10 @@ Nk1 = 51   ! Number of k points along the first vector in KPLANE_BULK
 Nk2 = 51   ! Number of k points along the second vector in KPLANE_BULK
 /
 
-KPLANE_BULK   ! fractional units
- 0.00  0.00  0.30   ! Middle point for a k slice(plane) in 3D BZ
- 0.50  0.00  0.00   ! The first vector to define 3d BZ
- 0.00  0.50  0.00   ! The second vector to define 3d BZ
+KPLANE_BULK   ! fractional coordinates
+ 0.00  0.00  0.30   ! Middle point for a k slice(plane) in 3D BZ. Usually, the position of Dirac points.
+ 0.50  0.00  0.00   ! The first vector to define k plane(slice) in 3D BZ
+ 0.00  0.50  0.00   ! The second vector to define k plane(slice) in 3D BZ
 </pre></div>
 </div>
 <p>The output file is <strong>bulkek_plane.dat</strong>, <strong>bulkek_plane-matlab.dat</strong> and <strong>bulkek_plane.gnu</strong>. You can get
@@ -236,8 +236,8 @@ Nk2 = 101   ! No. of slices for the 2nd reciprocal vector
 
 KPLANE_BULK
  0.00  0.00  0.00   ! Original point for 3D k plane
- 1.00  0.00  0.00   ! The first vector to define 3d k space plane
- 0.00  0.50  0.00   ! The second vector to define 3d k space plane
+ 1.00  0.00  0.00   ! The first vector to define 3d k space plane(slice)
+ 0.00  0.50  0.00   ! The second vector to define 3d k space plane(slice)
 </pre></div>
 </div>
 <p>See <a class="reference internal" href="input.html#controlnamelist"><span class="std std-ref">CONTROL</span></a>, <a class="reference internal" href="input.html#parametersnamelist"><span class="std std-ref">PARAMETERS</span></a>, <a class="reference internal" href="input.html#kpathbulk"><span class="std std-ref">KPATH_BULK</span></a></p>
