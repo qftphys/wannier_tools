@@ -20,8 +20,12 @@ Capabilities of WannierTools
 
 .. _bulkbandcalculation:
 
-Bulk band calculation
----------------------
+Bulk band calculation (line mode and plane mode)
+------------------------------------------------
+
+Line mode
+^^^^^^^^^
+
 Calculate bulk energy band for a series k lines. This is the basic calculation after the
 construction of Wannier functions. You have to compare your Wannier interpolated bands 
 with the DFT bands. Those two bands should match well around the Fermi level.
@@ -29,7 +33,7 @@ with the DFT bands. Those two bands should match well around the Fermi level.
 .. _bulkekin:
 
 Input
-^^^^^
+>>>>>
 Typical flags for bulk band calculation in the wt.in. ::
 
   &CONTROL
@@ -51,7 +55,7 @@ See :ref:`controlnamelist`, :ref:`parametersnamelist`, :ref:`kpathbulk`
 .. _bulkekout:
 
 Output
-^^^^^^
+>>>>>>
 
 The outputs for bulk band calculation are **bulkek.dat** and **bulkek.gnu**. You can get the band plot by running ::
 
@@ -76,6 +80,50 @@ The data structure for **bulkek.dat** ::
    to 255 for the color plot convinence.
 
 The subrotine for this feature is :f:func:`ek_bulk`
+
+Plane mode
+^^^^^^^^^^
+
+Calculate band structure in a k slice(plane) specified by KPLANE_BULK card.
+The mode is very useful to visualize the Dirac/Weyl cone. You have to set the following tags in **wt.in** ::
+
+  &CONTROL
+  BulkBand_plane_calc = T
+  /
+  &PARAMETERS
+  Nk1 = 51   ! Number of k points along the first vector in KPLANE_BULK
+  Nk2 = 51   ! Number of k points along the second vector in KPLANE_BULK
+  /
+
+  KPLANE_BULK   ! fractional units
+   0.00  0.00  0.30   ! Middle point for a k slice(plane) in 3D BZ
+   0.50  0.00  0.00   ! The first vector to define 3d BZ
+   0.00  0.50  0.00   ! The second vector to define 3d BZ
+
+
+The output file is **bulkek_plane.dat**, **bulkek_plane-matlab.dat** and **bulkek_plane.gnu**. You can get 
+**bulkek_plane.png** with ::
+
+   gnuplot bulkek_plane.gnu
+
+The **bulkek_plane-matlab.dat** is in MATLAB data format. You can plot the Dirac cone with matlab.  
+
+The format of **bulkek_plane.dat** is as follows::
+
+               # kx                 ky                 kz                 k1                 k2                 k3   E(Numoccupied-1)     E(Numoccupied)   E(Numoccupied+1)   E(Numoccupied+2)
+       -0.299354337       -0.518496963        0.180167841       -0.518496936       -0.299354384        0.180167841       -1.311721381       -1.311705191        0.588683811        0.588872215
+       -0.299354337       -0.504670376        0.180167841       -0.511583643       -0.287380208        0.180167841       -1.294078082       -1.293904952        0.586780093        0.587249790
+       ...
+
+Column 1-3 are k points in cartesian coordinates. Column 4-6 are k points in a rotated cartesian coordinates 
+where the x and y direction are line in the k plane and the z direction is perpendicular to the k plane you specified. 
+Column 7-10 are energies at each k point. Here we only print out 4 energy bands around the fermilevel. It depends on **NumOccupied**.
+
+.. image:: bulkek_plane.png
+   :scale: 15 %
+
+
+
 
 .. _bulkfscalculation:
 
@@ -145,8 +193,8 @@ Outputs are **dos.dat** and **dos.gnu**. **dos.eps** will be obtained with ::
 
 .. _energygapcalculation:
 
-Energy gap calculations
------------------------
+Energy gap calculations (plane and cube mode)
+---------------------------------------------
 
 We support two modes for energy gap calculations.The formula is 
 :math:`gap(k)= E_{NumOccupied+1}(k)- E_{NumOccpuied}(k)`
@@ -158,7 +206,7 @@ Calculate the energy gap for the k points in the KPLANE_BULK.
 This is useful to show Weyl points and nodal line structure.
 
 Input 
-"""""
+>>>>>
 
 Typical input parameters for BulkGap_plane calculation ::
 
@@ -178,7 +226,7 @@ Typical input parameters for BulkGap_plane calculation ::
 See :ref:`controlnamelist`, :ref:`parametersnamelist`, :ref:`kpathbulk`
 
 Output
-""""""
+>>>>>>
 
 The outputs for Gap_plane mode are **GapPlane.dat**, **GapPlane.gnu**. The **GapPlane.png** will get by ::
    
