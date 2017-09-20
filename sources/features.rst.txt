@@ -115,9 +115,10 @@ The format of **bulkek_plane.dat** is as follows::
        -0.299354337       -0.504670376        0.180167841       -0.511583643       -0.287380208        0.180167841       -1.294078082       -1.293904952        0.586780093        0.587249790
        ...
 
-Column 1-3 are k points in cartesian coordinates. Column 4-6 are k points in a rotated cartesian coordinates 
+Column 1-3rd are k points in cartesian coordinates. Column 4-6th are k points in a rotated cartesian coordinates 
 where the x and y direction are line in the k plane and the z direction is perpendicular to the k plane you specified. 
-Column 7-10 are energies at each k point. Here we only print out 4 energy bands around the fermilevel. It depends on **NumOccupied**.
+Column 7-10th are energies at each k point. Here we only print out 4 energy bands around the fermilevel. It depends on **NumOccupied**.
+Usually, I choose column 4th and 5th as k coordinates and choose 8 and 9 as energy bands to show the Dirac cone shown below.
 
 .. image:: bulkek_plane.png
    :scale: 15 %
