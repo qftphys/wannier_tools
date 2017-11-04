@@ -535,6 +535,16 @@ See :ref:`controlnamelist`, :ref:`parametersnamelist`, :ref:`kpathslab`
 NP : integer valued, Number of principle layers, see details related to iterative green’s function. 
 Used if  SlabSS_calc= T, SlabArc_calc=T, SlabSpintexture_calc=T. Default value is 2. You need to do a convergence test by setting Np= 1, Np=2, Np=3, and check the surface state spectrum. Basically, the value of Np depends on the spread of Wannier functions you constructed. One thing should be mentioned is that the computational time grows cubically of Np. 
 
+Output
+^^^^^^
+The output files are **surfdos_l.dat**, **surfdos_r.dat**, **surfdos_l.gnu**, **surfdos_r.gnu**. You could get the the spectral function
+plots with ::
+   
+   gnuplot surfdos_l.gnu
+   gnuplot surfdos_r.gnu
+
+**_l** and **_r** means the top and bottom surface.
+
 .. _ssqpicalculation:
 
 Surface state QPI calculation
@@ -569,7 +579,7 @@ Fermi arc calculation
 ---------------------
 Surface state spectrum at fixed energy level E_arc set in NAMELISTS PARAMETERS . Set SlabArc_calc=T, 
 and  set Nk1, Nk2, in NAMELISTS PARAMETERS, set k plane in KPLANE_SLAB CARD. 
-Get the plots with  "gnuplot arc_l.gnu”, "gnuplot arc_r.gnu”.
+Get the plots with  "gnuplot arc_l.gnu”, "gnuplot arc_r.gnu”. **_l** and **_r** means the top and bottom surface.
 
 .. _spintexturecalculation:
 
