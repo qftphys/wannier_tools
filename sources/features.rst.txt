@@ -727,6 +727,7 @@ The necessary tags that you should set in the wt.in ::
   /
   &PARAMETERS
   NumOccpuied = 18  ! No. of occupied wannier bands
+  Nk1 = 41    ! No. of slices of the k points for WCCs
   Nk2 = 41    ! No. of slices of the k points for WCCs
   /
 
@@ -784,6 +785,7 @@ The necessary tags that you should set in the wt.in ::
   /
   &PARAMETERS
   NumOccpuied = 18  ! No. of occupied wannier bands
+  Nk1 = 41    ! No. of slices of the k points for WCCs
   Nk2 = 41    ! No. of slices of the k points for WCCs
   /
 
