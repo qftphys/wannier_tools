@@ -285,6 +285,13 @@ surf_onsite= 0.0        ! surf_onsite
 <li>NSlab : integer,  Number of slabs for slab band, The default value is 10.</li>
 <li>NSlab1, Nslab2 :  integers, The thickness of nano ribbon. If you don’t want to calculate the band structure of it, then don’t set it. The default values are Nslab1= 1, Nslab2= 1.</li>
 <li>NumOccupied :  integer, Number of occupied Wannier bands. No default value, you have to set it for Wilson loop and gap calculation.</li>
+</ul>
+<p>Important: please set NumOccpuied correctly. It represents the “occpuied” wannier bands, not the total number of electrons.
+In the calculation of Wilson loop, the Wilson loop is the trace of NumOccupied bands.
+If you want to study the topology between the 8th and the 9th band, then set NumOccupied=8.</p>
+<p>When you search Weyl points, nodal line or study the gap in some k slices, NumOccupied is also a very important. WannierTools will look for touching point or calculate the energy gap
+between the NumOccupied’th band and the (NumOccupied+1)’th band.</p>
+<ul class="simple">
 <li>SOC :  integer,  Flag for spin-orbital coupling. If SOC=0, it means there is no SOC included in your given tight binding model. if SOC=1 or &gt;0, it means SOC is already included in the tight binding model.</li>
 <li>E_FERMI : real-valued,  Fermi level for the given tight binding model.</li>
 <li>Bx, By, Bz : real-valued, magnetic field value. Ignore it in this version.</li>
