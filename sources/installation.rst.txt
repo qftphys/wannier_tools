@@ -41,7 +41,7 @@ Now you can enjoy your exploration for topological materials with WannierTools.
 
 There are two files you have to prepare, 
 
-1. input.dat. All the control and user specified parameters are inclued in this file.
+1. wt.in. All the control and user specified parameters are inclued in this file.
 2. wannier90_hr.dat. Tight binding model constructed by Wannier90 or written in the format as wannier90_hr.dat.
 
 After the preparation of these two files, you can just run wann_tools in the same folder ::
