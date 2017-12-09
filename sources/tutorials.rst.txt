@@ -5,5 +5,6 @@ Tutorial: learning WannierTools through examples
    :maxdepth: 2
 
    tutorials/Bi2Se3
+   tutorials/MoS2-1Tp
    tutorials/WTe2
    tutorials/IrF4
