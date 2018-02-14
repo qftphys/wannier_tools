@@ -542,6 +542,8 @@ two surfaces are constructed by vector  :math:`R_1', R_3'` and  :math:`R_2', R_3
    a11, a12, a13 ..., a33 should be integers. 
 
 
+.. image:: images/wanniertools-surface.png
+   :scale: 40 %
 
 .. _kpathbulk:
 
@@ -589,6 +591,9 @@ The first line is the start point of the plane. The second and third line are th
     1.0  0.0      ! The first vector to define 2D k plane
     0.0  1.0      ! The second vector to define 2D k plane  for arc plots
 
+.. image:: images/wanniertools-kplane-slab.png
+   :scale: 40 %
+
 .. _kplane_bulk:
 
 KPLANE_BULK
@@ -607,6 +612,9 @@ We can use these two vectors to calculate the band gap of a plane in 3D BZ, then
     1.00  0.00  0.00   ! The first vector to define 3d k space plane
     0.00  0.50  0.00   ! The second vector to define 3d k space plane
 
+.. image:: images/wanniertools-kplane-bulk.png
+   :scale: 40 %
+
 .. _kcube_bulk:
 
 KCUBE_BULK
@@ -620,6 +628,9 @@ The same set as KPLANE_BULK CARD ::
     0.00  0.00  1.00   ! The third vector to define 3d k cube
 
 We add another  k vector to construct a k cube. Set this for BulkGap_cube_calc=T.  The values list above are default values. 
+
+.. image:: images/wanniertools-kcube-bulk.png
+   :scale: 40 %
 
 .. _effectivemass:
 
