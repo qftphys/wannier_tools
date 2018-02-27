@@ -10,15 +10,11 @@ WannierTools
 
 Source on Github : https://github.com/quanshengwu/wannier_tools
 
- 
 Aiming to investigate topoligical properties of 
 
 * Electron systems (Tested)
 
 * Phonon systems (Testing)
-
-* Phonton systems (Developing)
-
 
 .. toctree::
    :maxdepth: 2
@@ -35,7 +31,9 @@ Please cite this paper when using WannierTools for your researchs::
    @article{WU2017,
    title = "WannierTools : An open-source software package for novel topological materials",
    journal = "Computer Physics Communications",
-   year = "2017",
+   volume = "224",
+   pages = "405 - 416",
+   year = "2018",
    issn = "0010-4655",
    doi = "https://doi.org/10.1016/j.cpc.2017.09.033",
    url = "http://www.sciencedirect.com/science/article/pii/S0010465517303442",
