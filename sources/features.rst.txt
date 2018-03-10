@@ -708,6 +708,13 @@ plane to characterize the topology.
 
 Use "gnuplot wcc.gnu" to get "wcc.eps" plot. 
 
+Here is an example. 
+
+.. image:: images/WannierTools_WCC_plane.png
+   :scale: 60 %
+
+
+
 
 .. _z2bulkcalculation:
 
