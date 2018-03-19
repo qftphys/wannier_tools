@@ -63,7 +63,7 @@ developers Changming Yue (yuechangming8 at gmail.com).
 
 This work was sponsored by the following institutes: 
 
-.. image:: ./images/wanniertools-sponser.jpeg
-   :scale: 40 %
+.. image:: ./images/wanniertools-sponsors.jpg
+   :scale: 80 %
 
 
