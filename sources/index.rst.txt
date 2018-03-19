@@ -58,4 +58,12 @@ developers Changming Yue (yuechangming8 at gmail.com).
 .. image:: wannier_tools-logo-crop.png
    :scale: 20 %
 
+**Sponser**
+^^^^^^^^^^^
+
+This work was sponsed by the following institute:
+
+.. image:: ./images/wanniertools-sponser.jpeg
+   :scale: 40 %
+
 
