@@ -106,13 +106,9 @@ Se px py pz
 Se px py pz
 Se px py pz
 
-MILLER_INDICES      ! Miller indices for surface choosen relatively to LATTICE card
-0 0 1
-
-!SURFACE            ! See doc for details
+SURFACE            ! See doc for details
  1  0  0
  0  1  0
- 0  0  1
 
 &amp;CONTROL
 BulkBand_calc         = T
@@ -581,7 +577,7 @@ The default order in Wannier90 is “s”, “pz”, “px”, “py”, “dz2�
 </div>
 <div class="section" id="surface">
 <span id="id4"></span><h5>SURFACE<a class="headerlink" href="#surface" title="Permalink to this headline">¶</a></h5>
-<p><strong>Attention: from now on, you can specify a surface with MILLER_INDICES card or with SURFACE card</strong>. If you have both cards in the <strong>wt.in</strong> file, then we will take the SURFACE card.</p>
+<p><strong>Attention: from version v2.2.6 on, you can specify a surface with SURFACE card with only two lattice vectors</strong>.</p>
 </div>
 </div>
 <div class="section" id="miller-indices-card">
@@ -594,39 +590,30 @@ In WannierTools, you only need to specfiy three integers like</p>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">You should notice that the Miller indices mentioned here are based on three vectors specified in LATTICE card.</p>
+<p class="last">Since this is very confusing, we discard it from version V2.2.6.
+You should notice that the Miller indices mentioned here are based on three vectors specified in LATTICE card.</p>
 </div>
 </div>
 <div class="section" id="surface-card">
 <h4>SURFACE CARD<a class="headerlink" href="#surface-card" title="Permalink to this headline">¶</a></h4>
-<p><strong>This card is very important for slabs and ribbon calculation. You need to read the following text carefully</strong></p>
+<p><strong>This card is very important for slabs calculation. You need to read the following text carefully</strong></p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>SURFACE            ! See doc for details
  1  0  0           a11, a12, a13
  0  1  0           a21 a22 a23
- 0  0  1           a31 a32 a33
 </pre></div>
 </div>
 <p>In this card, we specify the surface you want to investigate.  Basically,
 you should be aware of which surface you want to investigate,
 and of which direction you want to study the ribbon.
 So we need to define the new lattice vector system like this,</p>
-<p>1. choose two vectors on the surface we want to study,
+<p>Choose two <strong>lattice vectors</strong> on the surface we want to study,
 and choose another vector which is not on this plane.</p>
-<p>2. The volume of the  new cell constructed by those three vectors
-should be the same of the previous one. And the orientation should be
-the same by checking  <span class="math">\(R_1'\cdot(R_2'\times R_3')= R_1\cdot(R_2\times R_3)\)</span>.
-The relations between old and new basis are</p>
-<p><span class="math">\(R_1'= a_{11} R_1 + a_{12} R_2 + a_{13} R_3\)</span></p>
-<p><span class="math">\(R_2'= a_{21} R_1 + a_{22} R_2 + a_{23} R_3\)</span></p>
-<p><span class="math">\(R_3'= a_{31} R_1 + a_{32} R_2 + a_{33} R_3\)</span></p>
 <p>The slab calculations are base on the surface constructed by vector <span class="math">\(R_1', R_2'\)</span>.</p>
-<p>The ribbon is along <span class="math">\(R_3'\)</span> direction,
-two surfaces are constructed by vector  <span class="math">\(R_1', R_3'\)</span> and  <span class="math">\(R_2', R_3'\)</span> respectively.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">a11, a12, a13 …, a33 should be integers.</p>
+<p class="last">a11, a12, a13 …, a23 should be integers, in unit of three lattice vectors</p>
 </div>
-<a class="reference internal image-reference" href="images/wanniertools-surface.png"><img alt="images/wanniertools-surface.png" src="images/wanniertools-surface.png" style="width: 768.0px; height: 432.0px;" /></a>
+<a class="reference internal image-reference" href="images/wanniertools-surfacecard.jpeg"><img alt="images/wanniertools-surfacecard.jpeg" src="images/wanniertools-surfacecard.jpeg" style="width: 768.0px; height: 432.0px;" /></a>
 </div>
 <div class="section" id="kpath-bulk">
 <span id="kpathbulk"></span><h4>KPATH_BULK<a class="headerlink" href="#kpath-bulk" title="Permalink to this headline">¶</a></h4>

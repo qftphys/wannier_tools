@@ -18,6 +18,7 @@ Capabilities of WannierTools
 -  :ref:`z2bulkcalculation`
 -  :ref:`chernbulkcalculation`
 -  :ref:`weylchiralitycalculation`
+-  :ref:`landaulevel`
 
 .. _bulkbandcalculation:
 
@@ -813,3 +814,104 @@ The WCC (Wilson loop) plots **wanniercenter3D_Chern.eps** can be got with::
 
 
 For the 2D system, if you set the Z axis as the stack axis, please only take the Chern number at k3=0 plane. 
+
+
+.. _landaulevel:
+
+Landau level calculations
+-------------------------
+
+**This functionality is under testing, not released yet**
+
+By applying the uniform magnetic field along one lattice vector, the Landau level spectrum can be calculated by the Peierls substitution. 
+
+Here we put one example of Graphene. The input file wt.in is like this ::
+
+   &TB_FILE
+   Hrfile = 'wannier90_hr.dat'
+   /
+
+   !> bulk band structure calculation flag
+   &CONTROL
+   BulkBand_calc                 = T
+   Hof_Butt_calc                 = T
+   LandauLevel_k_calc            = T
+   LandauLevel_wavefunction_calc = F
+   /
+
+   &SYSTEM
+   NSLAB = 200             ! the size of magnetic supercell
+   NumOccupied = 1         ! NumOccupied
+   SOC = 0                 ! soc
+   E_FERMI = -1.2533       ! e-fermi
+   /
+
+   &PARAMETERS
+   E_arc = 0.00        ! energy for calculate Fermi Arc
+   OmegaNum = 201      ! number of eigenvalues to calculate the Landau levels
+   Nk1 = 100           ! number k points for each line in the kpath_bulk
+   /
+
+   LATTICE
+   Angstrom
+   2.1377110  -1.2342080   0.0000000
+   0.0000000   2.4684160   0.0000000
+   0.0000000   0.0000000   10.000000
+
+   !> used when you want to study the projections on the orbital for each band
+   SELECTEDORBITALS
+   1  ! NumberofSelectedOrbitals without spin degeneracy
+   1  ! SelectedOrbitals indices without spin degeneracy
+
+   ATOM_POSITIONS
+   2                               ! number of atoms for projectors
+   Direct                          ! Direct or Cartisen coordinate
+   C 0.333333 0.666667 0.500000 C
+   C 0.666667 0.333333 0.500000 C
+
+   PROJECTORS
+   1 1        ! number of projectors
+   C  pz
+   C  pz
+
+   SURFACE
+    0  0  1     ! magnetic field direction in units of lattice vectors
+    1  0  0
+
+   KPATH_BULK            ! k point path
+   1              ! number of k line only for bulk band
+   M   0.50000  0.00000  0.00000   G   0.00000  0.00000  0.00000
+
+   WANNIER_CENTRES
+   Cartesian
+   0.712570  1.234209  5.000000
+   1.425141 -0.000001  5.000000
+
+
+
+We can calculate the Hofstader butterfly plot by setting  **Hof_Butt_calc  = T**. **Nslab** is the size of the supercell. The corresponding
+magnetic field strength can be found in the output WT.out. 
+
+Since the calculation for magnetic supercell is very heavy, we have two versions of eigenvalue solvers. One is direct
+diagonalization, the other one is the ARPACK solver, which is based on the sparse matrix. So you have to install the ARPACK package, and specify the 
+library in the Makefile. You don't have to choose the solvers. It is automatically chosen according to the matrix 
+dimensionality. If the dimensionality of the Hamiltonian matrix of the magnetic supercell is larger than 1600, WannierTools
+will call the sparse matrix solver. 
+
+Once the sparse matrix solver is chosen. You have to set **E_arc** and **OmegaNum**, which means you are going to calculate
+2*OmegaNum+1 Landau energy levels around **E_arc** respect to the Fermi level.
+
+The magnetic field is along the first vector specified in the SURFACE card.
+
+
+.. image:: images/WannierTools-landaulevel.jpeg
+   :scale: 60 %
+
+
+
+
+
+
+
+
+
