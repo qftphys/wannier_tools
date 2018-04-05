@@ -821,7 +821,7 @@ For the 2D system, if you set the Z axis as the stack axis, please only take the
 Landau level calculations
 -------------------------
 
-**This functionality is under testing, not released yet**
+**This functionality is under testing, not released yet. Developed by QSWu and YFGuan**
 
 By applying the uniform magnetic field along one lattice vector, the Landau level spectrum can be calculated by the Peierls substitution. 
 

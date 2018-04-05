@@ -63,13 +63,9 @@ Here we introduce the wt.in for Bi2Se3 as an example ::
   Se px py pz
   Se px py pz
   
-  MILLER_INDICES      ! Miller indices for surface choosen relatively to LATTICE card
-  0 0 1
-
-  !SURFACE            ! See doc for details
+  SURFACE            ! See doc for details
    1  0  0
    0  1  0
-   0  0  1
  
   &CONTROL
   BulkBand_calc         = T
@@ -181,6 +177,7 @@ Here we introduce the wt.in for Bi2Se3 as an example ::
    -0.000007  -3.605935   8.405982 
 
 .. _basic_parameters:
+
 Basic Parameters
 ^^^^^^^^^^^^^^^^
 
@@ -489,7 +486,8 @@ The default order in Wannier90 is "s", "pz", "px", "py", "dz2", "dxz", "dyz", "d
 SURFACE
 '''''''
 
-**Attention: from now on, you can specify a surface with MILLER_INDICES card or with SURFACE card**. If you have both cards in the **wt.in** file, then we will take the SURFACE card.
+**Attention: from version v2.2.6 on, you can specify a surface with SURFACE card with only two lattice vectors**.
+
 
 MILLER_INDICES CARD
 """""""""""""""""""
@@ -501,48 +499,34 @@ In WannierTools, you only need to specfiy three integers like ::
 
 .. NOTE::
 
+   Since this is very confusing, we discard it from version V2.2.6.
    You should notice that the Miller indices mentioned here are based on three vectors specified in LATTICE card.
 
 
 SURFACE CARD
 """"""""""""
-**This card is very important for slabs and ribbon calculation. You need to read the following text carefully** ::
+**This card is very important for slabs calculation. You need to read the following text carefully** ::
 
    SURFACE            ! See doc for details
     1  0  0           a11, a12, a13
     0  1  0           a21 a22 a23
-    0  0  1           a31 a32 a33
 
 In this card, we specify the surface you want to investigate.  Basically, 
 you should be aware of which surface you want to investigate, 
 and of which direction you want to study the ribbon. 
 So we need to define the new lattice vector system like this, 
 
-1. choose two vectors on the surface we want to study, 
+Choose two **lattice vectors** on the surface we want to study, 
 and choose another vector which is not on this plane. 
-
-2. The volume of the  new cell constructed by those three vectors 
-should be the same of the previous one. And the orientation should be 
-the same by checking  :math:`R_1'\cdot(R_2'\times R_3')= R_1\cdot(R_2\times R_3)`.
-The relations between old and new basis are 
-
-:math:`R_1'= a_{11} R_1 + a_{12} R_2 + a_{13} R_3`  
-
-:math:`R_2'= a_{21} R_1 + a_{22} R_2 + a_{23} R_3`
-
-:math:`R_3'= a_{31} R_1 + a_{32} R_2 + a_{33} R_3`
 
 The slab calculations are base on the surface constructed by vector :math:`R_1', R_2'`.
 
-The ribbon is along :math:`R_3'` direction, 
-two surfaces are constructed by vector  :math:`R_1', R_3'` and  :math:`R_2', R_3'` respectively. 
-
 .. NOTE::
    
-   a11, a12, a13 ..., a33 should be integers. 
+   a11, a12, a13 ..., a23 should be integers, in unit of three lattice vectors
 
 
-.. image:: images/wanniertools-surface.png
+.. image:: images/wanniertools-surfacecard.jpeg
    :scale: 40 %
 
 .. _kpathbulk:
