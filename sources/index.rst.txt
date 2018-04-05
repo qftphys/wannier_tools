@@ -16,6 +16,15 @@ Aiming to investigate topoligical properties of
 
 * Phonon systems (Testing)
 
+
+**New features**
+^^^^^^^^^^^^^^^^
+
+version V2.2.6
+1. Discard the Miller indicies
+2. Discard the third vector in the SURFACE card. The surface plane is specified only by two lattice vectors sitting on it.
+
+
 .. toctree::
    :maxdepth: 2
    :numbered: 3
