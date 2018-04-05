@@ -17,20 +17,22 @@ Aiming to investigate topoligical properties of
 * Phonon systems (Testing)
 
 
-**New features**
-^^^^^^^^^^^^^^^^
-
-version V2.2.6
-1. Discard the Miller indicies
-2. Discard the third vector in the SURFACE card. The surface plane is specified only by two lattice vectors sitting on it.
-
-
 .. toctree::
    :maxdepth: 2
    :numbered: 3
 
    preliminaries
    tutorials
+
+**Updates**
+^^^^^^^^^^^^^^^^
+
+Version V2.2.6
+
+1. Discard the Miller indicies
+
+2. Discard the third vector in the SURFACE card. The surface plane is specified only by two lattice vectors sitting on it.
+
 
 **Citation**
 ^^^^^^^^^^^^
@@ -54,8 +56,6 @@ Please cite this paper when using WannierTools for your researchs::
 ^^^^^^^^^^^^^^^^^^
 
 Please report bugs to wuquansheng at gmail.com.
-
-If you know about Chinese characters, you could find more information on http://bbs.materialsgene.org
 
 **Advertisement**
 ^^^^^^^^^^^^^^^^^^
