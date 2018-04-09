@@ -176,6 +176,12 @@ Nk1 = 101   ! No. of slices for the 1st reciprocal vector
 Nk2 = 101   ! No. of slices for the 2nd reciprocal vector
 Nk3 = 101   ! No. of slices for the 3rd reciprocal vector
 /
+
+KCUBE_BULK
+  0.00  0.00  0.00   ! Original point for 3D k plane
+  1.00  0.00  0.00   ! The first vector to define 3d k space plane
+  0.00  1.00  0.00   ! The second vector to define 3d k space plane
+  0.00  0.00  1.00   ! The third vector to define 3d k cube
 </pre></div>
 </div>
 <p>See <a class="reference internal" href="input.html#controlnamelist"><span class="std std-ref">CONTROL</span></a>, <a class="reference internal" href="input.html#parametersnamelist"><span class="std std-ref">PARAMETERS</span></a></p>
@@ -207,7 +213,7 @@ Nk3 = 51   ! No. of slices for the 3nd reciprocal vector
 /
 
 KCUBE_BULK
- -0.50 -0.50 -0.50   ! Original point for 3D k plane
+  0.00  0.00  0.00   ! Original point for 3D k plane
   1.00  0.00  0.00   ! The first vector to define 3d k space plane
   0.00  1.00  0.00   ! The second vector to define 3d k space plane
   0.00  0.00  1.00   ! The third vector to define 3d k cube
