@@ -526,7 +526,7 @@ The slab calculations are base on the surface constructed by vector :math:`R_1',
    a11, a12, a13 ..., a23 should be integers, in unit of three lattice vectors
 
 
-.. image:: images/WannierTools-surfacecard.jpeg
+.. image:: images/WannierTools-surfacecard.png
    :scale: 40 %
 
 .. _kpathbulk:

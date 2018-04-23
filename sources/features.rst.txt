@@ -910,7 +910,7 @@ Once the sparse matrix solver is chosen. You have to set **E_arc** and **OmegaNu
 The magnetic field is along the first vector specified in the SURFACE card.
 
 
-.. image:: images/WannierTools-landaulevel.jpeg
+.. image:: images/WannierTools-landaulevel.png
    :scale: 60 %
 
 
