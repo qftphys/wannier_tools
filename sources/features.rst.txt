@@ -3,6 +3,7 @@ Capabilities of WannierTools
 
 -  :ref:`bulkbandcalculation`
 -  :ref:`bulkfscalculation`
+-  :ref:`bulkfsplanecalculation`
 -  :ref:`doscalculation`
 -  :ref:`findnodescalculation`
 -  :ref:`energygapcalculation`
@@ -81,7 +82,8 @@ The data structure for **bulkek.dat** ::
    each wannier orbitals. Those weights are normalized 
    to 255 for the color plot convinence.
 
-The subrotine for this feature is :f:func:`ek_bulk`
+The subrotine for this feature is ek_bulk.f90 .
+
 
 Plane mode
 ^^^^^^^^^^
@@ -168,6 +170,44 @@ You can plot the FS with `xcrysden <http://www.xcrysden.org>`_  run ::
 to get the plot. 
 
 By the way, Bulk band and BulkFS calculations were already implemented in Wannier90 code.
+
+
+.. _bulkfsplanecalculation:
+
+BulkFS plane calculation
+------------------------
+
+Bulk Fermi surface in a fixed k plane specified by KPLANE_BULK 
+
+Input
+^^^^^
+
+You should specify the number of k points for each three reciprocal vectors Nk1, Nk2
+in NAMELISTS PARAMETERS ::
+
+  &CONTROL
+  BulkFS_Plane_calc = T
+  /
+  &PARAMETERS
+  Nk1 = 101   ! No. of slices for the 1st reciprocal vector
+  Nk2 = 101   ! No. of slices for the 2nd reciprocal vector
+  /
+      
+  KPLANE_BULK  ! in fractional coordinates
+    0.00  0.00  0.00   ! Original point for 3D k plane 
+    1.00  0.00  0.00   ! The first vector to define 3d k space plane
+    0.00  1.00  0.00   ! The second vector to define 3d k space plane
+ 
+See :ref:`controlnamelist`, :ref:`parametersnamelist`
+
+Output
+^^^^^^
+
+The outputs for this function are **fs.gnu, fs.png**. 
+
+   gnuplot fs.gnu
+
+to get the plot. 
 
 .. _doscalculation:
 
@@ -260,7 +300,7 @@ Gap_Cube mode
 This helps us to find Weyl points and nodal line structure in the 3D BZ. 
 
 Input
-"""""
+""""""
 
 Typical input parameters for BulkGap_cube calculation ::
 
